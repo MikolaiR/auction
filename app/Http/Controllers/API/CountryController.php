@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Contracts\Repositories\CountryRepositoryInterface;
 use App\Http\Controllers\Controller;
@@ -18,7 +18,7 @@ class CountryController extends Controller
 
     /**
      * Get states by country.
-     * 
+     *
      * @param string $iso2code
      * @return \Illuminate\Http\JsonResponse
      */
@@ -29,7 +29,7 @@ class CountryController extends Controller
 
     /**
      * Get cities by country and state.
-     * 
+     *
      * @param string $iso2code
      * @param string $stateCode
      * @return \Illuminate\Http\JsonResponse

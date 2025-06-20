@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Contracts\Repositories\CategoryRepositoryInterface;
 use App\Http\Controllers\Controller;
@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     /**
      * Instantiate a new controller instance.
-     * 
+     *
      * @return void
      */
     public function __construct(protected CategoryRepositoryInterface $categoryRepository)
@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
     /**
      * Get the categories with sub categories.
-     * 
+     *
      * @param string $slug
      * @return \Illuminate\Http\JsonResponse
      */
