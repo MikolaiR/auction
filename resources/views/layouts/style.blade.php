@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/plugin/notify/css/app.css">
 <link rel="stylesheet" href="/plugin/notify/css/notify.css">
 <link rel="stylesheet" href="https://amplifiedhq.github.io/fa-pro/css/all.css">
+<link rel="stylesheet" href="/assets/css/google_translate.css">
 @if($admin)
 <link href="/assets/css/main.css" rel="stylesheet">
 <link href="/assets/css/plugin.css" rel="stylesheet">

@@ -158,6 +158,19 @@
         </div>
     </div>
     <div class="nav-right d-flex align-items-center">
+        <div class="translate_container">
+            <div id='google_translate_element2'></div>
+            <div class='blog_flags'>
+                <a class="col gflag nturl" href="#" onclick="doGTranslate('ru|be');return false;"
+                   title='Belarus' style='background-position:-2px -1206px;'></a>
+                <a class="col gflag nturl" href="#" onclick="doGTranslate('ru|ru');return false;"
+                   title='Russia' style='background-position:-1003px -405px;'></a>
+                <a class="col gflag nturl" href="#" onclick="doGTranslate('ru|en');return false;"
+                   title='English' style='background-position:-2px -4px;'></a>
+                <a class="col gflag nturl" href="#" onclick="doGTranslate('ru|zh-CN');return false;"
+                   title='China' style='background-position:-602px -4px;'></a>
+            </div>
+        </div>
         <div class="search-btn">
             <i class="bi bi-search"></i>
         </div>
