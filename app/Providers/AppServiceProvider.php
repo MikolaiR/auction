@@ -59,11 +59,12 @@ class AppServiceProvider extends ServiceProvider
         Image::configure([
             'driver' => 'gd'
         ]);
-        if (!app()->environment('local')) {
+        // todo : move to observer payment method
+//        if (!app()->environment('local')) {
             User::observe(UserObserver::class);
             Ad::observe(AdObserver::class);
             Media::observe(MediaObserver::class);
-            PayoutMethod::observe(PayoutMethodObserver::class);
-        }
+//            PayoutMethod::observe(PayoutMethodObserver::class);
+//        }
     }
 }
