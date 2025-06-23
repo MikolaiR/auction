@@ -222,7 +222,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
      */
     protected function createUser(array $data): void
     {
-
+        // todo user fields create for register
         $user = User::create([
             'name' => $data['fio'],
             'first_name' => $data['fio'],

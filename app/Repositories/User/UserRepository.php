@@ -130,6 +130,7 @@ class UserRepository extends BaseCrudRepository implements UserRepositoryInterfa
      */
     public function updateUser(string $id, array $data): void
     {
+        // todo user fields update
         $user = $this->model->query()->where('id', $id)->firstOr(function () {
             throw new UserException(__('User not found.'));
         });

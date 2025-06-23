@@ -24,6 +24,7 @@ class UpdateAdminUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        // todo user fields request
         $rules = [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name'  => ['required', 'string', 'max:255'],
