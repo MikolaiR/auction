@@ -225,6 +225,9 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
 
         $user = User::create([
             'name' => $data['fio'],
+            'first_name' => $data['fio'],
+            'last_name' => $data['fio'],
+            'address' => $data['address'],
             'email' => $data['email'],
             'username' => $data['fio'],
             'mobile' => $data['phone'],

@@ -3,6 +3,7 @@
 namespace App\Repositories\User;
 
 use App\Abstracts\BaseCrudRepository;
+use App\Enums\TypeOwners;
 use App\Models\User;
 use App\Contracts\Repositories\UserRepositoryInterface;
 use App\Enums\Gender;
@@ -20,7 +21,7 @@ class UserRepository extends BaseCrudRepository implements UserRepositoryInterfa
 
     /**
      * Get users for admin
-     * 
+     *
      * @param int $limit
      * @param array $filters
      * @return \App\Models\User
@@ -63,7 +64,7 @@ class UserRepository extends BaseCrudRepository implements UserRepositoryInterfa
 
     /**
      * Get user for admin
-     * 
+     *
      * @param string $id
      * @return \App\Models\User
      */
@@ -82,7 +83,7 @@ class UserRepository extends BaseCrudRepository implements UserRepositoryInterfa
 
     /**
      * Get user for profile
-     * 
+     *
      * @param array $data
      * @return void
      */
@@ -108,7 +109,7 @@ class UserRepository extends BaseCrudRepository implements UserRepositoryInterfa
 
      /**
      * Send password reset link
-     * 
+     *
      * @param string $id
      */
     public function sendPasswordResetLink(string $id): void
@@ -122,7 +123,7 @@ class UserRepository extends BaseCrudRepository implements UserRepositoryInterfa
 
     /**
      * Update user
-     * 
+     *
      * @param string $id
      * @param array $data
      * @return void
@@ -130,7 +131,7 @@ class UserRepository extends BaseCrudRepository implements UserRepositoryInterfa
     public function updateUser(string $id, array $data): void
     {
         $user = $this->model->query()->where('id', $id)->firstOr(function () {
-            throw new UserException('User not found.');
+            throw new UserException(__('User not found.'));
         });
 
         $user->update([
@@ -141,11 +142,13 @@ class UserRepository extends BaseCrudRepository implements UserRepositoryInterfa
             'country' => $data['country'] ?? $user->country,
             'is_active' => $data['is_active'] ?? $user->is_active,
         ]);
+
+        $user->userData->update($data['user_data']);
     }
 
     /**
      * Delete a user
-     * 
+     *
      * @param string $id
      * @return void
      */
