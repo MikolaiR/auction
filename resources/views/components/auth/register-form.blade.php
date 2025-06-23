@@ -152,12 +152,14 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="form-check mb-3">
-                    <input type="checkbox" class="form-check-input" id="terms" name="terms" x-model="regForm.terms">
-                    <label class="form-check-label" for="terms">{{ __('I agree to the Terms & Policy') }}</label>
+            <div class="col-12">
+                <div class="form-agreement form-inner d-flex justify-content-between flex-wrap">
+                    <div class="form-group">
+                        <input type="checkbox" id="terms" name="terms" x-model="regForm.terms">
+                        <label for="terms">{{ __('I agree to the Terms & Policy') }}</label>
+                        <span class="text-danger d-block fs-6" x-show="errors.terms" x-text="getErrorMessage('terms')"></span>
+                    </div>
                 </div>
-                <div class="error-message text-danger" x-show="errors.terms" x-text="getErrorMessage('terms')"></div>
             </div>
 
             <!-- Global errors and success messages -->
@@ -222,11 +224,11 @@ document.addEventListener('alpine:init', () => {
 
             // Add watchers to clear errors on input
             const formFields = [
-                'fio', 'region', 'address', 'phone', 'email', 
+                'fio', 'region', 'address', 'phone', 'email',
                 'passport_series', 'passport_number', 'passport_issued_by', 'passport_issued_date',
                 'unp', 'company_name', 'info', 'password', 'password_confirmation', 'terms'
             ];
-            
+
             // Setup watchers for all form fields
             formFields.forEach(field => {
                 this.$watch(`regForm.${field}`, () => {

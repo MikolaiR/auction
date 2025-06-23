@@ -3,9 +3,11 @@
 namespace App\Repositories\Auth;
 
 use App\Contracts\Repositories\AuthenticateRepositoryInterface;
+use App\Enums\TypeOwners;
 use App\Exceptions\AuthenticateException;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\UserData;
 use App\Notifications\User\PasswordResetNotification;
 use App\Notifications\User\UserVerificationNotification;
 use App\Notifications\User\WelcomeEmailNotification;
@@ -36,9 +38,9 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
 
     /**
      * Login a user.
-     * 
+     *
      * @param array<string, mixed> $data
-     * @param string $guard 
+     * @param string $guard
      */
     public function login(array $data, string $guard): void
     {
@@ -49,7 +51,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
 
     /**
      * Logout a user.
-     * 
+     *
      * @param Request $request
      * @param string $guard
      */
@@ -62,7 +64,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
 
     /**
      * Verify a user's email.
-     * 
+     *
      * @param string $token
      */
     public function verify(string $token): void
@@ -107,7 +109,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
 
     /**
      * Send email verification link.
-     * 
+     *
      * @param \App\Models\User $user
      */
     public function sendEmailVerificationLink(\App\Models\User$user): void
@@ -119,7 +121,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
 
     /**
      * Reset a user's password.
-     * 
+     *
      * @param array<string, mixed> $data
      * @param mixed $model
      */
@@ -164,7 +166,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
 
     /**
      * Update a user's profile.
-     * 
+     *
      * @param User $user
      * @param array<string, mixed> $data
      */
@@ -199,7 +201,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
 
     /**
      * Update a user's password.
-     * 
+     *
      * @param \App\Models\Admin  $admin
      * @param array<string, mixed> $data
      */
@@ -220,12 +222,32 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
      */
     protected function createUser(array $data): void
     {
-        User::create([
-            'name' => $data['first_name'] . ' ' . $data['last_name'],
+
+        $user = User::create([
+            'name' => $data['fio'],
             'email' => $data['email'],
-            'username' => $data['username'],
+            'username' => $data['fio'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if ($user){
+            UserData::create([
+                'user_id' => $user->id,
+                'type_owner' => TypeOwners::cases()[$data['type_owner']],
+                'fio' => $data['fio'],
+                'region' => $data['region'],
+                'address' => $data['address'],
+                'phone' => $data['phone'],
+                'email' => $data['email'],
+                'passport_series' => $data['passport_series'] ?? null,
+                'passport_number' => $data['passport_number'] ?? null,
+                'passport_issued_by' => $data['passport_issued_by'] ?? null,
+                'passport_issued_date' => $data['passport_issued_date'] ?? null,
+                'unp' => $data['unp'] ?? null,
+                'info' => $data['info'] ?? null,
+                'company_name' => $data['company_name'] ?? null,
+            ]);
+        }
     }
 
     /**
