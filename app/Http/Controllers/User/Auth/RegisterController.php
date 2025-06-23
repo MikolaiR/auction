@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Auth;
 
 use App\Contracts\Repositories\AuthenticateRepositoryInterface;
+use App\Enums\TypeOwners;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Http\RedirectResponse;
@@ -17,6 +18,20 @@ class RegisterController extends Controller
     {
         $this->repository = $repository;
         $this->middleware('guest')->except('resendVerificationEmail');
+    }
+
+    public function formRegister()
+    {
+        $typeOwners = collect(TypeOwners::cases())->map(function ($type) {
+            return [
+                'value' => $type->value,
+                'label' => $type->label()
+            ];
+        })->values();
+
+        return view('auth.user.register', [
+            'typeOwners' => $typeOwners
+        ]);
     }
 
     /**
@@ -45,7 +60,7 @@ class RegisterController extends Controller
 
     /**
      * Resend the email verification notification.
-     * 
+     *
      * @return RedirectResponse
      */
     public function resendVerificationEmail(): RedirectResponse

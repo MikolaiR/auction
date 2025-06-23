@@ -14,30 +14,7 @@
                         <h3>Sign Up</h3>
                         <p>Do you already have an account? <a href="{{ route('user.login') }}">Log in here</a></p>
                     </div>
-                    <form class="w-100" action="{{ route('user.register.handle') }}" method="POST">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-6">
-                                <x-input-field name="first_name" type="text" label="First Name" placeholder="First Name" />
-                            </div>
-                            <div class="col-md-6">
-                                <x-input-field name="last_name" type="text" label="Last Name" placeholder="Last Name" />
-                            </div>
-                            <div class="col-md-12">
-                                <x-input-field name="username" type="text" label="Username" placeholder="Enter Your Username" />
-                            </div>
-                            <div class="col-md-12">
-                                <x-input-field name="email" type="email" label="Enter Your Email" placeholder="Enter Your Email" />
-                            </div>
-                            <div class="col-md-12">
-                                <x-input-field name="password" type="password" label="Password" placeholder="Create A Password" />
-                            </div>
-                            <div class="col-md-12">
-                                <x-agree-checkbox class="form-agreement form-inner d-flex justify-content-between flex-wrap" id="html" name="terms" label="I agree to the Terms & Policy" />
-                            </div>
-                        </div>
-                        <button class="account-btn">Create Account</button>
-                    </form>
+                    <x-auth.register-form :typeOwners="$typeOwners"/>
                     <div class="form-poicy-area">
                         <p>By clicking the "signup" button, you create a Bazaar account, and you agree to Bazaar's <a
                                 href="#">Terms &amp; Conditions</a> &amp; <a href="#">Privacy Policy.</a></p>
