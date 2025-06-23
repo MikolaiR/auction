@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -68,9 +69,11 @@ class User extends Authenticatable
         'gender' => Gender::class,
     ];
 
+    protected $with = [ 'userData' ];
+
     /**
      * Username Attribute.
-     * 
+     *
      * @return Attribute
      */
     public function username(): Attribute
@@ -83,7 +86,7 @@ class User extends Authenticatable
 
     /**
      * Scope a query to only include active users.
-     * 
+     *
      * @param \Illuminate\Database\Eloquent\Builder $query
      */
     public function scopeActive(Builder $query): Builder
@@ -93,7 +96,7 @@ class User extends Authenticatable
 
     /**
      * Scope a query to only include inactive users.
-     * 
+     *
      * @param \Illuminate\Database\Eloquent\Builder $query
      */
     public function scopeInactive(Builder $query): Builder
@@ -135,7 +138,7 @@ class User extends Authenticatable
 
     /**
      * Get payouts for the user.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function payouts(): HasMany
@@ -190,5 +193,14 @@ class User extends Authenticatable
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
+    }
+
+    /**
+     *
+     * Get the user data has one.
+     */
+    public function userData(): HasOne
+    {
+        return $this->hasOne(UserData::class);
     }
 }
