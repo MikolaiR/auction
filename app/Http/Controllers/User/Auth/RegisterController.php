@@ -6,6 +6,7 @@ use App\Contracts\Repositories\AuthenticateRepositoryInterface;
 use App\Enums\TypeOwners;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Models\Region;
 use Illuminate\Http\RedirectResponse;
 
 class RegisterController extends Controller
@@ -28,9 +29,10 @@ class RegisterController extends Controller
                 'label' => $type->label()
             ];
         })->values();
-
+        $regions = Region::all()->toArray();
         return view('auth.user.register', [
-            'typeOwners' => $typeOwners
+            'typeOwners' => $typeOwners,
+            'regions' => $regions
         ]);
     }
 

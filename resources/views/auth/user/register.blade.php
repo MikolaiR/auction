@@ -14,7 +14,7 @@
                         <h3>Sign Up</h3>
                         <p>Do you already have an account? <a href="{{ route('user.login') }}">Log in here</a></p>
                     </div>
-                    <x-auth.register-form :typeOwners="$typeOwners"/>
+                    <x-auth.register-form :typeOwners="$typeOwners" :regions="$regions"/>
                     <div class="form-poicy-area">
                         <p>By clicking the "signup" button, you create a Bazaar account, and you agree to Bazaar's <a
                                 href="#">Terms &amp; Conditions</a> &amp; <a href="#">Privacy Policy.</a></p>

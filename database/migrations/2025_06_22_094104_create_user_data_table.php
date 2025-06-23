@@ -18,8 +18,10 @@ return new class extends Migration
             $table->integer('type_owner')->default(0);
 
             // general parameters
-            $table->string('fio');
-            $table->string('region');
+            $table->string('first_name'); // имя
+            $table->string('last_name'); // фамилия
+            $table->string('middle_name'); // отчество
+            $table->foreignId('region')->nullable()->constrained('regions')->nullOnDelete();
             $table->string('address');
             $table->string('phone');
             $table->string('email');

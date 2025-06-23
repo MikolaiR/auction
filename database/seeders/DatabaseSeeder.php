@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             SupportSeeder::class,
             PayoutSeeder::class,
+            RegionSeeder::class,
         ]);
     }
 }

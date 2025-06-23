@@ -25,16 +25,21 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-inner">
-                    <label>{{ __('Region') }} *</label>
-                    <input type="text" name="region" id="region" x-model="regForm.region" placeholder="{{ __('Enter Your Region') }}" class="form-control">
+                <div class="form-inner ">
+                    <label for="region">{{ __('Region') }} *</label>
+                    <select class="form-control" name="region" id="region" x-model="regForm.region" x-init="setTimeout(() => { $('#region').removeClass('nice-select').prev('.nice-select').remove(); }, 50)">
+                        @foreach($regions as $key => $reg )
+                            <option {{ $key == 0 ? "data-display='{$reg['name']}'" : '' }} style="text-align : center;" value="{{ $reg['id'] }}" {{ $reg['id'] == old('region') ? 'selected' : '' }}>{{ $reg['name']}}</option>
+                        @endforeach
+                    </select>
                     <div class="error-message text-danger" x-show="errors.region" x-text="getErrorMessage('region')"></div>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-inner">
                     <label>{{ __('Address') }} *</label>
-                    <input type="text" name="address" id="address" x-model="regForm.address" placeholder="{{ __('Enter Your Address') }}" class="form-control">
+                    <input  class="form-control" type="text" name="address" id="address"
+                            x-model="regForm.address" placeholder="{{ __('Enter Your Address') }}">
                     <div class="error-message text-danger" x-show="errors.address" x-text="getErrorMessage('address')"></div>
                 </div>
             </div>
@@ -192,7 +197,7 @@ document.addEventListener('alpine:init', () => {
         regForm: {
             'type_owner': 0,
             'fio': '',
-            'region': '',
+            'region': 1,
             'address': '',
             'phone': '',
             'email': '',
@@ -208,6 +213,7 @@ document.addEventListener('alpine:init', () => {
             'terms': false
         },
         typeOwners: @json($typeOwners),
+        regions: @json($regions),
 
         // Get error message with safe check
         getErrorMessage(fieldName) {
@@ -221,6 +227,14 @@ document.addEventListener('alpine:init', () => {
             // Set initial user type explicitly
             this.activeTab = 0;
             this.regForm.type_owner = 0;
+
+            // Debug - make sure regions are loaded and accessible
+            console.log('Regions data:', this.regions);
+
+            // Only set default region if regions exist and have data
+            if (this.regions && this.regions.length > 0) {
+                this.regForm.region = this.regions[0].id;
+            }
 
             // Add watchers to clear errors on input
             const formFields = [
@@ -337,12 +351,4 @@ document.addEventListener('alpine:init', () => {
         }
     }))
 })
-
-// Ensure all components are initialized before use
-document.addEventListener('DOMContentLoaded', function() {
-    // Additional check that Alpine is ready
-    if (typeof Alpine !== 'undefined' && Alpine.version) {
-        // Alpine.js is ready to use
-    }
-});
 </script>
