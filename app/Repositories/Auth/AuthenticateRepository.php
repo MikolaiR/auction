@@ -227,6 +227,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
             'name' => $data['fio'],
             'email' => $data['email'],
             'username' => $data['fio'],
+            'mobile' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
 
