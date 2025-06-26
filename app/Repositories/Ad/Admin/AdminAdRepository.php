@@ -26,7 +26,7 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
 
     /**
      * Get all ads
-     * 
+     *
      * @param int $limit
      * @param string $type = 'all' <all|active|upcoming|pending|expired|rejected>
      * @param array $filters
@@ -60,7 +60,7 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
 
     /**
      * Get ad by slug
-     * 
+     *
      * @param string $slug
      * @return \App\Models\Ad
      */
@@ -75,7 +75,7 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
 
     /**
      * Update ad by slug
-     * 
+     *
      * @param string $slug
      * @param array $data
      * @return void
@@ -109,7 +109,7 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
 
     /**
      * Get reported all ads
-     * 
+     *
      * @param int $limit
      * @param array $filters
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
@@ -134,7 +134,7 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
 
     /**
      * Get reported all ads
-     * 
+     *
      * @param string $slug
      * @return \App\Models\ReportAd
      */
@@ -151,7 +151,7 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
 
     /**
      * Delete ad by status
-     * 
+     *
      * @param string $status
      * @param int $limit
      * @return void
@@ -171,10 +171,10 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
 
         $ad->delete();
     }
-    
+
     /**
      * Save images for the ad
-     * 
+     *
      * @param string $adSlug
      * @param array $images
      * @return void
@@ -182,10 +182,10 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
     public function saveAdImages(string $adSlug, array $images): void
     {
         $ad = $this->model->where('slug', $adSlug)->firstOr(function () {
-            throw new AdException('Ad not found.');
+            throw new AdException(__('Ad not found.'));
         });
-        
+
         // Используем метод uploadMedia из трейта MediaHandler
-        $this->uploadMedia($ad, $images, StorageDiskType::LOCAL, 'ads', 1024, 768);
-    }   
+        $this->uploadMedia($ad, $images, StorageDiskType::LOCAL, 'public/images/ads', 1024, 768);
+    }
 }

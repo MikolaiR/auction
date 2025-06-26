@@ -20,10 +20,10 @@ class AdController extends Controller
      */
     public function __construct(protected AdRepositoryInterface $adRepository, protected AuthenticateRepositoryInterface $authRepository)
     {}
-    
+
     /**
      * Index page for listing ads.
-     * 
+     *
      * @param \App\Http\Requests\Ad\FilterAdsRequest $query
      * @return \Illuminate\View\View
      */
@@ -36,12 +36,13 @@ class AdController extends Controller
 
     /**
      * Show ad details.
-     * 
+     *
      * @param string $ad
      * @return \Illuminate\View\View
      */
     public function show(string $ad): View
     {
+        dd($this->adRepository->getAd($ad));
         return view('pages.live-auction.show', [
             'ad' => $this->adRepository->getAd($ad),
         ]);
@@ -49,7 +50,7 @@ class AdController extends Controller
 
     /**
      * Create an ad listing.
-     * 
+     *
      * @param \App\Http\Requests\Ad\CreateAdRequest $request
      * @return RedirectResponse;
      */
@@ -77,7 +78,7 @@ class AdController extends Controller
 
     /**
      * Get user ads.
-     * 
+     *
      * @return \Illuminate\View\View
      */
     public function userAds(FilterUserAdsRequest $query): View
@@ -89,7 +90,7 @@ class AdController extends Controller
 
     /**
      * Show user ad details.
-     * 
+     *
      * @param string $ad
      * @return \Illuminate\View\View
      */
@@ -102,7 +103,7 @@ class AdController extends Controller
 
     /**
      * Edit user ad.
-     * 
+     *
      * @param string $ad
      * @return \Illuminate\View\View
      */
@@ -115,7 +116,7 @@ class AdController extends Controller
 
     /**
      * Update user ad.
-     * 
+     *
      * @param string $ad
      * @param \App\Http\Requests\Ad\UpdateAdRequest $request
      */
@@ -127,7 +128,7 @@ class AdController extends Controller
 
     /**
      * Report ad.
-     * 
+     *
      * @param string $ad
      * @return \Illuminate\View\View
      */
@@ -140,7 +141,7 @@ class AdController extends Controller
 
     /**
      * Handle ad report.
-     * 
+     *
      * @param string $ad
      * @param \App\Http\Requests\Ad\ReportAdRequest $request
      * @return \Illuminate\Http\RedirectResponse

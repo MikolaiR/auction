@@ -18,7 +18,7 @@ abstract class BaseMediaStorageService implements MediaStorageServiceInterface
 
     /**
      * Upload media file.
-     * 
+     *
      * @param UploadedFile $file
      * @param string $directory
      * @param int $width
@@ -29,7 +29,8 @@ abstract class BaseMediaStorageService implements MediaStorageServiceInterface
     public function upload(UploadedFile $file, string $directory, int $width, int $height, ?string $filename = null): array
     {
         $path = $file->store($directory, ['disk' => strtolower($this->disk->label())]);
-        $url = Storage::disk(strtolower($this->disk->label()))->url($path);
+        // Сформировал URL с учетом конфигурации Storage и текущих шаблонов ( везде в блэйдах src="{{ $media->url }}" )
+        $url = asset(Storage::disk(strtolower($this->disk->label()))->url($path));
         $this->resizeImage($file, $directory, $width, $height);
         return ['path' => $path, 'url' => $url];
     }
@@ -38,7 +39,7 @@ abstract class BaseMediaStorageService implements MediaStorageServiceInterface
 
     /**
      * Delete media file.
-     * 
+     *
      * @param string $path
      * @return bool
      */
