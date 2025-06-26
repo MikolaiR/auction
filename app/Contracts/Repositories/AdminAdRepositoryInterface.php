@@ -53,7 +53,16 @@ interface AdminAdRepositoryInterface
      * 
      * @param string $status
      * @param int $limit
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return void
      */
     public function deleteAd(string $adSlug) : void;
+    
+    /**
+     * Save images for the ad
+     * 
+     * @param string $adSlug
+     * @param array $images
+     * @return void
+     */
+    public function saveAdImages(string $adSlug, array $images) : void;
 }

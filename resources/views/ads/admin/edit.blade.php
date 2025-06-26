@@ -73,6 +73,53 @@
 <script src="/plugin/fancyuploader/jquery.iframe-transport.js"></script>
 <script src="/plugin/fancyuploader/jquery.fancy-fileupload.js"></script>
 <script src="/plugin/fancyuploader/fancy-uploader.js"></script>
+<script>
+    $(function() {
+        // Используем простой подход с явным URL
+        var uploadUrl = '{{ route("admin.ads.upload.images", $ad->slug) }}';
+        
+        // Останавливаем стандартное поведение формы
+        $(document).on('submit', 'form', function(e) {
+            // Если форма содержит поля для загрузки файлов, не отправляем их вместе с формой
+            if ($(this).find('#demo').length) {
+                e.preventDefault();
+                // Отправляем форму без файлов
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize() + '&_method=PUT',
+                    success: function(response) {
+                        // Успешное сохранение формы
+                        alert('Form submitted successfully');
+                        window.location.href = '{{ route("admin.ads.index") }}';
+                    },
+                    error: function(xhr) {
+                        // Обработка ошибок
+                        console.error('Form submission error:', xhr);
+                        alert('Error saving form data');
+                    }
+                });
+            }
+        });
+
+        // Настраиваем FancyFileUpload с жестко заданным URL
+        $('#demo').FancyFileUpload({
+            url: uploadUrl,
+            params: {
+                _token: '{{ csrf_token() }}',
+                action: 'fileuploader'
+            },
+            maxfilesize: 10000000,
+            added: function(e, data) {
+                // Перед отправкой файла задаем URL снова
+                if (data.url === undefined || data.url.toString().indexOf('[object') !== -1) {
+                    data.url = uploadUrl;
+                }
+                return true;
+            }
+        });
+    });
+</script>
 @endpush
 @push('styles')
 <style>

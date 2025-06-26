@@ -78,6 +78,7 @@ Route::middleware(['auth:admin_web', 'ensure.account.active'])->group(function (
     Route::get('/ad/{ads:slug}', [AdController::class, 'show'])->name('ads.show');
     Route::get('/ad/{ads:slug}/edit', [AdController::class, 'edit'])->name('ads.edit');
     Route::put('/ad/{ads:slug}/edit', [AdController::class, 'update'])->name('ads.update');
+    Route::post('/ad/{ads:slug}/upload-images', [AdController::class, 'uploadImages'])->name('ads.upload.images');
     Route::delete('/ad/{ads:slug}/', [AdController::class, 'destroy'])->name('ads.destroy');
 
     /* ========  BIDS  =========== */

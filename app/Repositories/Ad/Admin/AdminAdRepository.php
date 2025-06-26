@@ -6,6 +6,7 @@ use App\Abstracts\BaseCrudRepository;
 use App\Models\Ad;
 use App\Contracts\Repositories\AdminAdRepositoryInterface;
 use App\Enums\AdStatus;
+use App\Enums\StorageDiskType;
 use App\Exceptions\AdException;
 use App\Models\ReportAd;
 use App\Repositories\Category\CategoryRepository;
@@ -169,5 +170,22 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
         });
 
         $ad->delete();
+    }
+    
+    /**
+     * Save images for the ad
+     * 
+     * @param string $adSlug
+     * @param array $images
+     * @return void
+     */
+    public function saveAdImages(string $adSlug, array $images): void
+    {
+        $ad = $this->model->where('slug', $adSlug)->firstOr(function () {
+            throw new AdException('Ad not found.');
+        });
+        
+        // Используем метод uploadMedia из трейта MediaHandler
+        $this->uploadMedia($ad, $images, StorageDiskType::LOCAL, 'ads', 1024, 768);
     }   
 }
