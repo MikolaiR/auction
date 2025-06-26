@@ -19,13 +19,14 @@ class MediaFactory extends Factory
      */
     public function definition(): array
     {
+        $randomNumber = rand(21, 23);
         return [
             'name' => $this->faker->name,
             'type' => MediaType::IMAGE,
-            'path' => $this->faker->imageUrl(),
-            'url' => $this->faker->imageUrl(),
-            'extension' => 'jpg',
-            'mime_type' => 'image/jpeg',
+            'path' => 'assets/images/blog/recent'.$randomNumber.'.png',
+            'url' => 'https://mylot.by/assets/images/blog/recent'.$randomNumber.'.png',
+            'extension' => 'png',
+            'mime_type' => 'image/png',
             'size' => $this->faker->numberBetween(1024, 3072),
             'storage' => StorageDiskType::LOCAL,
             'is_featured' => false,

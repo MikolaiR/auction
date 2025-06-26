@@ -42,7 +42,6 @@ class AdController extends Controller
      */
     public function show(string $ad): View
     {
-        dd($this->adRepository->getAd($ad));
         return view('pages.live-auction.show', [
             'ad' => $this->adRepository->getAd($ad),
         ]);
