@@ -35,6 +35,8 @@
       return false;
     });
   
+    // Проверяем наличие элемента и функции slick перед инициализацией
+  if ($(".testimonial-carousel").length && $.fn.slick) {
     $(".testimonial-carousel").slick({
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -58,30 +60,34 @@
         },
       ],
     });
+  }
   
-    $(".feature-logos").slick({
-      slidesToShow: 6,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 1000,
-      arrows: false,
-      dots: false,
-      pauseOnHover: false,
-      responsive: [
-        {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 4,
+    // Проверяем наличие элемента и функции slick перед инициализацией для feature-logos
+    if ($(".feature-logos").length && $.fn.slick) {
+      $(".feature-logos").slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1000,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 4,
+            },
           },
-        },
-        {
-          breakpoint: 520,
-          settings: {
-            slidesToShow: 2,
+          {
+            breakpoint: 520,
+            settings: {
+              slidesToShow: 2,
+            },
           },
-        },
-      ],
-    });
+        ],
+      });
+    }
   
     $(document).on("click", ".page", function () {
       if ($(".demo_changer").hasClass("active")) {
@@ -226,7 +232,11 @@
   })(jQuery);
   
   // FOOTER
-  document.getElementById("year").innerHTML = new Date().getFullYear();
+  // Проверяем существование элемента 'year' перед установкой текущего года
+  const yearElement = document.getElementById("year");
+  if (yearElement) {
+    yearElement.innerHTML = new Date().getFullYear();
+  }
   
   window.addEventListener("scroll", reveal);
   
@@ -275,9 +285,19 @@
 
     sections.forEach((elem) => {
       const val = elem.getAttribute("href");
-      let refElement;
+      let refElement = null;
+      // Проверяем, является ли значение href допустимым CSS селектором
       if (val != 'javascript:void(0)' && val !== "#") {
-        refElement = document.querySelector(val);
+        // Если ссылка начинается с '#', то это внутренняя ссылка на идентификатор
+        if (val.startsWith('#')) {
+          try {
+            refElement = document.querySelector(val);
+          } catch (e) {
+            // Если возникла ошибка при попытке использовать селектор, просто пропускаем
+            console.debug('Invalid selector:', val);
+          }
+        }
+        // Иначе это внешняя ссылка, не используем ее как селектор
       }
       const scrollTopMinus = scrollPos + 73;
       if (

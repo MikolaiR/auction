@@ -28,7 +28,7 @@
                             <x-text-area-field name="description" label="Ad Description" placeholder="Enter Description" :value="$ad->description" :admin="true" />
                             <!--End Row-->
                             <x-input-item-field name="start_date" type="datetime-local" label="Start Date" placeholder="Enter Start Date" :value="$ad->started_at" />
-                            <x-input-item-field name="end_date" type="datetime-local" label="Start Date" placeholder="Enter Start Date" :value="$ad->expired_at" />
+                            <x-input-item-field name="end_date" type="datetime-local" label="End Date" placeholder="Enter End Date" :value="$ad->expired_at" />
                             <!--Row-->
                             <div class="row">
                                 <label class="col-md-3 form-label mb-4">Product Upload :</label>
