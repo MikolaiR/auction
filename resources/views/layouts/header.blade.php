@@ -158,18 +158,6 @@
         </div>
     </div>
     <div class="nav-right d-flex align-items-center">
-        <!-- Google translate -->
-        <div class="translate_container">
-            <div id='google_translate_element2'></div>
-            <div class='blog_flags'>
-                <select class="form-select form-select-sm"
-                 onchange="doGTranslate('en|'+this.value);">
-                    <option value="en">ENG</option>
-                    <option value="ru">RUS</option>
-                </select>
-            </div>
-        </div>
-        <!-- Google translate -->
         <div class="search-btn">
             <i class="bi bi-search"></i>
         </div>
