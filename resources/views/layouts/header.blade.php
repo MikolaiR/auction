@@ -12,7 +12,7 @@
         </a>
         <!-- LOGO -->
         <form action="{{route('admin.search')}}" class="main-header-center ms-3 d-none d-lg-block">
-          <input type="text" class="form-control" id="typehead" placeholder="Search for results..." name="q" autocomplete="off" value="{{request()->q}}">
+          <input type="text" class="form-control" id="typehead" placeholder="{{ __('Search here...') }}" name="q" autocomplete="off" value="{{request()->q}}">
           <button type="submit" class="btn px-0 pt-2"><i class="fa-regular fa-magnifying-glass" aria-hidden="true"></i></button>
         </form>
         <div class="d-flex order-lg-2 ms-auto header-right-icons">
@@ -31,11 +31,34 @@
                   </a>
                   <div class="dropdown-menu header-search dropdown-menu-start">
                     <div class="input-group w-100 p-2">
-                      <input type="text" class="form-control" placeholder="Search....">
+                      <input type="text" class="form-control" placeholder="{{ __('Search here...') }}">
                       <div class="input-group-text btn btn-primary">
                         <i class="fa-regular fa-search" aria-hidden="true"></i>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <!-- LANGUAGE DROPDOWN -->
+                <div class="dropdown d-flex">
+                  <a class="nav-link icon" data-bs-toggle="dropdown">
+                    <i class="fa-light fa-globe"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <div class="drop-heading border-bottom">
+                      <div class="d-flex">
+                        <h6 class="mt-1 mb-0 fs-16 fw-semibold text-dark">{{ __('Language') }}</h6>
+                      </div>
+                    </div>
+                    <a class="dropdown-item d-flex" href="{{ route('language.switch', 'en') }}">
+                      <div class="d-flex">
+                        <span class="my-auto">{{ __('English') }}</span>
+                      </div>
+                    </a>
+                    <a class="dropdown-item d-flex" href="{{ route('language.switch', 'ru') }}">
+                      <div class="d-flex">
+                        <span class="my-auto">{{ __('Russian') }}</span>
+                      </div>
+                    </a>
                   </div>
                 </div>
                 <!-- FULL-SCREEN -->
@@ -122,36 +145,43 @@
         </div>
         <ul class="menu-list">
             <li>
-                <a href="{{ route('home') }}">Home</a>
+                <a href="{{ route('home') }}">{{ __('Home') }}</a>
             </li>
             <li>
-                <a href="{{ route('how-it-works') }}">How It Works</a>
+                <a href="{{ route('how-it-works') }}">{{ __('How It Works') }}</a>
             </li>
             <li>
-                <a href="{{ route('live-auction') }}">Live Auction</a>
+                <a href="{{ route('live-auction') }}">{{ __('Live Auction') }}</a>
             </li>
             <li class="menu-item-has-children">
-                <a href="#">Company</a><i class="bx bx-plus dropdown-icon"></i>
+                <a href="#">{{ __('Company') }}</a><i class="bx bx-plus dropdown-icon"></i>
                 <ul class="submenu">
-                    <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="{{ route('contact') }}">Contact</a></li>
+                    <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
+                    <li><a href="{{ route('contact') }}">{{ __('Contact') }}</a></li>
                 </ul>
             </li>
             <li>
-                <a href="{{ route('blog.index') }}">Blog</a>
+                <a href="{{ route('blog.index') }}">{{ __('Blog') }}</a>
+            </li>
+            <li class="menu-item-has-children">
+                <a href="#">{{ __('Language') }}</a><i class="bx bx-plus dropdown-icon"></i>
+                <ul class="submenu">
+                    <li><a href="{{ route('language.switch', 'en') }}">{{ __('English') }}</a></li>
+                    <li><a href="{{ route('language.switch', 'ru') }}">{{ __('Russian') }}</a></li>
+                </ul>
             </li>
         </ul>
 
         <div class="d-lg-none d-block">
             <form class="mobile-menu-form style-2 mb-5">
                 <div class="input-with-btn d-flex flex-column">
-                    <input type="text" placeholder="Search here...">
-                    <button type="submit" class="eg-btn btn--primary2 btn--sm">Search</button>
+                    <input type="text" placeholder="{{ __('Search here...') }}">
+                    <button type="submit" class="eg-btn btn--primary2 btn--sm">{{ __('Search') }}</button>
                 </div>
             </form>
             <div class="hotline two">
                 <div class="hotline-info">
-                    <span>Click To Call</span>
+                    <span>{{ __('Click To Call') }}</span>
                     <h6><a href="tel:347-274-8816">+347-274-8816</a></h6>
                 </div>
             </div>
@@ -161,9 +191,9 @@
         <div class="search-btn">
             <i class="bi bi-search"></i>
         </div>
-        <a href="{{ route('add-listing') }}" class="join-btn">Add Listing</a>
+        <a href="{{ route('add-listing') }}" class="join-btn">{{ __('Add Listing') }}</a>
         @guest('web')
-            <a href="{{ route('user.login') }}" class="join-btn">Login</a>
+            <a href="{{ route('user.login') }}" class="join-btn">{{ __('Login') }}</a>
         @endguest
         @auth()
             <form action="{{ route('user.logout.handle') }}" method="POST">
@@ -188,16 +218,16 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    Logout
+                    {{ __('Logout') }}
                 </button>
             </form>
         @endauth
         <div class="eg-btn btn--primary2 header-btn">
             @guest('web')
-            <a href="{{ route('user.register') }}">Register</a>
+            <a href="{{ route('user.register') }}">{{ __('Register') }}</a>
             @endguest
             @auth('web')
-            <a href="{{ route('user.dashboard') }}">My Account</a>
+            <a href="{{ route('user.dashboard') }}">{{ __('My Account') }}</a>
             @endauth
         </div>
         <div class="mobile-menu-btn d-lg-none d-block">

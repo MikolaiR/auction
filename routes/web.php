@@ -6,6 +6,7 @@ use App\Http\Controllers\Page\ContactController;
 use App\Http\Controllers\Page\HomeController;
 use App\Http\Controllers\User\Ad\AdController;
 use App\Http\Controllers\User\Bid\BidController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+/**
+ * Language Route
+ */
+Route::get('/language/{locale}', LanguageController::class)->name('language.switch');
 
 /**
  * Page Routes
