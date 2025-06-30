@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Bid Details')
+@section('title', __('Admin Bid Details'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,7 +10,7 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Bids Details', 'hasBack' => true, 'backTitle' => 'Bids', 'backUrl' => route('admin.bids.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Bids Details'), 'hasBack' => true, 'backTitle' => __('Bids'), 'backUrl' => route('admin.bids.index')])
             <div class="row">
                 <div class="col-xl-12 col-md-12">
                     <div class="card productdesc">
@@ -23,32 +23,32 @@
                                                 <table class="table table-bordered">
                                                     <tbody>
                                                     <tr>
-                                                        <td class="fw-bold">Bidder Name</td>
+                                                        <td class="fw-bold">{{ __('Bidder Name') }}</td>
                                                         <td> {{  $bid->user->name }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="fw-bold">Ad Details</td>
-                                                        <td> <a href="{{ route('admin.ads.show', $bid->ad->slug) }}">See linked ad: {{ $bid->ad->title }}</a></td>
+                                                        <td class="fw-bold">{{ __('Ad Details') }}</td>
+                                                        <td> <a href="{{ route('admin.ads.show', $bid->ad->slug) }}">{{ __('See linked ad:') }} {{ $bid->ad->title }}</a></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="fw-bold">Ads Starting Price</td>
+                                                        <td class="fw-bold">{{ __('Ads Starting Price') }}</td>
                                                         <td> {{ money($bid->ad->price) }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="fw-bold">Bid Amount</td>
+                                                        <td class="fw-bold">{{ __('Bid Amount') }}</td>
                                                         <td> {{ money($bid->amount) }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="fw-bold">Bid Status</td>
-                                                        <td><span class="text-{{ is_null($bid->is_accepted) ? 'warning' : ($bid->is_accepted ? 'success' : 'danger') }}">{{is_null($bid->is_accepted) ? 'Pending' : ($bid->is_accepted ? 'Accepted' : 'Rejected')}}</span></td>
+                                                        <td class="fw-bold">{{ __('Bid Status') }}</td>
+                                                        <td><span class="text-{{ is_null($bid->is_accepted) ? 'warning' : ($bid->is_accepted ? 'success' : 'danger') }}">{{is_null($bid->is_accepted) ? __('Pending') : ($bid->is_accepted ? __('Accepted') : __('Rejected'))}}</span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="fw-bold">Payment</td>
+                                                        <td class="fw-bold">{{ __('Payment') }}</td>
                                                         <td>
                                                             @if($bid->payment?->exists())
-                                                                <a href="{{ route('admin.payments.show', $bid->payment->txn_id) }}">See linked payment here - {{ $bid->payment->txn_id }}</a>
+                                                                <a href="{{ route('admin.payments.show', $bid->payment->txn_id) }}">{{ __('See linked payment here') }} - {{ $bid->payment->txn_id }}</a>
                                                             @else
-                                                                <span class="text-danger">No payment linked</span>
+                                                                <span class="text-danger">{{ __('No payment linked') }}</span>
                                                             @endif
                                                         </td>
                                                     </tr>

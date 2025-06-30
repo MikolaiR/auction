@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Users Edit')
+@section('title', __('Admin Users Edit'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,8 +10,8 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'User', 'hasBack' => true, 'backTitle' =>
-            'All Users', 'backUrl' => route('admin.users.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('User'), 'hasBack' => true, 'backTitle' =>
+            __('All Users'), 'backUrl' => route('admin.users.index')])
 
             {{-- Отображение общих сообщений об ошибках и успешных операциях --}}
             @if(session('success'))
@@ -59,14 +59,14 @@
                         <div class="card-body">
                             <div class="text-center chat-image mb-5">
                                 <div class="avatar avatar-xxl chat-profile mb-3 brround">
-                                    <a class="" href="#"><img alt="avatar" src="{{$user->avatar}}"
+                                    <a class="" href="#"><img alt="{{ __('avatar') }}" src="{{$user->avatar}}"
                                             class="brround"></a>
                                 </div>
                                 <div class="main-chat-msg-name">
                                     <a href="#">
                                         <h5 class="mb-1 text-dark fw-semibold">{{$user->name}}</h5>
                                     </a>
-                                    <p class="text-muted mt-0 mb-0 pt-0 fs-13">{{'@'.$user->username}}</p>
+                                    <p class="text-muted mt-0 mb-0 pt-0 fs-13">{{ __('@') }}{{$user->username}}</p>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                                     <div class="form-group">
                                         <label for="exampleInputname">{{ __('First Name') }}</label>
                                         <input type="text" name="first_name" class="form-control" id="exampleInputname"
-                                            placeholder="First Name" value="{{$user->first_name}}">
+                                            placeholder="{{ __('First Name') }}" value="{{$user->first_name}}">
                                     </div>
                                     <span class="text-danger">{{$errors->first('first_name')}}</span>
                                 </div>
@@ -163,10 +163,10 @@
                                         <div class="row">
                                             <div class="col-md-12 mb-2">
                                                 <select class="form-control select2 form-select" name="gender"
-                                                    <option>All</option>
+                                                    <option>{{ __('All') }}</option>
                                                     @foreach (\App\Enums\Gender::all() as $gender)
                                                     <option value="{{$gender}}" @selected(true ? $user->gender ===
-                                                        $gender : false)>{{$gender->label()}}</option>
+                                                        $gender : false)>{{ $gender->label() }}</option>
                                                     @endforeach
                                                 </select>
                                                 <span class="text-danger">{{$errors->first('gender')}}</span>
@@ -404,7 +404,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label class="form-label">{{  __('Active Status') }}</label>
+                                    <label class="form-label">{{ __('Active Status') }}</label>
                                     <div class="row">
                                         <div class="col-md-12 mb-2">
                                             <select class="form-control select2 form-select" name="is_active">
@@ -426,19 +426,13 @@
                         @csrf
                         @method('DELETE')
                         <div class="card-header">
-                            <div class="card-title">{{ __('Delete Account') }}</div>
+                            <div class="card-title">{{ __('Delete User') }}</div>
                         </div>
                         <div class="card-body">
-                            <p>{{ __('Its Advisable for you to disable this account instead of deleting it. Use the button "Active
-                                Status" to disable this account.') }}</p>
-                            <label class="custom-control custom-checkbox mb-0">
-                                <input type="checkbox" class="custom-control-input" name="example-checkbox1"
-                                    value="option1" checked>
-                                <span class="custom-control-label">{{ __('Yes, Send my data to my Email.') }}</span>
-                            </label>
+                            <p>{{ __('Are you sure you want to delete this user? This action cannot be undone.') }}</p>
                         </div>
                         <div class="card-footer text-end">
-                            <button type="submit" class="btn btn-danger my-1">{{ __('Delete Account') }}</button>
+                            <button type="submit" class="btn btn-danger my-1" onclick="return confirm('{{ __('Are you sure you want to delete this user?') }}');">{{ __('Delete') }}</button>
                         </div>
                     </form>
                 </div>

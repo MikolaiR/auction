@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Payment')
+@section('title', __('Admin Payment'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,13 +10,13 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'All Payments', 'hasBack' => true,
-            'backTitle' => 'Dashboard', 'backUrl' => route('admin.dashboard')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('All Payments'), 'hasBack' => true,
+            'backTitle' => __('Dashboard'), 'backUrl' => route('admin.dashboard')])
             <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">All Payments</h3>
+                            <h3 class="card-title mb-0">{{ __('All Payments') }}</h3>
                         </div>
                         <div class="">
                             <x-filter-admin-payment-card />
@@ -37,29 +37,29 @@
             @method('PATCH')
             @csrf
             <div class="modal-header">
-                <h6 class="modal-title">Update Payment Status - <span id="transaction-id"></span></h6>
+                <h6 class="modal-title">{{ __('Update Payment Status') }} - <span id="transaction-id"></span></h6>
                 <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h6>You are about to update the payment status of this payment with transaction ID <span
-                        id="transaction-id"></span> and current status of <span id="current-status"
+                <h6>{{ __('You are about to update the payment status of this payment with transaction ID') }} <span
+                        id="transaction-id"></span> {{ __('and current status of') }} <span id="current-status"
                         class="fw-bold"></span>.
-                    Please select the new status below.</h6>
+                    {{ __('Please select the new status below.') }}</h6>
                 <!-- Select2 -->
                 <select name="status" class="form-control select2 select2-dropdown">
-                    <option label="Choose one">Choose status</option>
+                    <option label="Choose one">{{ __('Choose status') }}</option>
                     @foreach (\App\Enums\PaymentStatus::all() as $status)
                     <option value="{{ $status }}">{{ $status->label() }}</option>
                     @endforeach
                 </select>
                 <!-- Select2 -->
-                <p class="mt-3">By clicking on "Save changes" below, this payment status will be updated.</p>
+                <p class="mt-3">{{ __('By clicking on "Save changes" below, this payment status will be updated.') }}</p>
             </div>
             <div class="modal-footer">
-                <button class="btn ripple btn-success" type="submit">Save changes</button>
-                <button class="btn ripple btn-danger" data-bs-dismiss="modal" type="button">Close</button>
+                <button class="btn ripple btn-success" type="submit">{{ __('Save changes') }}</button>
+                <button class="btn ripple btn-danger" data-bs-dismiss="modal" type="button">{{ __('Close') }}</button>
             </div>
         </form>
     </div>

@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Users Detail')
+@section('title', __('Admin Users Detail'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,13 +10,13 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'User', 'hasBack' => true, 'backTitle' => 'All Users', 'backUrl' => route('admin.users.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('User'), 'hasBack' => true, 'backTitle' => __('All Users'), 'backUrl' => route('admin.users.index')])
 
              <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">All User Detail</h3>
+                            <h3 class="card-title mb-0">{{ __('All User Detail') }}</h3>
                         </div>
                         
                     </div>
@@ -79,7 +79,7 @@
                                                     <i class="fa-regular fa-cube fs-20 text-white"></i>
                                                 </div>
                                                 <div class="media-body">
-                                                    <span class="text-muted">Total Ads</span>
+                                                    <span class="text-muted">{{ __('Total Ads') }}</span>
                                                     <div class="fw-semibold fs-25">
                                                         {{$user->ads_count}}
                                                     </div>
@@ -94,7 +94,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <span class="text-muted">Total Bids</span>
+                                                    <span class="text-muted">{{ __('Total Bids') }}</span>
                                                     <div class="fw-semibold fs-25">
                                                         {{$user->bids_count}}
                                                     </div>
@@ -109,7 +109,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <span class="text-muted">Total Methods</span>
+                                                    <span class="text-muted">{{ __('Total Methods') }}</span>
                                                     <div class="fw-semibold fs-25">
                                                         {{$user->payout_methods_count}}
                                                     </div>
@@ -124,7 +124,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <span class="text-muted">Total Paid</span>
+                                                    <span class="text-muted">{{ __('Total Paid') }}</span>
                                                     <div class="fw-semibold fs-25">
                                                         {{money($user->payments->sum('amount'), true)}}
                                                     </div>
@@ -139,7 +139,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="media-body">
-                                                    <span class="text-muted">Total Payouts</span>
+                                                    <span class="text-muted">{{ __('Total Payouts') }}</span>
                                                     <div class="fw-semibold fs-25">
                                                         {{money($user->payouts->sum('amount'), true)}}
                                                     </div>
@@ -151,7 +151,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-title">About</div>
+                                    <div class="card-title">{{ __('About') }}</div>
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-3 mt-3">
@@ -199,7 +199,7 @@
                                             <span><i class="fa-regular fa-mailbox fs-20"></i></span>
                                         </div>
                                         <div>
-                                            <strong>{{ $user->zip_code ?? 'Not Available' }}</strong>
+                                            <strong>{{ $user->zip_code ?? __('Not Available') }}</strong>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center mb-3 mt-3">
@@ -215,7 +215,7 @@
                                             <span><i class="fa-regular fa-ban fs-20"></i></span>
                                         </div>
                                         <div>
-                                            <strong>{{ $user->is_active ? 'Not Banned' : 'Banned' }}</strong>
+                                            <strong>{{ $user->is_active ? __('Not Banned') : __('Banned') }}</strong>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center mb-3 mt-3">
@@ -238,18 +238,18 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-title">User Actions</div>
+                                    <div class="card-title">{{ __('User Actions') }}</div>
                                 </div>
                                 <div class="card-body">
                                     <div class="action-user">
-                                        <a href="{{ route('admin.ads.index', ['search' => $user->id]) }}">See all user ads</a>
-                                        <a href="{{ route('admin.bids.index', ['bid_id' => $user->id]) }}">See all user bids</a>
-                                        <a href="{{ route('admin.payouts.index', ['pyt_token' => $user->id]) }}">See all user payouts</a>
-                                        <a href="{{ route('admin.payments.index', ['txn_id' => $user->id]) }}">See all user payments</a>
-                                        <a href="{{ route('admin.payout-methods.index', ['user_id' => $user->id] ) }}">See all user payout methods</a>
-                                        <a href="{{ route('admin.support.index', ['search' => $user->id]) }}">See all user support tickets</a>
-                                        <a href="{{ route('admin.media.index', ['search' => $user->id] ) }}">See all users media</a>
-                                        <a href="{{ route('admin.comments.index', ['search' => $user->id] ) }}">See all user comments</a>
+                                        <a href="{{ route('admin.ads.index', ['search' => $user->id]) }}">{{ __('See all user ads') }}</a>
+                                        <a href="{{ route('admin.bids.index', ['bid_id' => $user->id]) }}">{{ __('See all user bids') }}</a>
+                                        <a href="{{ route('admin.payouts.index', ['pyt_token' => $user->id]) }}">{{ __('See all user payouts') }}</a>
+                                        <a href="{{ route('admin.payments.index', ['txn_id' => $user->id]) }}">{{ __('See all user payments') }}</a>
+                                        <a href="{{ route('admin.payout-methods.index', ['user_id' => $user->id] ) }}">{{ __('See all user payout methods') }}</a>
+                                        <a href="{{ route('admin.support.index', ['search' => $user->id]) }}">{{ __('See all user support tickets') }}</a>
+                                        <a href="{{ route('admin.media.index', ['search' => $user->id] ) }}">{{ __('See all users media') }}</a>
+                                        <a href="{{ route('admin.comments.index', ['search' => $user->id] ) }}">{{ __('See all user comments') }}</a>
                                     </div>
                                 </div>
                             </div>

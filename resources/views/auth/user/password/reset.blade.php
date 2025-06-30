@@ -1,8 +1,8 @@
 @extends('partials.app')
-@section('title', 'Reset Password')
+@section('title', __('Reset Password'))
 @section('content')
 
-@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => 'Reset Password'])
+@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => __('Reset Password')])
 
 <div class="login-section pt-120 pb-120">
     <div class="container">
@@ -11,25 +11,25 @@
                 <div class="form-wrapper wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".2s"
                     style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInUp;">
                     <div class="form-title">
-                        <h3>Reset Password</h3>
-                        <p>Fill in the form below to reset your password.</p>
+                        <h3>{{ __('Reset Password') }}</h3>
+                        <p>{{ __('Fill in the form below to reset your password.') }}</p>
                     </div>
                     <form class="w-100" action="{{ route('user.reset-password.handle') }}" method="POST">
                         @csrf
                         <div class="row">
                             <input type="hidden" name="token" value="{{ $token }}">
                             <div class="col-12">
-                                <x-input-field name="password" type="password" label="New Password" placeholder="Create A New Password" />
+                                <x-input-field name="password" type="password" label="{{ __('New Password') }}" placeholder="{{ __('Create A New Password') }}" />
                             </div>
                             <div class="col-12">
-                                <x-input-field name="password_confirmation" type="password" label="Confirm Password" placeholder="Confirm Password" />
+                                <x-input-field name="password_confirmation" type="password" label="{{ __('Confirm Password') }}" placeholder="{{ __('Confirm Password') }}" />
                             </div>
                         </div>
-                        <button class="account-btn">Send Reset Link</button>
+                        <button class="account-btn">{{ __('Reset Password') }}</button>
                     </form>
                     <div class="form-poicy-area">
-                        <p>By clicking the "send reset link" button, you create a Bazaar account, and you agree to Bazaar's <a
-                                href="#">Terms &amp; Conditions</a> &amp; <a href="#">Privacy Policy.</a></p>
+                        <p>{{ __('By clicking the "reset password" button, you agree to Bazaar\'s') }} <a
+                                href="#">{{ __('Terms & Conditions') }}</a> & <a href="#">{{ __('Privacy Policy') }}</a></p>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Create Blog')
+@section('title', __('Admin Create Blog'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,25 +10,25 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Create Blog', 'hasBack' => true, 'backTitle' => 'All Blogs', 'backUrl' => route('admin.blogs.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Create Blog'), 'hasBack' => true, 'backTitle' => __('All Blogs'), 'backUrl' => route('admin.blogs.index')])
 
              <div class="row">
                 <div class="col-lg-12">
                     <form class="card" method="POST" action="{{ route('admin.blogs.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
-                            <div class="card-title">Create Blog</div>
+                            <div class="card-title">{{ __('Create Blog') }}</div>
                         </div>
                         <div class="card-body">
-                            <x-input-item-field name="title" type="text" label="Blog Title *" placeholder="Enter Blog Title" value="{{old('title')}}" />
+                            <x-input-item-field name="title" type="text" label="{{ __('Blog Title *') }}" placeholder="{{ __('Enter Blog Title') }}" value="{{old('title')}}" />
                             <!-- Row -->
-                            <x-text-area-field name="content" label="Blog Content" placeholder="Enter Blog Content" value="{{old('content')}}" :admin="true" />
+                            <x-text-area-field name="content" label="{{ __('Blog Content') }}" placeholder="{{ __('Enter Blog Content') }}" value="{{old('content')}}" :admin="true" />
                             <!--Row-->
                             <div class="row">
-                                <label class="col-md-3 form-label mb-4">Images *:</label>
+                                <label class="col-md-3 form-label mb-4">{{ __('Images *') }}:</label>
                                 <div class="col-md-9">
                                     <input class="form-control" name="images[]" id="formFileMultiple" type="file" multiple old="{{old('images')}}">
-                                    <span class="text-primary">Note: The first image will be used as the featured image.</span>
+                                    <span class="text-primary">{{ __('Note: The first image will be used as the featured image.') }}</span>
                                     <br>
                                     <span class="text-danger">{{ $errors->first('images') }}</span>
                                 </div>
@@ -36,11 +36,11 @@
                             <br>
                             <x-tag-selectable />
                             <div class="row">
-                                <label class="col-md-3 form-label mb-4">Published *:</label>
+                                <label class="col-md-3 form-label mb-4">{{ __('Published *') }}:</label>
                                 <div class="col-md-9">
-                                    <select name="published" id="published" class="form-control form-select select2" data-bs-placeholder="Select Status">
-                                        <option value="published">Published</option>
-                                        <option value="draft">Draft</option>
+                                    <select name="published" id="published" class="form-control form-select select2" data-bs-placeholder="{{ __('Select Status') }}">
+                                        <option value="published">{{ __('Published') }}</option>
+                                        <option value="draft">{{ __('Draft') }}</option>
                                     </select>
                                     <span class="text-danger">{{ $errors->first('published') }}</span>
                                 </div>
@@ -52,7 +52,7 @@
                             <div class="row">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-9">
-                                    <button type="submit" class="btn btn-primary">Create Blog</button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Create Blog') }}</button>
                                 </div>
                             </div>
                             <!--End Row-->

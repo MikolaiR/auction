@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Users Detail')
+@section('title', __('Admin Users Detail'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -40,7 +40,7 @@
                                                     <div class="profile-img-content text-dark text-start">
                                                         <div class="text-dark">
                                                             <h3 class="h3 mb-2">{{ $user->name }}</h3>
-                                                            <h5 class="text-muted">{{ '@'.$user->username }}</h5>
+                                                            <h5 class="text-muted">{{ __('@') . $user->username }}</h5>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -191,7 +191,7 @@
                                             <span><i class="fa-solid fa-venus fs-20"></i></span>
                                         </div>
                                         <div>
-                                            <strong>{{ isset($user->gender) ? $user->gender->label() : 'Not Available' }}</strong>
+                                            <strong>{{ isset($user->gender) ? $user->gender->label() : __('Not Available') }}</strong>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center mb-3 mt-3">

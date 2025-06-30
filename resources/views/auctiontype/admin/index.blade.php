@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Auction Type List')
+@section('title', __('Admin Auction Types'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,14 +10,14 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Auction Type', 'hasBack' => true, 'backTitle' => 'Dashboard', 'backUrl' => route('admin.dashboard')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Auction Types'), 'hasBack' => true, 'backTitle' => __('Dashboard'), 'backUrl' => route('admin.dashboard')])
 
-             <div class="row">
+            <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header d-flex justify-between">
-                            <h3 class="card-title mb-0">All Auction Type List</h3>
-                            <a href="{{ route('admin.auctiontype.create') }}" class="btn btn-primary float-right">Add New Auction Type</a>
+                            <h3 class="card-title mb-0">{{ __('All Auction Type List') }}</h3>
+                            <a href="{{ route('admin.auctiontype.create') }}" class="btn btn-primary float-right">{{ __('Add New Auction Type') }}</a>
                         </div>
                         <div class="">
                            <x-filter-admin-user-card />
@@ -37,12 +37,12 @@
                                                                     <thead class="border-top">
                                                                         <tr>
                                                                             <th class="bg-transparent border-bottom-0"
-                                                                                style="width: 5%;">Full Name</th>
+                                                                                style="width: 5%;">{{ __('Full Name') }}</th>
                                                                             
                                                                             <th class="bg-transparent border-bottom-0"
-                                                                                style="width: 10%;">Status</th>
+                                                                                style="width: 10%;">{{ __('Status') }}</th>
                                                                             <th class="bg-transparent border-bottom-0"
-                                                                                style="width: 5%;">Action</th>
+                                                                                style="width: 5%;">{{ __('Action') }}</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -60,19 +60,19 @@
                                                                             </td>
                                                                             <td>
                                                                                 <div class="d-flex">
-                                                                                    <span class="badge bg-{{ $auctiontype->is_active ? 'success' : 'danger' }} me-2">{{ $auctiontype->is_active ? 'Active' : 'Inactive' }}</span>
+                                                                                    <span class="badge bg-{{ $auctiontype->is_active ? 'success' : 'danger' }} me-2">{{ $auctiontype->is_active ? __('Active') : __('Inactive') }}</span>
                                                                                 </div>
                                                                             </td>
                                                                             <td>
                                                                                 <div class="mt-sm-1 d-block">
                                                                                     <a href="{{ route('admin.users.show', $auctiontype->id) }}" class="btn text-dark btn-sm"
                                                                                         data-bs-toggle="tooltip"
-                                                                                        data-bs-original-title="View"><span
+                                                                                        data-bs-original-title="{{ __('View') }}"><span
                                                                                         class="fa-regular fa-eye fs-14"></span>
                                                                                     </a>
                                                                                     <a href="{{ route('admin.auctiontype.edit', $auctiontype->id) }}" class="btn text-primary btn-sm"
                                                                                         data-bs-toggle="tooltip"
-                                                                                        data-bs-original-title="Edit"><span
+                                                                                        data-bs-original-title="{{ __('Edit') }}"><span
                                                                                         class="fa-regular fa-edit fs-14"></span>
                                                                                     </a>
                                                                                 </div>
@@ -90,7 +90,7 @@
                                             @else
                                             <div class="text-center p-4">
                                                 <img src="{{ asset('assets/images/icons/man.svg') }}" class="w-25" alt="empty">
-                                                <h4 class="mt-3">No Auction Type Found</h4>
+                                                <h4 class="mt-3">{{ __('No Auction Type Found') }}</h4>
                                             </div>
                                             @endif
                                         </div>

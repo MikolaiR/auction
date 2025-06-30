@@ -1,8 +1,8 @@
 @extends('partials.app')
-@section('title', 'Profile')
+@section('title', __('Profile'))
 @section('content')
 
-    @include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => 'Profile'])
+    @include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => __('Profile')])
 
     <div class="dashboard-section pt-120 pb-120">
         <div class="container">

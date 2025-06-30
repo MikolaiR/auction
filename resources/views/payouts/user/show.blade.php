@@ -1,9 +1,9 @@
 @extends('partials.app')
-@section('title', 'Payout')
+@section('title', __('Payout'))
 @section('content')
 
-@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => 'Payout', 'hasBack' => true, 'backUrl' => route('user.payouts'),
-'backTitle' => 'Payout', 'routeItem' => $payment->txn_id])
+@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => __('Payout'), 'hasBack' => true, 'backUrl' => route('user.payouts'),
+'backTitle' => __('Payout'), 'routeItem' => $payment->txn_id])
 
 <div class="dashboard-section pt-120 pb-120">
     <div class="container">
@@ -14,70 +14,70 @@
                     <div class="payout-wrapper">
                         <div class="payout-ad-wrapper d-flex row">
                             <div class="col-md-5">
-                                <img class="img-fluid" src="{{$payment->ad->media->first()->url}}" class="Ad Image">
+                                <img class="img-fluid" src="{{$payment->ad->media->first()->url}}" class="{{ __('Ad Image') }}">
                             </div>
                             <div class="col-md-7">
                                 <div class="payout-ad-details">
-                                    <h3>Ad Details</h3>
-                                    <h5>Title: {{$payment->ad->title}}</h5>
+                                    <h3>{{ __('Ad Details') }}</h3>
+                                    <h5>{{ __('Title') }}: {{$payment->ad->title}}</h5>
                                     <p class="para">{{shorten_chars($payment->ad->description, 200)}}</p>
                                     <div class="d-flex row mt-4">
                                         <div class="col-6">
-                                            <p class="mb-0 fw-bolder text-gray-500">Status:</p>
+                                            <p class="mb-0 fw-bolder text-gray-500">{{ __('Status') }}:</p>
                                             <h5 class="text-{{ $payment->ad->status->color() }}">{{$payment->ad->status->label()}}</h5>
                                         </div>
                                         <div class="col-6">
-                                            <p class="mb-0 fw-bolder text-gray-500">Price:</p>
+                                            <p class="mb-0 fw-bolder text-gray-500">{{ __('Price') }}:</p>
                                             <h5>{{money($payment->ad->price)}}</h5>
                                         </div>
                                         <div class="col-12">
-                                            <h5 class="mt-4"><a href="{{route('user.ads.show', $payment->ad->slug)}}" class="cta-button text-white">View Ad <i class="fas fa-arrow-right"></i></a></h5>
+                                            <h5 class="mt-4"><a href="{{route('user.ads.show', $payment->ad->slug)}}" class="cta-button text-white">{{ __('View Ad') }} <i class="fas fa-arrow-right"></i></a></h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="other-info pt-5">
-                            <h3>Bid & Payment Information</h3>
+                            <h3>{{ __('Bid & Payment Information') }}</h3>
                             <div class="row d-flex">
                                 <div class="col-lg-2 col-xl-3 col-md-6 col-sm-6 col-6 border-top border-bottom border-end border-start">
                                     <div class="ad-listing-item">
-                                        <span>Bid Amount:</span>
+                                        <span>{{ __('Bid Amount') }}:</span>
                                         <p><i class="fa fa-money-bill"></i> {{ money($payment->bid->amount) }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-xl-3 col-md-6 col-sm-6 col-6 border-top border-bottom border-end">
                                     <div class="ad-listing-item">
-                                        <span>Bid By:</span>
+                                        <span>{{ __('Bid By') }}:</span>
                                         <p><i class="fa fa-user"></i> {{ $payment->payer->name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-xl-3 col-md-6 col-sm-6 col-6 border-end border-bottom border-top">
                                     <div class="ad-listing-item">
-                                        <span>Payment ID:</span>
+                                        <span>{{ __('Payment ID') }}:</span>
                                         <p><i class="fa fa-id-card"></i> {{ $payment->txn_id }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-xl-3 col-md-6 col-sm-6 col-6 border-end border-bottom border-top">
                                     <div class="ad-listing-item">
-                                        <span>Currency:</span>
+                                        <span>{{ __('Currency') }}:</span>
                                         <p><i class="fa fa-money-bill"></i> {{ $payment->currency }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="payout-wrapper pt-5">
-                            <h3>Payout Details:</h3>
+                            <h3>{{ __('Payout Details') }}:</h3>
                             @if($payment->payout)
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Payout ID</th>
-                                        <th>Payout Method</th>
-                                        <th>Amount Recieved</th>
-                                        <th>Fee</th>
-                                        <th>Status</th>
-                                        <th>Date</th>
+                                        <th>{{ __('Payout ID') }}</th>
+                                        <th>{{ __('Payout Method') }}</th>
+                                        <th>{{ __('Amount Received') }}</th>
+                                        <th>{{ __('Fee') }}</th>
+                                        <th>{{ __('Status') }}</th>
+                                        <th>{{ __('Date') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

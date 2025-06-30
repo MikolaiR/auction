@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Blog Details - ' . $post->title)
+@section('title', __('Admin Blog Details') . ' - ' . $post->title)
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,7 +10,7 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Blogs Details', 'hasBack' => true, 'backTitle' => 'All Blogs', 'backUrl' => route('admin.blogs.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Blogs Details'), 'hasBack' => true, 'backTitle' => __('All Blogs'), 'backUrl' => route('admin.blogs.index')])
             <div class="row">
                 <div class="col-xl-8">
                     <div class="card">
@@ -38,7 +38,7 @@
                                 </a>
                                 <div class="ms-auto">
                                     <a href="javascript:void(0);" class="d-flex mb-2"><i class="fa-regular fa-message fs-16 me-1 p-3 bg-success-transparent text-success bradius"></i>
-                                        <div class="mt-0 mt-3 ms-1 text-muted font-weight-semibold">13 Comments</div>
+                                        <div class="mt-0 mt-3 ms-1 text-muted font-weight-semibold">{{ $post->comments->count() }} {{ __('Comments') }}</div>
                                     </a>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Comments</div>
+                            <div class="card-title">{{ __('Comments') }}</div>
                         </div>
                         <div class="card-body pb-0">
                             @foreach ( $post->comments as $comment)
@@ -63,8 +63,8 @@
                                         <h5 class="mt-0">{{ $comment->user->name ?? $comment->admin->name }}</h5>
                                         <p class="font-13 text-muted">{{ $comment->content }}</p>
                                         <span class="reply" id="1">
-                                            <a class="like" href="{{ route('admin.comments.edit', $comment->id) }}"><span class="badge btn-danger-light rounded-pill py-2 px-3"><i class="fa-regular fa-edit mx-1"></i>Edit</span></a>
-                                            <a href="javascript:;" onclick="replyTo('{{$comment->id}}', '{{$comment->user->name ?? $comment->admin->name}}')"><span class="badge btn-primary-light rounded-pill py-2 px-3"><i class="fa-regular fa-reply mx-1"></i>Reply</span></a>
+                                            <a class="like" href="{{ route('admin.comments.edit', $comment->id) }}"><span class="badge btn-danger-light rounded-pill py-2 px-3"><i class="fa-regular fa-edit mx-1"></i>{{ __('Edit') }}</span></a>
+                                            <a href="javascript:;" onclick="replyTo('{{$comment->id}}', '{{$comment->user->name ?? $comment->admin->name}}')"><span class="badge btn-primary-light rounded-pill py-2 px-3"><i class="fa-regular fa-reply mx-1"></i>{{ __('Reply') }}</span></a>
                                         </span>
                                     </div>
                                     @if ($comment->replies->count() > 0)
@@ -77,7 +77,7 @@
                                             <h5 class="mt-0">{{ $reply->user->name ?? $reply->admin->name }}</h5>
                                             <span><i class="fe fe-thumb-up text-danger"></i></span>
                                             <p class="font-13 text-muted">{{ $reply->content }}</p>
-                                            <a class="like" href="javascript:;"><span class="badge btn-danger-light rounded-pill py-2 px-3"><i class="fa-regular fa-edit mx-1"></i>Edit</span></a>
+                                            <a class="like" href="javascript:;"><span class="badge btn-danger-light rounded-pill py-2 px-3"><i class="fa-regular fa-edit mx-1"></i>{{ __('Edit') }}</span></a>
                                         </div>
                                     </div>
                                     @endforeach
@@ -89,7 +89,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Add a Comments</div>
+                            <div class="card-title">{{ __('Add a Comments') }}</div>
                         </div>
                         <div class="card-body">
                             <form class="form-horizontal  m-t-20" id="comment-form" action="{{ route('admin.blogs.comment.store', $post->slug) }}" method="POST">
@@ -99,12 +99,12 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-xs-12">
-                                        <textarea name="content" class="form-control" rows="5">Your Comment*</textarea>
+                                        <textarea name="content" class="form-control" rows="5">{{ __('Your Comment*') }}</textarea>
                                     </div>
                                     <span class="text-danger">{{ $errors->first('content') }}</span>
                                 </div>
                                 <div class="">
-                                    <button type="submit" class="btn btn-primary btn-rounded  waves-effect waves-light">Submit</button>
+                                    <button type="submit" class="btn btn-primary btn-rounded  waves-effect waves-light">{{ __('Submit') }}</button>
                                 </div>
                             </form>
                         </div>
@@ -113,7 +113,7 @@
                 <div class="col-xl-4">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Tags</div>
+                            <div class="card-title">{{ __('Tags') }}</div>
                         </div>
                         <div class="card-body">
                             <div class="tags">
@@ -142,7 +142,7 @@
         // Scroll the page to the comment form
         document.getElementById('comment-form').scrollIntoView();
         // Set the name of the person to reply to
-        document.getElementById('reply-to-whom').innerHTML = `Replying to ${name}`;
+        document.getElementById('reply-to-whom').innerHTML = `{{ __('Replying to') }} ${name}`;
         // Set the value of the hidden input field to the id of the comment to reply to
         let commentIdInput = document.createElement('input');
         commentIdInput.setAttribute('type', 'hidden');

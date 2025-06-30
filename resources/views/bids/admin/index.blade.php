@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Bids')
+@section('title', __('Admin Bids'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,13 +10,13 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Bids', 'hasBack' => true, 'backTitle' => 'Dashboard', 'backUrl' => route('admin.dashboard')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Bids'), 'hasBack' => true, 'backTitle' => __('Dashboard'), 'backUrl' => route('admin.dashboard')])
 
              <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">All Bids</h3>
+                            <h3 class="card-title mb-0">{{ __('All Bids') }}</h3>
                         </div>
                         <div class="">
                            <x-filter-admin-bid-card />
@@ -36,20 +36,20 @@
                                                                     <thead class="border-top">
                                                                         <tr>
                                                                             <th class="bg-transparent border-bottom-0"
-                                                                                style="width: 5%;">Bid Id</th>
+                                                                                style="width: 5%;">{{ __('Bid Id') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Customer</th>
+                                                                                {{ __('Customer') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Date</th>
+                                                                                {{ __('Date') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Amount</th>
+                                                                                {{ __('Amount') }}</th>
                                                                             <th class="bg-transparent border-bottom-0"
-                                                                                style="width: 10%;">Status</th>
+                                                                                style="width: 10%;">{{ __('Status') }}</th>
                                                                             <th class="bg-transparent border-bottom-0"
-                                                                                style="width: 5%;">Action</th>
+                                                                                style="width: 5%;">{{ __('Action') }}</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -85,14 +85,14 @@
                                                                             </td>
                                                                             <td>
                                                                                 <div class="mt-sm-1 d-block">
-                                                                                    <span class="badge bg-{{is_null($bid->is_accepted) ? 'dark' : ($bid->is_accepted ? 'success' : 'danger')}}">{{is_null($bid->is_accepted) ? 'Pending' : ($bid->is_accepted ? 'Accepted' : 'Rejected')}}</span>
+                                                                                    <span class="badge bg-{{is_null($bid->is_accepted) ? 'dark' : ($bid->is_accepted ? 'success' : 'danger')}}">{{is_null($bid->is_accepted) ? __('Pending') : ($bid->is_accepted ? __('Accepted') : __('Rejected'))}}</span>
                                                                                 </div>
                                                                             </td>
                                                                             <td>
                                                                                 <div class="mt-sm-1 d-block">
                                                                                     <a href="{{ route('admin.bids.show', $bid->id) }}" class="btn text-dark btn-sm"
                                                                                         data-bs-toggle="tooltip"
-                                                                                        data-bs-original-title="View"><span
+                                                                                        data-bs-original-title="{{ __('View') }}"><span
                                                                                         class="fa-regular fa-eye fs-14"></span>
                                                                                     </a>
                                                                                 </div>
@@ -111,7 +111,7 @@
                                             @else
                                             <div class="text-center p-4">
                                                 <img src="{{ asset('assets/images/icons/man.svg') }}" class="w-25" alt="empty">
-                                                <h4 class="mt-3">No Bids Found</h4>
+                                                <h4 class="mt-3">{{ __('No Bids Found') }}</h4>
                                             </div>
                                             @endif
                                         </div>

@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Support')
+@section('title', __('Admin Support'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,12 +10,12 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'All Support', 'hasBack' => true, 'backTitle' => 'Dashboard', 'backUrl' => route('admin.dashboard')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('All Support'), 'hasBack' => true, 'backTitle' => __('Dashboard'), 'backUrl' => route('admin.dashboard')])
             <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">All Support</h3>
+                            <h3 class="card-title mb-0">{{ __('All Support') }}</h3>
                         </div>
                         <div class="">
                             <x-filter-admin-support-card />

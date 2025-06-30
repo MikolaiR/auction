@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Blogs')
+@section('title', __('Admin Blogs'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,13 +10,13 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'All Blogs', 'hasBack' => true, 'backTitle' => 'Dashboard', 'backUrl' => route('admin.dashboard')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('All Blogs'), 'hasBack' => true, 'backTitle' => __('Dashboard'), 'backUrl' => route('admin.dashboard')])
 
              <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">All Blogs</h3>
+                            <h3 class="card-title mb-0">{{ __('All Blogs') }}</h3>
                         </div>
                         <div class="">
                            <x-filter-admin-post-card />
@@ -37,18 +37,18 @@
                                                                         <tr>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Title</th>
+                                                                                {{ __('Title') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Author</th>
+                                                                                {{ __('Author') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Tags</th>
+                                                                                {{ __('Tags') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                               Published</th>
+                                                                               {{ __('Published') }}</th>
                                                                             <th class="bg-transparent border-bottom-0"
-                                                                                style="width: 5%;">Action</th>
+                                                                                style="width: 5%;">{{ __('Action') }}</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -67,13 +67,13 @@
                                                                                     @forelse ($post->tags as $tag)
                                                                                         <span class="text-white badge bg-primary">{{ $tag->name }}</span>
                                                                                     @empty
-                                                                                        <span class="text-white badge bg-warning">No Tags</span>
+                                                                                        <span class="text-white badge bg-warning">{{ __('No Tags') }}</span>
                                                                                     @endforelse
                                                                                 </div>
                                                                             </td>
                                                                             <td>
                                                                                 <div class="mt-sm-1 d-block">
-                                                                                    <span class="text-white badge bg-{{$post->is_published ? 'success' : 'danger'}}">{{$post->is_published ? 'Published' : 'Not Published'}}</span>
+                                                                                    <span class="text-white badge bg-{{$post->is_published ? 'success' : 'danger'}}">{{$post->is_published ? __('Published') : __('Not Published')}}</span>
                                                                                 </div>
                                                                             </td>
                                                                             <td>
@@ -81,19 +81,19 @@
                                                                                     <div class="btn-group">
                                                                                         <a href="{{ route('admin.blogs.show', $post->slug) }}" class="btn text-dark btn-sm"
                                                                                             data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="View"><span
+                                                                                            data-bs-original-title="{{ __('View') }}"><span
                                                                                             class="fa-regular fa-eye fs-14"></span>
                                                                                         </a>
                                                                                         <a href="{{ route('admin.blogs.edit', $post->slug) }}" class="btn text-dark btn-sm"
                                                                                             data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="View"><span
+                                                                                            data-bs-original-title="{{ __('Edit') }}"><span
                                                                                                 class="fa-regular fa-edit fs-14"></span>
                                                                                         </a>
                                                                                         <a class="btn text-danger btn-sm"
                                                                                             data-bs-target="#select2modal"
                                                                                             data-bs-toggle="modal"
                                                                                             href="javascript:;"
-                                                                                            data-bs-original-title="Delete"
+                                                                                            data-bs-original-title="{{ __('Delete') }}"
                                                                                             onclick="deletePost(`{{ $post->slug }}`, `{{ $post->title }}`)"
                                                                                             ><span
                                                                                                 class="fa-regular fa-trash-alt fs-14"></span>
@@ -116,7 +116,7 @@
                                             @else
                                             <div class="text-center p-4">
                                                 <img src="{{ asset('assets/images/icons/man.svg') }}" class="w-25" alt="empty">
-                                                <h4 class="mt-3">No Posts Found</h4>
+                                                <h4 class="mt-3">{{ __('No Posts Found') }}</h4>
                                             </div>
                                             @endif
                                         </div>
@@ -140,18 +140,18 @@
             @method('DELETE')
             @csrf
             <div class="modal-header">
-                <h6 class="modal-title">Delete Post - <span id="delete-title"></span></h6>
+                <h6 class="modal-title">{{ __('Delete Post') }} - <span id="delete-title"></span></h6>
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h6>A post with the title <span id="delete-title"></span> will be deleted. This action cannot be undone.</h6>
-                <p class="mt-3">By clicking on "Delete Post" below, this post will be deleted.</p>
+                <h6>{{ __('A post with the title') }} <span id="delete-title"></span> {{ __('will be deleted. This action cannot be undone.') }}</h6>
+                <p class="mt-3">{{ __('By clicking on "Delete Post" below, this post will be deleted.') }}</p>
             </div>
             <div class="modal-footer">
-                <button class="btn ripple btn-success" type="submit">Delete Post</button>
-                <button class="btn ripple btn-danger" data-bs-dismiss="modal" type="button">Close</button>
+                <button class="btn ripple btn-success" type="submit">{{ __('Delete Post') }}</button>
+                <button class="btn ripple btn-danger" data-bs-dismiss="modal" type="button">{{ __('Close') }}</button>
             </div>
         </form>
     </div>

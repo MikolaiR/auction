@@ -10,37 +10,37 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Ads Edit', 'hasBack' => true, 'backTitle' => 'Ads Listing', 'backUrl' => route('admin.ads.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Ads Edit'), 'hasBack' => true, 'backTitle' => __('Ads Listing'), 'backUrl' => route('admin.ads.index')])
             <div class="row">
                 <div class="col-lg-12">
                     <form class="card" method="POST" action="{{ route('admin.ads.update', $ad->slug) }}">
                         @method('PUT')
                         @csrf
                         <div class="card-header">
-                            <div class="card-title">Edit Ad Listing</div>
+                            <div class="card-title">{{ __('Edit Ad Listing') }}</div>
                         </div>
                         <div class="card-body">
-                            <x-input-item-field name="title" type="text" label="Ad Title" placeholder="Enter Ad Title" :value="$ad->title" />
-                            <x-input-item-field name="price" type="number" label="Starting Price" placeholder="Enter Starting Price" value="{{ $ad->price }}" />
-                            <x-input-item-field name="video_url" type="url" label="Video URL" placeholder="Enter Video URL" value="{{ $ad->video_url }}" />
+                            <x-input-item-field name="title" type="text" label="{{ __('Ad Title') }}" placeholder="{{ __('Enter Ad Title') }}" :value="$ad->title" />
+                            <x-input-item-field name="price" type="number" label="{{ __('Starting Price') }}" placeholder="{{ __('Enter Starting Price') }}" value="{{ $ad->price }}" />
+                            <x-input-item-field name="video_url" type="url" label="{{ __('Video URL') }}" placeholder="{{ __('Enter Video URL') }}" value="{{ $ad->video_url }}" />
                             <x-category-selectable :admin="true" :selected-category="$ad->category->slug"/>
                             <!-- Row -->
-                            <x-text-area-field name="description" label="Ad Description" placeholder="Enter Description" :value="$ad->description" :admin="true" />
+                            <x-text-area-field name="description" label="{{ __('Ad Description') }}" placeholder="{{ __('Enter Description') }}" :value="$ad->description" :admin="true" />
                             <!--End Row-->
-                            <x-input-item-field name="start_date" type="datetime-local" label="Start Date" placeholder="Enter Start Date" :value="$ad->started_at" />
-                            <x-input-item-field name="end_date" type="datetime-local" label="End Date" placeholder="Enter End Date" :value="$ad->expired_at" />
+                            <x-input-item-field name="start_date" type="datetime-local" label="{{ __('Start Date') }}" placeholder="{{ __('Enter Start Date') }}" :value="$ad->started_at" />
+                            <x-input-item-field name="end_date" type="datetime-local" label="{{ __('End Date') }}" placeholder="{{ __('Enter End Date') }}" :value="$ad->expired_at" />
                             <!--Row-->
                             <div class="row">
-                                <label class="col-md-3 form-label mb-4">Product Upload :</label>
+                                <label class="col-md-3 form-label mb-4">{{ __('Product Upload') }}:</label>
                                 <div class="col-md-9">
                                     <input id="demo" type="file" name="images[]" accept=".jpg, .png, image/jpeg, image/png" multiple>
                                 </div>
                             </div>
                             <br>
-                            <x-input-item-field name="seller_name" type="text" label="Seller Name" placeholder="Enter Seller's Name" :value="$ad->seller_name"  />
-                            <x-input-item-field name="seller_email" type="email" label="Seller Email" placeholder="Enter Seller's Email" value="{{ $ad->seller_email }}" />
-                            <x-input-item-field name="seller_mobile" type="text" label="Seller Phone" placeholder="Enter Seller's Phone" value="{{ $ad->seller_mobile }}" />
-                            <x-input-item-field name="seller_address" type="text" label="Seller Address" placeholder="Enter Seller's Address" value="{{ $ad->seller_address }}" />
+                            <x-input-item-field name="seller_name" type="text" label="{{ __('Seller Name') }}" placeholder="{{ __('Enter Seller\'s Name') }}" :value="$ad->seller_name"  />
+                            <x-input-item-field name="seller_email" type="email" label="{{ __('Seller Email') }}" placeholder="{{ __('Enter Seller\'s Email') }}" value="{{ $ad->seller_email }}" />
+                            <x-input-item-field name="seller_mobile" type="text" label="{{ __('Seller Phone') }}" placeholder="{{ __('Enter Seller\'s Phone') }}" value="{{ $ad->seller_mobile }}" />
+                            <x-input-item-field name="seller_address" type="text" label="{{ __('Seller Address') }}" placeholder="{{ __('Enter Seller\'s Address') }}" value="{{ $ad->seller_address }}" />
                             <x-ad-status-selectable :selected-status="$ad->status" />
                             <!--End Row-->
                         </div>
@@ -49,8 +49,8 @@
                             <div class="row">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-9">
-                                    <button type="submit" class="btn btn-primary">Update Ad Listing</button>
-                                    <a href="{{ route('admin.ads.show', $ad->slug) }}" class="btn btn-default float-end">Discard</a>
+                                    <button type="submit" class="btn btn-primary">{{ __('Update Ad Listing') }}</button>
+                                    <a href="{{ route('admin.ads.show', $ad->slug) }}" class="btn btn-default float-end">{{ __('Discard') }}</a>
                                 </div>
                             </div>
                             <!--End Row-->
@@ -77,7 +77,7 @@
     $(function() {
         // Используем простой подход с явным URL
         var uploadUrl = '{{ route("admin.ads.upload.images", $ad->slug) }}';
-        
+
         // Останавливаем стандартное поведение формы
         $(document).on('submit', 'form', function(e) {
             // Если форма содержит поля для загрузки файлов, не отправляем их вместе с формой
@@ -90,13 +90,13 @@
                     data: $(this).serialize() + '&_method=PUT',
                     success: function(response) {
                         // Успешное сохранение формы
-                        alert('Form submitted successfully');
+                        alert('{{ __('Form submitted successfully') }}');
                         window.location.href = '{{ route("admin.ads.index") }}';
                     },
                     error: function(xhr) {
                         // Обработка ошибок
-                        console.error('Form submission error:', xhr);
-                        alert('Error saving form data');
+                        console.error('{{ __('Form submission error') }}:', xhr);
+                        alert('{{ __('Error saving form data') }}');
                     }
                 });
             }

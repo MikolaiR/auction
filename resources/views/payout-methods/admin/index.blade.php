@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Payout Methods')
+@section('title', __('Admin Payout Methods'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,13 +10,13 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Payout Methods', 'hasBack' => true, 'backTitle' => 'Dashboard', 'backUrl' => route('admin.dashboard')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Payout Methods'), 'hasBack' => true, 'backTitle' => __('Dashboard'), 'backUrl' => route('admin.dashboard')])
 
              <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">All Payout Methods</h3>
+                            <h3 class="card-title mb-0">{{ __('All Payout Methods') }}</h3>
                         </div>
                         <div class="">
                            <x-filter-admin-payout-method-card />
@@ -37,20 +37,20 @@
                                                                         <tr>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                User</th>
+                                                                                {{ __('User') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Bank</th>
+                                                                                {{ __('Bank') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Account Name</th>
+                                                                                {{ __('Account Name') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Account Number</th>
+                                                                                {{ __('Account Number') }}</th>
                                                                             <th class="bg-transparent border-bottom-0"
-                                                                                style="width: 10%;">Country</th>
+                                                                                style="width: 10%;">{{ __('Country') }}</th>
                                                                             <th class="bg-transparent border-bottom-0"
-                                                                                style="width: 5%;">Action</th>
+                                                                                style="width: 5%;">{{ __('Action') }}</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -92,7 +92,7 @@
                                                                                 <div class="mt-sm-1 d-block">
                                                                                     <a href="{{ route('admin.payout-methods.show', $payoutMethod->id) }}" class="btn text-dark btn-sm"
                                                                                         data-bs-toggle="tooltip"
-                                                                                        data-bs-original-title="View"><span
+                                                                                        data-bs-original-title="{{ __('View') }}"><span
                                                                                         class="fa-regular fa-eye fs-14"></span>
                                                                                     </a>
                                                                                 </div>
@@ -110,8 +110,8 @@
                                             </div>
                                             @else
                                             <div class="text-center p-4">
-                                                <img src="{{ asset('assets/images/icons/man.svg') }}" class="w-25" alt="empty">
-                                                <h4 class="mt-3">No Payout Method Found</h4>
+                                                <img src="{{ asset('assets/images/icons/man.svg') }}" class="w-25" alt="{{ __('empty') }}">
+                                                <h4 class="mt-3">{{ __('No Payout Method Found') }}</h4>
                                             </div>
                                             @endif
                                         </div>

@@ -1,8 +1,8 @@
 @extends('partials.app')
-@section('title', 'Create Payout Method')
+@section('title', __('Create Payout Method'))
 @section('content')
 
-@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => 'Create Payout Method'])
+@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => __('Create Payout Method')])
 
 <div class="dashboard-section pt-120 pb-120">
     <div class="container">
@@ -16,11 +16,11 @@
                             @csrf
                             <div class="row">
                                 <div class="form-section">
-                                    <h4>Bank Information</h4>
+                                    <h4>{{ __('Bank Information') }}</h4>
                                 </div>
                                 <div class="col-md-12">
                                    <select name="bank_code">
-                                       <option value="">Select Bank</option>
+                                       <option value="">{{ __('Select Bank') }}</option>
                                        @foreach($banks as $bank)
                                         <option value="{{ $bank['code'] }}" @selected(old('bank_code') == $bank['code'])>{{ $bank['name'] }}</option>
                                         @endforeach
@@ -28,16 +28,16 @@
                                    <span class="text-danger">{{ $errors->first('bank_code') }}</span>
                                 </div>
                                 <div class="form-section">
-                                    <h4>Account Information</h4>
+                                    <h4>{{ __('Account Information') }}</h4>
                                 </div>
                                 <div class="col-md-12">
-                                    <x-input-field name="account_name" type="text" label="Account Name" placeholder="Enter Account Name" value="{{ old('account_name') }}" />
+                                    <x-input-field name="account_name" type="text" label="{{ __('Account Name') }}" placeholder="{{ __('Enter Account Name') }}" value="{{ old('account_name') }}" />
                                 </div>
                                 <div class="col-md-12">
-                                    <x-input-field name="account_number" type="number" label="Account Number" placeholder="Enter Account Number" value="{{ old('account_number') }}" />
+                                    <x-input-field name="account_number" type="number" label="{{ __('Account Number') }}" placeholder="{{ __('Enter Account Number') }}" value="{{ old('account_number') }}" />
                                 </div>
                             </div>
-                            <button class="account-btn">Create Payout Method</button>
+                            <button class="account-btn">{{ __('Create Payout Method') }}</button>
                         </form>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Payment Details' . ' - ' . $payment->txn_id)
+@section('title', __('Payment Details') . ' - ' . $payment->txn_id)
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,7 +10,7 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Payment Details', 'hasBack' => true, 'backTitle' => 'All Payments', 'backUrl' => route('admin.payments.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Payment Details'), 'hasBack' => true, 'backTitle' => __('All Payments'), 'backUrl' => route('admin.payments.index')])
             <div class="row">
                 <div class="col-xl-12 col-md-12">
                     <div class="card productdesc">
@@ -23,12 +23,12 @@
                                                 <table class="table table-bordered">
                                                     <tbody>
                                                         <tr>
-                                                            <td class="fw-bold">Transaction ID</td>
+                                                            <td class="fw-bold">{{ __('Transaction ID') }}</td>
                                                             <td> <i class="fa-regular fa-money-from-bracket"></i>  {{ $payment->txn_id }} <i class="fa-regular fa-copy copy-text" onclick="copyTransactionID('{{ $payment->txn_id }}')"></i>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Payer Name</td>
+                                                            <td class="fw-bold">{{ __('Payer Name') }}</td>
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <span class="avatar bradius"
@@ -44,7 +44,7 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Payee Name</td>
+                                                            <td class="fw-bold">{{ __('Payee Name') }}</td>
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <span class="avatar bradius"
@@ -60,68 +60,68 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Amount</td>
+                                                            <td class="fw-bold">{{ __('Amount') }}</td>
                                                             <td> {{ money($payment->amount) }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Status</td>
+                                                            <td class="fw-bold">{{ __('Status') }}</td>
                                                             <td><span class="bg-{{ $payment->status->color() }} badge text-uppercase px-2">{{ $payment->status->label() }}</span></td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Method</td>
-                                                            <td class="text-capitalize"> {{ $payment->method ?? 'N/A' }}</td>
+                                                            <td class="fw-bold">{{ __('Method') }}</td>
+                                                            <td class="text-capitalize"> {{ $payment->method ?? __('N/A') }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Gateway</td>
+                                                            <td class="fw-bold">{{ __('Gateway') }}</td>
                                                             <td> <span class="badge text-uppercase bg-{{ $payment->gateway->color() }}">{{ $payment->gateway->label() }}</span></td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Payer Details</td>
+                                                            <td class="fw-bold">{{ __('Payer Details') }}</td>
                                                             <td> 
                                                                 <div class="d-flex justify-content-between align-items-center flex-payer-wrap">
-                                                                    <span> <i class="fa-regular fa-envelope"></i> Email: {{ $payment->payer_email }}</span>
-                                                                    <span> <i class="fa-regular fa-globe"></i> IP Address: {{ $payment->client_ip }}</span>
-                                                                    <span> <i class="fa-regular fa-credit-card"></i> Card Last 4: {{ $payment->card_last4 ?? 'N/A' }}</span>
-                                                                    <span> <i class="fa-regular fa-credit-card"></i> Card ID: {{ $payment->card_id ?? 'N/A' }}</span>
+                                                                    <span> <i class="fa-regular fa-envelope"></i> {{ __('Email') }}: {{ $payment->payer_email }}</span>
+                                                                    <span> <i class="fa-regular fa-globe"></i> {{ __('IP Address') }}: {{ $payment->client_ip }}</span>
+                                                                    <span> <i class="fa-regular fa-credit-card"></i> {{ __('Card Last 4') }}: {{ $payment->card_last4 ?? __('N/A') }}</span>
+                                                                    <span> <i class="fa-regular fa-credit-card"></i> {{ __('Card ID') }}: {{ $payment->card_id ?? __('N/A') }}</span>
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Description</td>
-                                                            <td> {{ $payment->description ?? 'No description provided' }}</td>
+                                                            <td class="fw-bold">{{ __('Description') }}</td>
+                                                            <td> {{ $payment->description ?? __('No description provided') }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Linked Bid</td>
+                                                            <td class="fw-bold">{{ __('Linked Bid') }}</td>
                                                             <td> 
                                                                 @if($payment->bid?->exists())
-                                                                    <a href="{{ route('admin.bids.show', $payment->bid->id) }}">See linked bid here - {{ $payment->bid->id }}</a>
+                                                                    <a href="{{ route('admin.bids.show', $payment->bid->id) }}">{{ __('See linked bid here') }} - {{ $payment->bid->id }}</a>
                                                                 @else
-                                                                    <span class="text-danger">No bid linked</span>
+                                                                    <span class="text-danger">{{ __('No bid linked') }}</span>
                                                                 @endif
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Linked Ad</td>
+                                                            <td class="fw-bold">{{ __('Linked Ad') }}</td>
                                                             <td> 
                                                                 @if($payment->ad?->exists())
-                                                                    <a href="{{ route('admin.ads.show', $payment->ad->slug) }}">See linked ad here - {{ $payment->ad->title }}</a>
+                                                                    <a href="{{ route('admin.ads.show', $payment->ad->slug) }}">{{ __('See linked ad here') }} - {{ $payment->ad->title }}</a>
                                                                 @else
-                                                                    <span class="text-danger">No ad linked</span>
+                                                                    <span class="text-danger">{{ __('No ad linked') }}</span>
                                                                 @endif
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Linked Payout</td>
+                                                            <td class="fw-bold">{{ __('Linked Payout') }}</td>
                                                             <td> 
                                                                 @if($payment->payout?->exists())
-                                                                    <a href="{{ route('admin.payments.show', $payment->payout->id) }}">See linked payout here - {{ $payment->payout->amount }}</a>
+                                                                    <a href="{{ route('admin.payments.show', $payment->payout->id) }}">{{ __('See linked payout here') }} - {{ $payment->payout->amount }}</a>
                                                                 @else
-                                                                    <span class="text-danger">No payout linked</span>
+                                                                    <span class="text-danger">{{ __('No payout linked') }}</span>
                                                                 @endif
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Created At</td>
+                                                            <td class="fw-bold">{{ __('Created At') }}</td>
                                                             <td> {{ $payment->created_at->format('d M Y h:i A') }}</td>
                                                         </tr>
                                                     </tbody>
@@ -146,7 +146,7 @@
 <script>
     function copyTransactionID(txn_id) {
         navigator.clipboard.writeText(txn_id);
-        alert('Transaction ID copied to clipboard');
+        alert('{{ __('Transaction ID copied to clipboard') }}');
     }
 </script>
 @endpush

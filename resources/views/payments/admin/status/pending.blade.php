@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Pending Payments')
+@section('title', __('Admin Pending Payments'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,12 +10,12 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'All Pending Payments', 'hasBack' => true, 'backTitle' => 'All Payments', 'backUrl' => route('admin.payments.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('All Pending Payments'), 'hasBack' => true, 'backTitle' => __('All Payments'), 'backUrl' => route('admin.payments.index')])
             <div class="row">
                 <div class="col-12 col-sm-12">
                    <div class="card">
                       <div class="card-header">
-                         <h3 class="card-title mb-0">All Pending Payments</h3>
+                         <h3 class="card-title mb-0">{{ __('All Pending Payments') }}</h3>
                       </div>
                       <div class="">
                         <x-filter-admin-payment-card />

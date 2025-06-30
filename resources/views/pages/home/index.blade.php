@@ -1,23 +1,23 @@
 @extends('partials.app')
-@section('title', 'Home')
-@section('description', 'The right marketplace to auction your items.')
+@section('title', __('Home'))
+@section('description', __('The right marketplace to auction your items.'))
 @section('content')
 <div class="hero-area hero-style-two">
     <div class="scroll-text">
-        <h6><a href="#category">Scroll Down</a></h6>
+        <h6><a href="#category">{{ __('Scroll Down') }}</a></h6>
     </div>
     <div class="container">
         <div class="row d-flex justify-content-start align-items-end">
             <div class="col-xl-7 col-lg-7">
                 <div class="banner2-content">
                     <h1 class="wow fadeInDown" data-wow-duration="1.5s" data-wow-delay="1s">
-                        Join Our Next Auction To Get Your Dream Product
+                        {{ __('Join Our Next Auction To Get Your Dream Product') }}
                     </h1>
                     <p class="wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">
-                        Are you ready to embark on a thrilling journey of buying and selling like never before? Look no further than Bazaar - your one-stop destination for exhilarating online auctions! 
+                        {{ __('Are you ready to embark on a thrilling journey of buying and selling like never before? Look no further than Bazaar - your one-stop destination for exhilarating online auctions!') }}
                     </p>
                     <a href="{{ route('live-auction') }}" class="eg-btn btn--primary2 btn--lg wow fadeInUp"
-                        data-wow-duration="2s" data-wow-delay="0.8s">Start Bidding</a>
+                        data-wow-duration="2s" data-wow-delay="0.8s">{{ __('Start Bidding') }}</a>
                 </div>
             </div>
         </div>
@@ -34,14 +34,12 @@
         <div class="row d-flex justify-content-center align-items-center mb-60 g-4">
             <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="section-title2 text-lg-start text-center">
-                    <h2>Live Auction</h2>
-                    <p class="mb-0">Explore on the world's best & largest Bidding marketplace with our beautiful
-                        Bidding
-                        products. We want to be a part of your smile, success and future growth.</p>
+                    <h2>{{ __('Live Auction') }}</h2>
+                    <p class="mb-0">{{ __('Explore on the world\'s best & largest Bidding marketplace with our beautiful Bidding products. We want to be a part of your smile, success and future growth.') }}</p>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-4 col-xl-6 text-lg-end text-center">
-                <a href="{{ route('live-auction') }}" class="eg-btn btn--primary2 btn--md">View All</a>
+                <a href="{{ route('live-auction') }}" class="eg-btn btn--primary2 btn--md">{{ __('View All') }}</a>
             </div>
         </div>
         <div class="row gy-4 d-flex justify-content-center">
@@ -53,7 +51,7 @@
                         <img src="{{ asset('assets/images/icons/man.svg') }}" alt="empty" class="w-25">
                     </div>
                     <x-alert type="warning">
-                        <p class="text-center mb-0"><strong>Sorry!</strong> No active ads available at this time. Try again later, or check out our upcoming auctions.</p>
+                        <p class="text-center mb-0"><strong>{{ __('Sorry!') }}</strong> {{ __('No active ads available at this time. Try again later, or check out our upcoming auctions.') }}</p>
                     </x-alert>
                 </div>
             @endforelse
@@ -70,19 +68,17 @@
         <div class="row d-flex justify-content-center align-items-center mb-60">
             <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="section-title2 text-lg-start text-center">
-                    <h2>Upcoming Auction</h2>
-                    <p class="mb-0">Explore on the world's best & largest Bidding marketplace with our beautiful
-                        Bidding
-                        products. We want to be a part of your smile, success and future growth.</p>
+                    <h2>{{ __('Upcoming Auction') }}</h2>
+                    <p class="mb-0">{{ __('Explore on the world\'s best & largest Bidding marketplace with our beautiful Bidding products. We want to be a part of your smile, success and future growth.') }}</p>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-4 d-lg-block d-none">
                 <div class="slider-bottom d-flex justify-content-end align-items-center">
                     <div class="slider-arrows coming-arrow d-flex gap-3">
                         <div class="coming-prev2 swiper-prev-arrow" tabindex="0" role="button"
-                            aria-label="Previous slide"><i class="bi bi-arrow-left"></i></div>
+                            aria-label="{{ __('Previous slide') }}"><i class="bi bi-arrow-left"></i></div>
                         <div class="coming-next2 swiper-next-arrow" tabindex="0" role="button"
-                            aria-label="Next slide"> <i class="bi bi-arrow-right"></i></div>
+                            aria-label="{{ __('Next slide') }}"> <i class="bi bi-arrow-right"></i></div>
                     </div>
                 </div>
             </div>
@@ -98,7 +94,7 @@
                             <img src="{{ asset('assets/images/icons/man.svg') }}" alt="empty" class="w-25">
                         </div>
                         <x-alert type="warning">
-                            <p class="text-center mb-0"><strong>Sorry!</strong> No upcoming ads available at this time. Try again later, or check out our active auctions.</p>
+                            <p class="text-center mb-0"><strong>{{ __('Sorry!') }}</strong> {{ __('No upcoming ads available at this time. Try again later, or check out our active auctions.') }}</p>
                         </x-alert>
                     </div>
                     @endforelse
@@ -114,10 +110,8 @@
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="section-title1">
-                    <h2>Trusted By 500+ Businesses.</h2>
-                    <p class="mb-0">Explore on the world's best & largest Bidding marketplace with our beautiful
-                        Bidding
-                        products. We want to be a part of your smile, success and future growth.</p>
+                    <h2>{{ __('Trusted By 500+ Businesses.') }}</h2>
+                    <p class="mb-0">{{ __('Explore on the world\'s best & largest Bidding marketplace with our beautiful Bidding products. We want to be a part of your smile, success and future growth.') }}</p>
                 </div>
             </div>
         </div>
@@ -164,10 +158,8 @@
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="section-title1">
-                    <h2>Our Recent News</h2>
-                    <p class="mb-0">Explore on the world's best & largest Bidding marketplace with our beautiful
-                        Bidding
-                        products. We want to be a part of your smile, success and future growth.</p>
+                    <h2>{{ __('Our Recent News') }}</h2>
+                    <p class="mb-0">{{ __('Explore on the world\'s best & largest Bidding marketplace with our beautiful Bidding products. We want to be a part of your smile, success and future growth.') }}</p>
                 </div>
             </div>
         </div>
@@ -184,11 +176,11 @@
                         <div class="blog-meta">
                             <div class="author">
                                 <img alt="image" src="assets/images/blog/author1.png">
-                                <a href="{{ route('blog.show', $post->slug) }}" class="author-name">Johan Martin</a>
+                                <a href="{{ route('blog.show', $post->slug) }}" class="author-name">{{ __('Johan Martin') }}</a>
                             </div>
                             <div class="comment">
                                 <img alt="image" src="assets/images/icons/comment-icon.svg">
-                                <a href="#" class="comment">05 Comments</a>
+                                <a href="#" class="comment">{{ __(':count Comments', ['count' => '05']) }}</a>
                             </div>
                         </div>
                         <p class="para">{{ shorten_chars($post->content, 100, true) }}</p>
@@ -201,7 +193,7 @@
                     <img src="{{ asset('assets/images/icons/man.svg') }}" alt="empty" class="w-25">
                 </div>
                 <x-alert type="warning">
-                    <p class="text-center mb-0"><strong>Sorry!</strong> No blog posts available at this time. Try again later.</p>
+                    <p class="text-center mb-0"><strong>{{ __('Sorry!') }}</strong> {{ __('No blog posts available at this time. Try again later.') }}</p>
                 </x-alert>
             </div>
             @endforelse

@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Comments')
+@section('title', __('Admin Comments'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,13 +10,13 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'All Comments', 'hasBack' => true, 'backTitle' => 'All Blogs', 'backUrl' => route('admin.blogs.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('All Comments'), 'hasBack' => true, 'backTitle' => __('All Blogs'), 'backUrl' => route('admin.blogs.index')])
 
              <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">All Comments</h3>
+                            <h3 class="card-title mb-0">{{ __('All Comments') }}</h3>
                         </div>
                         <div class="">
                            <x-filter-admin-comment-card />
@@ -37,18 +37,18 @@
                                                                         <tr>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Author</th>
+                                                                                {{ __('Author') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Post Title</th>
+                                                                                {{ __('Post Title') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                                Content</th>
+                                                                                {{ __('Content') }}</th>
                                                                             <th
                                                                                 class="bg-transparent border-bottom-0">
-                                                                               Status</th>
+                                                                               {{ __('Status') }}</th>
                                                                             <th class="bg-transparent border-bottom-0"
-                                                                                style="width: 5%;">Action</th>
+                                                                                style="width: 5%;">{{ __('Action') }}</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -77,21 +77,21 @@
                                                                                             data-bs-target="#select2modalshow"
                                                                                             data-bs-toggle="modal"
                                                                                             href="javascript:;"
-                                                                                            data-bs-original-title="Show"
+                                                                                            data-bs-original-title="{{ __('Show') }}"
                                                                                             onclick="showComment('{{ $comment->post->title }}', '{{ $comment->user->name ?? $comment->admin->name }}', '{{ $comment->content }}', '{{ $comment->status->label() }}', '{{ $comment->status->color() }}')"
                                                                                             ><span
                                                                                             class="fa-regular fa-eye fs-14"></span>
                                                                                         </a>
                                                                                         <a href="{{ route('admin.comments.edit', $comment->id) }}" class="btn text-dark btn-sm"
                                                                                             data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="View"><span
+                                                                                            data-bs-original-title="{{ __('Edit') }}"><span
                                                                                                 class="fa-regular fa-edit fs-14"></span>
                                                                                         </a>
                                                                                         <a class="btn text-danger btn-sm"
                                                                                             data-bs-target="#select2modaldelete"
                                                                                             data-bs-toggle="modal"
                                                                                             href="javascript:;"
-                                                                                            data-bs-original-title="Delete"
+                                                                                            data-bs-original-title="{{ __('Delete') }}"
                                                                                             onclick="deleteComment('{{ $comment->id }}', '{{ $comment->post->title }}', '{{ $comment->content }}', '{{ $comment->user->name ?? $comment->admin->name }}')"
                                                                                             ><span
                                                                                                 class="fa-regular fa-trash-alt fs-14"></span>
@@ -114,7 +114,7 @@
                                             @else
                                             <div class="text-center p-4">
                                                 <img src="{{ asset('assets/images/icons/man.svg') }}" class="w-25" alt="empty">
-                                                <h4 class="mt-3">No Comment Found</h4>
+                                                <h4 class="mt-3">{{ __('No Comment Found') }}</h4>
                                             </div>
                                             @endif
                                         </div>
@@ -136,17 +136,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-content-demo">
             <div class="modal-header">
-                <h6 class="modal-title">View Comment</h6>
+                <h6 class="modal-title">{{ __('View Comment') }}</h6>
                 <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h4>Comment for the post <span id="show-title" class="fw-bold"></span></h4>
+                <h4>{{ __('Comment for the post') }} <span id="show-title" class="fw-bold"></span></h4>
                 <div id="show-content"></div>
             </div>
             <div class="modal-footer">
-                <button class="btn ripple btn-danger" data-bs-dismiss="modal" type="button">Close</button>
+                <button class="btn ripple btn-danger" data-bs-dismiss="modal" type="button">{{ __('Close') }}</button>
             </div>
         </div>
     </div>
@@ -160,19 +160,19 @@
             @method('DELETE')
             @csrf
             <div class="modal-header">
-                <h6 class="modal-title">Delete Comment</h6>
+                <h6 class="modal-title">{{ __('Delete Comment') }}</h6>
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h6>Comment of post with the title <span class="fw-bold" id="delete-title"></span> will be deleted. This action cannot be undone.</h6>
-                <p class="mt-3"><span class="fw-bold">Comment Content:</span> <span id="delete-content"></span></p>
-                <p class="mt-3">By clicking on "Delete Post" below, this post will be deleted.</p>
+                <h6>{{ __('Comment of post with the title') }} <span class="fw-bold" id="delete-title"></span> {{ __('will be deleted. This action cannot be undone.') }}</h6>
+                <p class="mt-3"><span class="fw-bold">{{ __('Comment Content:') }}</span> <span id="delete-content"></span></p>
+                <p class="mt-3">{{ __('By clicking on "Delete Comment" below, this comment will be deleted.') }}</p>
             </div>
             <div class="modal-footer">
-                <button class="btn ripple btn-success" type="submit">Delete Comment</button>
-                <button class="btn ripple btn-danger" data-bs-dismiss="modal" type="button">Close</button>
+                <button class="btn ripple btn-success" type="submit">{{ __('Delete Comment') }}</button>
+                <button class="btn ripple btn-danger" data-bs-dismiss="modal" type="button">{{ __('Close') }}</button>
             </div>
         </form>
     </div>
@@ -190,13 +190,13 @@
         document.getElementById('show-content').innerHTML = `
         <div class="row">
             <div class="col-md-12">
-                <h6 class="mt-3">Author: ${author}</h6>
+                <h6 class="mt-3">{{ __('Author') }}: ${author}</h6>
             </div>
             <div class="col-md-12">
-                <h6 class="mt-3">Content: ${content}</h6>
+                <h6 class="mt-3">{{ __('Content') }}: ${content}</h6>
             </div>
             <div class="col-md-12">
-                <h6 class="mt-3 text-white badge bg-${statusColor}">Status: ${status}</h6>
+                <h6 class="mt-3 text-white badge bg-${statusColor}">{{ __('Status') }}: ${status}</h6>
             </div>
         </div>
         `;

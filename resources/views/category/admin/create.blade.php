@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Category Create')
+@section('title', __('Admin Category Create'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,14 +10,14 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Category', 'hasBack' => true, 'backTitle' =>
-            'All Categories', 'backUrl' => route('admin.category.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Category'), 'hasBack' => true, 'backTitle' =>
+            __('All Categories'), 'backUrl' => route('admin.category.index')])
 
             <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">Create Category</h3>
+                            <h3 class="card-title mb-0">{{ __('Create Category') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -30,15 +30,15 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputname">Name</label>
-                                        <input type="text" class="form-control" id="exampleInputname" placeholder="Category Name" name="name">
+                                        <label for="exampleInputname">{{ __('Name') }}</label>
+                                        <input type="text" class="form-control" id="exampleInputname" placeholder="{{ __('Category Name') }}" name="name">
                                         <span class="text-danger">{{$errors->first('name')}}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputname">Slug</label>
-                                        <input type="text" class="form-control" id="exampleInputname" placeholder="Category Slug" name="slug">
+                                        <label for="exampleInputname">{{ __('Slug') }}</label>
+                                        <input type="text" class="form-control" id="exampleInputname" placeholder="{{ __('Category Slug') }}" name="slug">
                                         <span class="text-danger">{{$errors->first('slug')}}</span>
                                     </div>
                                 </div>
@@ -46,14 +46,14 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputname">Icon</label>
+                                        <label for="exampleInputname">{{ __('Icon') }}</label>
                                         <input class="form-control" name="icon" type="file" old="{{old('icon')}}">                                        
                                         <span class="text-danger">{{ $errors->first('icon') }}</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputname">Image</label>
+                                        <label for="exampleInputname">{{ __('Image') }}</label>
                                         <input class="form-control" name="image" type="file" old="{{old('image')}}">                                        
                                         <span class="text-danger">{{ $errors->first('image') }}</span>
                                     </div>
@@ -62,8 +62,8 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputname">Description</label>
-                                        <input class="form-control" name="description" type="text" placeholder="Description">                                        
+                                        <label for="exampleInputname">{{ __('Description') }}</label>
+                                        <input class="form-control" name="description" type="text" placeholder="{{ __('Description') }}">                                        
                                         <span class="text-danger">{{ $errors->first('description') }}</span>
                                     </div>
                                 </div>
@@ -71,8 +71,8 @@
                             </div>
                         </div>
                         <div class="card-footer text-end">
-                            <button type="submit" class="btn btn-success my-1">Save</button>
-                            <a href="{{ route('admin.category.index') }}" class="btn btn-danger my-1">Cancel</a>
+                            <button type="submit" class="btn btn-success my-1">{{ __('Save') }}</button>
+                            <a href="{{ route('admin.category.index') }}" class="btn btn-danger my-1">{{ __('Cancel') }}</a>
                         </div>
                     </form>
                 </div>

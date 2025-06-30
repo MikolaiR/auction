@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Failed Payouts')
+@section('title', __('Admin Failed Payouts'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,12 +10,12 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'All Failed Payouts', 'hasBack' => true, 'backTitle' => 'All Payouts', 'backUrl' => route('admin.payouts.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('All Failed Payouts'), 'hasBack' => true, 'backTitle' => __('All Payouts'), 'backUrl' => route('admin.payouts.index')])
             <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">All Failed Payouts</h3>
+                            <h3 class="card-title mb-0">{{ __('All Failed Payouts') }}</h3>
                         </div>
                         <div class="">
                             <x-filter-admin-payout-card />

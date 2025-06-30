@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Edit Blog - ' . $post->title)
+@section('title', __('Admin Edit Blog') . ' - ' . $post->title)
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,7 +10,7 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Edit Blog', 'hasBack' => true, 'backTitle' => 'All Blogs', 'backUrl' => route('admin.blogs.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Edit Blog'), 'hasBack' => true, 'backTitle' => __('All Blogs'), 'backUrl' => route('admin.blogs.index')])
 
              <div class="row">
                 <div class="col-lg-12">
@@ -18,20 +18,20 @@
                         @method('PATCH')
                         @csrf
                         <div class="card-header">
-                            <div class="card-title">Edit Blog</div>
+                            <div class="card-title">{{ __('Edit Blog') }}</div>
                     </div>
                         <div class="card-body">
-                            <x-input-item-field name="title" type="text" label="Blog Title *" placeholder="Enter Blog Title" value="{{ $post->title }}" />
+                            <x-input-item-field name="title" type="text" label="{{ __('Blog Title *') }}" placeholder="{{ __('Enter Blog Title') }}" value="{{ $post->title }}" />
                             <!-- Row -->
-                            <x-text-area-field name="content" label="Blog Content" placeholder="Enter Blog Content" value="{{ $post->content }}" :admin="true" />
+                            <x-text-area-field name="content" label="{{ __('Blog Content') }}" placeholder="{{ __('Enter Blog Content') }}" value="{{ $post->content }}" :admin="true" />
                             <br>
                             <x-tag-selectable :selected-tags="$post->tags" />
                             <div class="row">
-                                <label class="col-md-3 form-label mb-4">Published *:</label>
+                                <label class="col-md-3 form-label mb-4">{{ __('Published *') }}:</label>
                                 <div class="col-md-9">
-                                    <select name="published" id="published" class="form-control form-select select2" data-bs-placeholder="Select Status">
-                                        <option value="published" {{ $post->is_published ? 'selected' : '' }}>Published</option>
-                                        <option value="draft" {{ !$post->is_published ? 'selected' : '' }}>Draft</option>
+                                    <select name="published" id="published" class="form-control form-select select2" data-bs-placeholder="{{ __('Select Status') }}">
+                                        <option value="published" {{ $post->is_published ? 'selected' : '' }}>{{ __('Published') }}</option>
+                                        <option value="draft" {{ !$post->is_published ? 'selected' : '' }}>{{ __('Draft') }}</option>
                                     </select>
                                     <span class="text-danger">{{ $errors->first('published') }}</span>
                                 </div>
@@ -43,8 +43,8 @@
                             <div class="row">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-9">
-                                    <button type="submit" class="btn btn-primary">Update Blog</button>
-                                    <a href="{{ route('admin.blogs.show', $post->slug) }}" class="btn btn-default float-end">Discard</a>
+                                    <button type="submit" class="btn btn-primary">{{ __('Update Blog') }}</button>
+                                    <a href="{{ route('admin.blogs.show', $post->slug) }}" class="btn btn-default float-end">{{ __('Discard') }}</a>
                                 </div>
                             </div>
                             <!--End Row-->

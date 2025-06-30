@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Auction Type Create')
+@section('title', __('Admin Auction Type Create'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,14 +10,14 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Auction Types', 'hasBack' => true, 'backTitle' =>
-            'All Auction Types', 'backUrl' => route('admin.auctiontype.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Auction Types'), 'hasBack' => true, 'backTitle' =>
+            __('All Auction Types'), 'backUrl' => route('admin.auctiontype.index')])
 
             <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">Create Auction Type</h3>
+                            <h3 class="card-title mb-0">{{ __('Create Auction Type') }}</h3>
                         </div>
                     </div>
                 </div>
@@ -30,8 +30,8 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputname">Type</label>
-                                        <input type="text" class="form-control" id="exampleInputname" placeholder="Auction Type" name="name">
+                                        <label for="exampleInputname">{{ __('Type') }}</label>
+                                        <input type="text" class="form-control" id="exampleInputname" placeholder="{{ __('Auction Type') }}" name="name">
                                         <span class="text-danger">{{$errors->first('name')}}</span>
                                     </div>
                                 </div>
@@ -39,8 +39,8 @@
                             </div>
                         </div>
                         <div class="card-footer text-end">
-                            <button type="submit" class="btn btn-success my-1">Save</button>
-                            <a href="{{ route('admin.auctiontype.index') }}" class="btn btn-danger my-1">Cancel</a>
+                            <button type="submit" class="btn btn-success my-1">{{ __('Save') }}</button>
+                            <a href="{{ route('admin.auctiontype.index') }}" class="btn btn-danger my-1">{{ __('Cancel') }}</a>
                         </div>
                     </form>
                 </div>

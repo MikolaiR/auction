@@ -27,7 +27,7 @@
            {{ $pageTitle }} </h2>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
                 @if(isset($hasBack) && $hasBack)
                 <li class="breadcrumb-item"><a href="{{ $backUrl }}">{{ $backTitle }}</a></li>
                 @else

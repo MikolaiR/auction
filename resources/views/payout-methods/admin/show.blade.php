@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Payout Method Details')
+@section('title', __('Payout Method Details'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,7 +10,7 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Payout Method Details', 'hasBack' => true, 'backTitle' => 'Payment Methods', 'backUrl' => route('admin.payout-methods.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Payout Method Details'), 'hasBack' => true, 'backTitle' => __('Payment Methods'), 'backUrl' => route('admin.payout-methods.index')])
             <div class="row">
                 <div class="col-xl-12 col-md-12">
                     <div class="card productdesc">
@@ -23,48 +23,47 @@
                                                 <table class="table table-bordered">
                                                     <tbody>
                                                         <tr>
-                                                            <td class="fw-bold">Account Name</td>
+                                                            <td class="fw-bold">{{ __('Account Name') }}</td>
                                                             <td> {{ $payoutMethod->account_name }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Account Number</td>
+                                                            <td class="fw-bold">{{ __('Account Number') }}</td>
                                                             <td> {{ $payoutMethod->account_number }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Bank Name / Bank Code</td>
+                                                            <td class="fw-bold">{{ __('Bank Name / Bank Code') }}</td>
                                                             <td> {{ $payoutMethod->bank_name }} / {{
                                                                 $payoutMethod->bank_code }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Country</td>
+                                                            <td class="fw-bold">{{ __('Country') }}</td>
                                                             <td><span>{{$payoutMethod->country->emoji}} {{
                                                                     $payoutMethod->country->name }}</span></td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Method Owner</td>
+                                                            <td class="fw-bold">{{ __('Method Owner') }}</td>
                                                             <td><span>{{$payoutMethod->user->name}}</span></td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Method Owner Email</td>
+                                                            <td class="fw-bold">{{ __('Method Owner Email') }}</td>
                                                             <td>{{ $payoutMethod->user->email }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Payouts Requested</td>
-                                                            <td class="d-flex justify-between"><span>{{ $payoutMethod->payouts->count() }} counts </span><a
-                                                                    href="{{ route('admin.payouts.index', ['payout_method' => $payoutMethod->id]) }}">See
-                                                                    all payouts</a></td>
+                                                            <td class="fw-bold">{{ __('Payouts Requested') }}</td>
+                                                            <td class="d-flex justify-between"><span>{{ $payoutMethod->payouts->count() }} {{ __('counts') }} </span><a
+                                                                    href="{{ route('admin.payouts.index', ['payout_method' => $payoutMethod->id]) }}">{{ __('See all payouts') }}</a></td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Total Payouts Received</td>
+                                                            <td class="fw-bold">{{ __('Total Payouts Received') }}</td>
                                                             <td>{{ $payoutMethod->payouts->where('status',
                                                                 \App\Enums\PayoutStatus::SUCCESS)->count() }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Total Payouts Amount</td>
+                                                            <td class="fw-bold">{{ __('Total Payouts Amount') }}</td>
                                                             <td>{{ money($payoutMethod->payouts->sum('amount')) }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="fw-bold">Total Payouts Fees</td>
+                                                            <td class="fw-bold">{{ __('Total Payouts Fees') }}</td>
                                                             <td>{{ money($payoutMethod->payouts->sum('fee')) }}</td>
                                                         </tr>
                                                     </tbody>
