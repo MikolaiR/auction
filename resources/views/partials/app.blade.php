@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('layouts.seo')
     <link rel="icon" href="assets/images/bg/sm-logo.png" type="image/gif" sizes="20x20">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('layouts.style', ['admin' => false])
 </head>
 
