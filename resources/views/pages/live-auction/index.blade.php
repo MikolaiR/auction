@@ -1,9 +1,9 @@
 @extends('partials.app')
-@section('title', 'Live Auction')
-@section('description', 'View current live auctions, and bid on items.')
+@section('title', __('Live Auction'))
+@section('description', __('View current live auctions, and bid on items.'))
 @section('content')
 
-@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => 'Live Auction'])
+@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => __('Live Auction')])
 
 <div class="live-auction-section pt-120 pb-120">
     <div class="container">
@@ -17,7 +17,7 @@
                         <img src="{{ asset('assets/images/icons/man.svg') }}" alt="empty" class="w-25">
                     </div>
                     <x-alert type="warning">
-                        <p class="text-center mb-0"><strong>Sorry!</strong> No Auction found.</p>
+                        <p class="text-center mb-0"><strong>{{ __('Sorry!') }}</strong> {{ __('No Auction found.') }}</p>
                     </x-alert>
                 </div>
             @endforelse

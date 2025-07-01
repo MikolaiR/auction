@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Reported Ads Details - ' . $reportAd->ad->title)
+@section('title', __('Admin Reported Ads Details - ') . $reportAd->ad->title)
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,7 +10,7 @@
 
         <!-- CONTAINER -->
     <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Ad Report Details', 'hasBack' => true, 'backTitle' => 'Ads Listing', 'backUrl' => route('admin.ads.reported')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Ad Report Details'), 'hasBack' => true, 'backTitle' => __('Ads Listing'), 'backUrl' => route('admin.ads.reported')])
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
@@ -49,10 +49,10 @@
                                 <div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
                                     <div class="mt-2 mb-4">
                                         <h3 class="mb-3 fw-semibold">{{ $reportAd->reason }}</h3>
-                                        <p class="text-muted mb-4"><i class="fa-light fa-user"></i><span class="fw-bold me-2"> Posted By:</span> <a class="text-primary" href="mailto:{{$reportAd->email}}"> {{$reportAd->email}} </a> </p>
-                                        <h4 class="mt-4"><b> Reason Desciption</b></h4>
+                                        <p class="text-muted mb-4"><i class="fa-light fa-user"></i><span class="fw-bold me-2"> {{ __('Posted By:') }}</span> <a class="text-primary" href="mailto:{{$reportAd->email}}"> {{$reportAd->email}} </a> </p>
+                                        <h4 class="mt-4"><b> {{ __('Reason Desciption') }}</b></h4>
                                         <p>{{$reportAd->description}}</p>
-                                        <div class=" mt-4 mb-5"><span class="fw-bold me-2">View Ad Details :</span><a href="{{route('admin.ads.show', $reportAd->ad->slug)}}" class="text-primary">{{ $reportAd->ad->title}} </a></div>
+                                        <div class=" mt-4 mb-5"><span class="fw-bold me-2">{{ __('View Ad Details :') }}</span><a href="{{route('admin.ads.show', $reportAd->ad->slug)}}" class="text-primary">{{ $reportAd->ad->title}} </a></div>
                                     </div>
                                 </div>
                             </div>

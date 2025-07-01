@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Media')
+@section('title', __('Admin Media'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,13 +10,13 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'All Media', 'hasBack' => true, 'backTitle' => 'Dashboard', 'backUrl' => route('admin.dashboard')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('All Media'), 'hasBack' => true, 'backTitle' => __('Dashboard'), 'backUrl' => route('admin.dashboard')])
 
              <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-0">All Media</h3>
+                            <h3 class="card-title mb-0">{{ __('All Media') }}</h3>
                         </div>
                         <div class="">
                            <x-filter-admin-media-card />
@@ -44,7 +44,7 @@
                                                                                 @if($med->size > 0)
                                                                                 {{ bytes_to_human($med->size) }}
                                                                                 @else
-                                                                                0 KB
+                                                                                {{ __('0 KB') }}
                                                                                 @endif
                                                                             </span>
                                                                         </div>
@@ -63,7 +63,7 @@
                                     @else
                                     <div class="text-center">
                                         <img src="/assets/images/icons/man.svg" alt="img" class="w-25">
-                                        <h4 class="my-3">No Media Found</h4>
+                                        <h4 class="my-3">{{ __('No Media Found') }}</h4>
                                     </div>
                                     @endif
                                 </div>

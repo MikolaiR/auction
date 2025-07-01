@@ -1,9 +1,9 @@
 @extends('partials.app')
-@section('title', $post->title . ' | Blog')
+@section('title', $post->title . ' | ' . __('Blog'))
 @section('description', shorten_chars($post->content, 150, true))
 @section('content')
 
-@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => 'Blog'])
+@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => __('Blog')])
 
 <div class="blog-details-section pt-120 pb-120">
     <div class="container">
@@ -16,11 +16,11 @@
                             style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInDown;">
                     </div>
                     <ul class="blog-meta gap-2">
-                        <li><a href="#"><img alt="image" src="/assets/images/icons/calendar.svg">Date: {{
+                        <li><a href="#"><img alt="image" src="/assets/images/icons/calendar.svg">{{ __('Date:') }} {{
                                 $post->created_at->format('d M Y') }}</a></li>
                         </li>
-                        <li><a href="#"><img alt="image" src="/assets/images/icons/tags.svg">Auction</a></li>
-                        <li><a href="#"><img alt="image" src="/assets/images/icons/admin.svg">Posted by {{
+                        <li><a href="#"><img alt="image" src="/assets/images/icons/tags.svg">{{ __('Auction') }}</a></li>
+                        <li><a href="#"><img alt="image" src="/assets/images/icons/admin.svg">{{ __('Posted by') }} {{
                                 $post->admin->name }}</a></li>
                     </ul>
                     <h3 class="blog-title">{{ $post->title }}</h3>
@@ -41,7 +41,7 @@
                         <div class="row g-3">
                             <div
                                 class="col-md-6 d-flex justify-content-md-start justify-content-center align-items-center">
-                                <h6>Post Tag:</h6>
+                                <h6>{{ __('Post Tag:') }}</h6>
                                 <ul class="tag-list">
                                     @foreach ($post->tags()->get() as $tag)
                                     <li><a href="{{ route('blog.index', ['tag' => $tag->id]) }}">{{ $tag->name }}</a>
@@ -67,13 +67,12 @@
                         </div>
                         <div class="author-detials text-md-start text-center">
                             <h5>-- {{ $post->admin->name }}</h5>
-                            <p class="para">Article by {{ $post->admin->name }}. {{ $post->admin->name }} is a
-                                professional blogger and content writer.</p>
+                            <p class="para">{{ __('Article by') }} {{ $post->admin->name }}. {{ $post->admin->name }} {{ __('is a professional blogger and content writer.') }}</p>
                         </div>
                     </div>
                     <div class="blog-comment">
                         <div class="blog-widget-title">
-                            <h4>Comments (03)</h4>
+                            <h4>{{ __('Comments') }} ({{ $post->comments->count() }})</h4>
                             <span></span>
                         </div>
                         <ul class="comment-list mb-50">
@@ -117,8 +116,8 @@
                     </div>
                     <div class="comment-form">
                         <div class="blog-widget-title style2">
-                            <h4>Leave A Comment</h4>
-                            <p class="para">Your email address will not be published.</p>
+                            <h4>{{ __('Leave A Comment') }}</h4>
+                            <p class="para">{{ __('Your email address will not be published.') }}</p>
                             <span></span>
                         </div>
                         @auth('web')
@@ -130,29 +129,29 @@
                             <div class="row">
                                 <div class="col-xl-6 col-lg-12 col-md-6">
                                     <div class="form-inner">
-                                        <input type="text" placeholder="Your Name :" value="{{ auth()->user()->name }}" readonly disabled>
+                                        <input type="text" placeholder="{{ __('Your Name :') }}" value="{{ auth()->user()->name }}" readonly disabled>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-12 col-md-6">
                                     <div class="form-inner">
-                                        <input type="email" placeholder="Your Email :" value="{{ auth()->user()->email }}" readonly disabled>
+                                        <input type="email" placeholder="{{ __('Your Email :') }}" value="{{ auth()->user()->email }}" readonly disabled>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-inner">
-                                        <textarea name="content" placeholder="Write Message :" rows="12"></textarea>
+                                        <textarea name="content" placeholder="{{ __('Write Message :') }}" rows="12"></textarea>
                                     </div>
                                     <span class="text-danger">{{ $errors->first('content') }}</span>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="eg-btn btn--primary btn--md form--btn">Submit Now</button>
+                                    <button type="submit" class="eg-btn btn--primary btn--md form--btn">{{ __('Submit Now') }}</button>
                                 </div>
                             </div>
                         </form>
                         @else
                         <x-alert type="warning" icon="exclamation-triangle">
-                            <p class="mb-0">You must be logged in to comment. If you have an account, please <a
-                                    class="fw-bold" href="{{ route('user.login') }}">login</a> to comment.</p>
+                            <p class="mb-0">{{ __('You must be logged in to comment. If you have an account, please') }} <a
+                                    class="fw-bold" href="{{ route('user.login') }}">{{ __('login') }}</a> {{ __('to comment.') }}</p>
                         </x-alert>
                         @endauth
                     </div>
@@ -165,13 +164,13 @@
                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInUp;">
                         <div class="search-area">
                             <div class="sidebar-widget-title">
-                                <h4>Search From Blog</h4>
+                                <h4>{{ __('Search From Blog') }}</h4>
                                 <span></span>
                             </div>
                             <div class="blog-widget-body">
                                 <form method="GET" action="{{ route('blog.index') }}">
                                     <div class="form-inner">
-                                        <input name="search" type="text" placeholder="Search Here">
+                                        <input name="search" type="text" placeholder="{{ __('Search Here') }}">
                                         <button class="search--btn"><i class="bx bx-search-alt-2"></i></button>
                                     </div>
                                 </form>
@@ -182,7 +181,7 @@
                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.4s; animation-name: fadeInUp;">
                         <div class="blog-category">
                             <div class="sidebar-widget-title">
-                                <h4>Related Post</h4>
+                                <h4>{{ __('Related Post') }}</h4>
                                 <span></span>
                             </div>
                             <div class="blog-widget-body">
@@ -211,7 +210,7 @@
                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.8s; animation-name: fadeInUp;">
                         <div class="tag-area">
                             <div class="sidebar-widget-title">
-                                <h4>Follow Social</h4>
+                                <h4>{{ __('Follow Social') }}</h4>
                                 <span></span>
                             </div>
                             <div class="blog-widget-body">
@@ -228,8 +227,8 @@
                     <div class="sidebar-banner wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s"
                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 1s; animation-name: fadeInUp;">
                         <div class="banner-content">
-                            <span>Advertisement</span>
-                            <h3>Toyota AIGID A Clasis Cars Sale</h3>
+                            <span>{{ __('Advertisement') }}</span>
+                            <h3>{{ __('Toyota AIGID A Clasis Cars Sale') }}</h3>
                             {{-- <a href="{{ route('auction-details') }}"
                                 class="eg-btn btn--primary card--btn">Details</a> --}}
                         </div>
@@ -249,7 +248,7 @@
     function replyTo(id, name) {
         let commentBox = document.querySelector('.comment-form');
         commentBox.scrollIntoView();
-        document.querySelector('#reply-to-who').innerHTML = `Reply to ${name}`;
+        document.querySelector('#reply-to-who').innerHTML = `{{ __('Reply to') }} ${name}`;
         // Create a new hidden input field for the comment id
         let commentIdInput = document.createElement('input');
         commentIdInput.setAttribute('type', 'hidden');
@@ -259,3 +258,4 @@
         document.querySelector('#comment-main').appendChild(commentIdInput);
     }
 </script>
+@endpush

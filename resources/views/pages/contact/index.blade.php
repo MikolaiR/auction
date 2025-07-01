@@ -1,9 +1,9 @@
 @extends('partials.app')
-@section('title', 'Contact')
-@section('description', 'Contact us for any questions or concerns.')
+@section('title', __('Contact'))
+@section('description', __('Contact us for any questions or concerns.'))
 @section('content')
 
-@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => 'Contact'])
+@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => __('Contact')])
 
 <div class="contact-section pt-120 pb-120">
     <div class="container">
@@ -16,8 +16,8 @@
                         <i class="bi bi-geo-alt"></i>
                     </div>
                     <div class="text">
-                        <h4>Location</h4>
-                        <p>105,Mohan Nagar, Jaipur,India</p>
+                        <h4>{{ __('Location') }}</h4>
+                        <p>{{ __('105,Mohan Nagar, Jaipur,India') }}</p>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                         <i class="bx bx-phone-call"></i>
                     </div>
                     <div class="text">
-                        <h4>Phone</h4>
+                        <h4>{{ __('Phone') }}</h4>
                         <a href="tel:+917221047383">+91 72210 47383</a>
                         <a href="tel:+919782094191">+91 97820 94191</a>
                     </div>
@@ -43,7 +43,7 @@
                         <i class="bx bx-envelope"></i>
                     </div>
                     <div class="text">
-                        <h4>Email</h4>
+                        <h4>{{ __('Email') }}</h4>
                         <a href="mailto:support@example.com">support@auctionengine.com</a>
                         <a href="mailto:info@example.com">info@auctionengine.com</a>
                     </div>
@@ -55,44 +55,43 @@
                 <div class="form-wrapper wow fadeInDown" data-wow-duration="1.5s" data-wow-delay=".2s"
                     style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInDown;">
                     <div class="form-title2">
-                        <h3>Get in Touch</h3>
-                        <p class="para">Feel free to ask me any question or let's do to talk about our future
-                            collaboration.</p>
+                        <h3>{{ __('Get in Touch') }}</h3>
+                        <p class="para">{{ __('Feel free to ask me any question or let\'s do to talk about our future collaboration.') }}</p>
                     </div>
                     <form action="{{ route('contact.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-xl-6 col-lg-12 col-md-6">
                                 <div class="form-inner">
-                                    <input type="text" name="name" placeholder="Your Name :">
+                                    <input type="text" name="name" placeholder="{{ __('Your Name :') }}">
                                 </div>
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                             </div>
                             <div class="col-xl-6 col-lg-12 col-md-6">
                                 <div class="form-inner">
-                                    <input type="email" name="email" placeholder="Your Email :">
+                                    <input type="email" name="email" placeholder="{{ __('Your Email :') }}">
                                 </div>
                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                             </div>
                             <div class="col-xl-6 col-lg-12 col-md-6">
                                 <div class="form-inner">
-                                    <input type="text" name="phone" placeholder="Your Phone :">
+                                    <input type="text" name="phone" placeholder="{{ __('Your Phone :') }}">
                                 </div>
                                 <span class="text-danger">{{ $errors->first('phone') }}</span>
                             </div>
                             <div class="col-xl-6 col-lg-12 col-md-6">
                                 <div class="form-inner">
-                                    <input type="text" name="subject" placeholder="Subject :">
+                                    <input type="text" name="subject" placeholder="{{ __('Subject :') }}">
                                 </div>
                                 <span class="text-danger">{{ $errors->first('subject') }}</span>
                             </div>
                             <div class="col-12">
-                                <textarea name="message" placeholder="Write Message :" rows="12"></textarea>
+                                <textarea name="message" placeholder="{{ __('Write Message :') }}" rows="12"></textarea>
                                 <span class="text-danger">{{ $errors->first('message') }}</span>
                             </div>
                             {!! LaraCaptcha::script() !!}
                             <div class="col-12">
-                                <button type="submit" class="eg-btn btn--primary btn--md form--btn">Send Message</button>
+                                <button type="submit" class="eg-btn btn--primary btn--md form--btn">{{ __('Send Message') }}</button>
                             </div>
                         </div>
                     </form>

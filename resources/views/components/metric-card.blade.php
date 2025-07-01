@@ -7,7 +7,7 @@
                     <div class="counter-icon"> <img alt="image" src="/assets/images/icons/employee.svg"> </div>
                     <div class="coundown d-flex flex-column">
                         <h3 class="odometer" data-odometer-final="{{$metrics['total_users']}}">&nbsp;</h3>
-                        <p>Happy Customer</p>
+                        <p>{{ __('Happy Customer') }}</p>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                     <div class="counter-icon"> <img alt="image" src="/assets/images/icons/ads.svg"> </div>
                     <div class="coundown d-flex flex-column">
                         <h3 class="odometer" data-odometer-final="{{$metrics['total_ads']}}">&nbsp;</h3>
-                        <p>Total Ads</p>
+                        <p>{{ __('Total Ads') }}</p>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                     <div class="counter-icon"> <img alt="image" src="/assets/images/icons/smily.svg"> </div>
                     <div class="coundown d-flex flex-column">
                         <h3 class="odometer" data-odometer-final="{{$metrics['total_bids']}}">&nbsp;</h3>
-                        <p>Total Bids</p>
+                        <p>{{ __('Total Bids') }}</p>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     <div class="counter-icon"> <img alt="image" src="/assets/images/icons/bid-paid.svg"> </div>
                     <div class="coundown d-flex flex-column">
                         <h3 class="odometer" data-odometer-final="{{money($metrics['total_amount_paid'], true)}}">&nbsp;</h3>
-                        <p>Bids Paid</p>
+                        <p>{{ __('Bids Paid') }}</p>
                     </div>
                 </div>
             </div>

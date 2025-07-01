@@ -1,9 +1,9 @@
 @extends('partials.app')
-@section('title', 'Blog')
-@section('description', 'Read our blog posts to learn more about us and our platform.')
+@section('title', __('Blog'))
+@section('description', __('Read our blog posts to learn more about us and our platform.'))
 @section('content')
 
-@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => 'Blog'])
+@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => __('Blog')])
 
 <div class="blog-section pt-120 pb-120">
     <div class="container">
@@ -26,7 +26,7 @@
                             </div>
                             <div class="comment">
                                 <img alt="image" src="/assets/images/icons/comment-icon.svg">
-                                <a href="#" class="comment">{{ $post->comments->count() }} Comments</a>
+                                <a href="#" class="comment">{{ $post->comments->count() }} {{ __('Comments') }}</a>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                     <img src="{{ asset('assets/images/icons/man.svg') }}" alt="empty" class="w-25">
                 </div>
                 <x-alert type="warning">
-                    <p class="text-center mb-0"><strong>Sorry!</strong> No blogs found.</p>
+                    <p class="text-center mb-0"><strong>{{ __('Sorry!') }}</strong> {{ __('No blogs found.') }}</p>
                 </x-alert>
             </div>
             @endforelse

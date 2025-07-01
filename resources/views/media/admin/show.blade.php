@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Media Details')
+@section('title', __('Admin Media Details'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,7 +10,7 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Media Details', 'hasBack' => true, 'backTitle' => 'Dashboard', 'backUrl' => route('admin.media.index')])
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Media Details'), 'hasBack' => true, 'backTitle' => __('Dashboard'), 'backUrl' => route('admin.media.index')])
             <div class="row row-sm">
                 <div class="col-xl-8 col-lg-12 col-md-12">
                     <div class="card custom-card overflow-hidden">
@@ -22,7 +22,7 @@
                 <div class="col-xl-4 col-lg-12 col-md-12">
                     <div class="card custom-card">
                         <div class="card-body">
-                            <h5 class="mb-3">File details</h5>
+                            <h5 class="mb-3">{{ __('File details') }}</h5>
                             <div class="">
                                 <div class="row">
                                     <div class="col-xl-12">
@@ -30,33 +30,33 @@
                                             <table class="table mb-0 table-bordered text-nowrap">
                                                 <tbody>
                                                     <tr>
-                                                        <th>File Name</th>
+                                                        <th>{{ __('File Name') }}</th>
                                                         <td>{{$media->name}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Uploaded</th>
+                                                        <th>{{ __('Uploaded') }}</th>
                                                         <td>{{$media->created_at->diffForHumans()}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Size</th>
+                                                        <th>{{ __('Size') }}</th>
                                                         <td>
                                                             @if($media->size > 0)
                                                             {{ bytes_to_human($media->size) }}
                                                             @else
-                                                            0 KB
+                                                            {{ __('0 KB') }}
                                                             @endif
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Storage</th>
+                                                        <th>{{ __('Storage') }}</th>
                                                         <td>{{$media->storage->label()}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Extension</th>
+                                                        <th>{{ __('Extension') }}</th>
                                                         <td>{{$media->extension}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>File Type</th>
+                                                        <th>{{ __('File Type') }}</th>
                                                         <td>{{$media->mime_type}}</td>
                                                     </tr>
                                                 </tbody>

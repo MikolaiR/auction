@@ -1,11 +1,11 @@
 <ul class="pagination justify-content-center">
     @if($paginator->onFirstPage())
         <li class="page-item page-prev disabled">
-            <a class="page-link" href="javascript:void(0)" tabindex="-1">Prev</a>
+            <a class="page-link" href="javascript:void(0)" tabindex="-1">{{ __('Prev') }}</a>
         </li>
     @else
         <li class="page-item page-prev">
-            <a class="page-link" href="{{ $paginator->previousPageUrl() }}" tabindex="-1">Prev</a>
+            <a class="page-link" href="{{ $paginator->previousPageUrl() }}" tabindex="-1">{{ __('Prev') }}</a>
         </li>
     @endif
     @foreach($elements as $element)
@@ -30,11 +30,11 @@
     @endforeach
     @if($paginator->hasMorePages())
         <li class="page-item page-next">
-            <a class="page-link" href="{{ $paginator->nextPageUrl() }}">Next</a>
+            <a class="page-link" href="{{ $paginator->nextPageUrl() }}">{{ __('Next') }}</a>
         </li>
     @else
         <li class="page-item page-next disabled">
-            <a class="page-link" href="javascript:void(0)">Next</a>
+            <a class="page-link" href="javascript:void(0)">{{ __('Next') }}</a>
         </li>
     @endif
 </ul>

@@ -5,6 +5,6 @@
         <span class="text-danger d-block fs-6">{{ $errors->first($name) }}</span>
     </div>
     @if($forgotten)
-    <a href="{{ route('user.forgot-password') }}" class="forgot-pass">Forgotten Password</a>
+    <a href="{{ route('user.forgot-password') }}" class="forgot-pass">{{ __('Forgotten Password') }}</a>
     @endif
 </div>

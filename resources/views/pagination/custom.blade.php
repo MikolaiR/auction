@@ -3,11 +3,11 @@
     <ul class="pagination d-flex justify-content-center gap-md-3 gap-2">
         @if($paginator->onFirstPage())
         <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Prev</a>
+            <a class="page-link" href="#" tabindex="-1">{{ __('Prev') }}</a>
         </li>
         @else
         <li class="page-item">
-            <a class="page-link" href="{{ $paginator->previousPageUrl() }}" tabindex="-1">Prev</a>
+            <a class="page-link" href="{{ $paginator->previousPageUrl() }}" tabindex="-1">{{ __('Prev') }}</a>
         </li>
         @endif
         @foreach($elements as $element)
@@ -30,11 +30,11 @@
         @endforeach
         @if($paginator->hasMorePages())
         <li class="page-item">
-            <a class="page-link" href="{{ $paginator->nextPageUrl() }}">Next</a>
+            <a class="page-link" href="{{ $paginator->nextPageUrl() }}">{{ __('Next') }}</a>
         </li>
         @else
         <li class="page-item disabled">
-            <a class="page-link" href="#">Next</a>
+            <a class="page-link" href="#">{{ __('Next') }}</a>
         </li>
         @endif
     </ul>

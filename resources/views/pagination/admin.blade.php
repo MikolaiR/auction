@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-sm-12 col-md-12">
         <div class="dataTables_info" id="crypto-data-table_info" role="status" aria-live="polite">
-            Showing {{ $paginator->firstItem() }} to {{ $paginator->lastItem() }} of {{ $paginator->total() }} entries
+            {{ __('Showing') }} {{ $paginator->firstItem() }} {{ __('to') }} {{ $paginator->lastItem() }} {{ __('of') }} {{ $paginator->total() }} {{ __('entries') }}
         </div>
     </div>
     <div class="col-sm-12 col-md-12">
@@ -10,12 +10,12 @@
             <ul class="pagination">
                 @if($paginator->onFirstPage())
                 <li class="paginate_button page-item previous disabled" id="crypto-data-table_previous">
-                    <a href="#" aria-controls="crypto-data-table" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                    <a href="#" aria-controls="crypto-data-table" data-dt-idx="0" tabindex="0" class="page-link">{{ __('Previous') }}</a>
                 </li>
                 @else
                 <li class="paginate_button page-item previous" id="crypto-data-table_previous">
                     <a href="{{ $paginator->previousPageUrl() }}" aria-controls="crypto-data-table" data-dt-idx="0" tabindex="0"
-                        class="page-link">Previous</a>
+                        class="page-link">{{ __('Previous') }}</a>
                 </li>
                 @endif
                 @foreach($elements as $element)
@@ -44,11 +44,11 @@
                 @if($paginator->hasMorePages())
                 <li class="paginate_button page-item next" id="crypto-data-table_next">
                     <a href="{{ $paginator->nextPageUrl() }}" aria-controls="crypto-data-table" data-dt-idx="3" tabindex="0"
-                        class="page-link">Next</a>
+                        class="page-link">{{ __('Next') }}</a>
                 </li>
                 @else
                 <li class="paginate_button page-item next disabled" id="crypto-data-table_next">
-                    <a href="#" aria-controls="crypto-data-table" data-dt-idx="3" tabindex="0" class="page-link">Next</a>
+                    <a href="#" aria-controls="crypto-data-table" data-dt-idx="3" tabindex="0" class="page-link">{{ __('Next') }}</a>
                 </li>
                 @endif
             </ul>

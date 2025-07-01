@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Profile Edit')
+@section('title', __('Admin Profile Edit'))
 @section('content')
 
 @include('layouts.header', ['admin' => true])
@@ -10,9 +10,9 @@
 
         <!-- CONTAINER -->
         <div class="main-container container-fluid">
-            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => 'Account Details', 'hasBack' => true,
+            @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Account Details'), 'hasBack' => true,
             'backTitle' =>
-            'Dashboard', 'backUrl' => route('admin.dashboard')])
+            __('Dashboard'), 'backUrl' => route('admin.dashboard')])
 
             <x-edit-profile-card />
         </div>

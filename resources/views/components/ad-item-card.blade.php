@@ -15,14 +15,14 @@
             <h4><a href="{{ route('auction-details', $ad->slug) }}">{{ shorten_chars($ad->title)}}</a></h4>
             <div class="author-price-area">
                 <div class="author">
-                    <img alt="image" src="{{ $ad->user?->avatar  ?? get_random_avatar() }}"><span class="name">By
+                    <img alt="image" src="{{ $ad->user?->avatar  ?? get_random_avatar() }}"><span class="name">{{ __('By') }}
                         {{ $ad->user->name }}</span>
                         </span>
                 </div>
                 <p>{{ money($ad->price) }}</p>
             </div>
             <div class="auction-card-bttm">
-                <a href="{{ route('auction-details', $ad->slug) }}" class="eg-btn btn--primary2 btn--sm">Place a Bid</a>
+                <a href="{{ route('auction-details', $ad->slug) }}" class="eg-btn btn--primary2 btn--sm">{{ __('Place a Bid') }}</a>
                 <div class="share-area">
                     <a href="#" class="share-btn"><i class="bx bxs-share-alt"></i></a>
                 </div>
@@ -46,7 +46,7 @@
                     <img alt="image" src="{{ $ad->user?->avatar ?? get_random_avatar() }}">
                 </div>
                 <div class="author-name">
-                    <span>by {{ '@'.$ad->user->username }}</span>
+                    <span>{{ __('by') }} {{ '@'.$ad->user->username }}</span>
                 </div>
             </div>
         </div>
@@ -55,10 +55,9 @@
             <a href="{{ route('auction-details', $ad->slug) }}">
                 <h4>{{ shorten_chars($ad->title)}}</h4>
             </a>
-            <p>Bidding Price : <span>{{ money($ad->price) }}</span></p>
+            <p>{{ __('Bidding Price :') }} <span>{{ money($ad->price) }}</span></p>
             <div class="auction-card-bttm">
-                <a href="{{ route('auction-details', $ad->slug) }}" class="eg-btn btn--primary2 btn--sm">View
-                    Details</a>
+                <a href="{{ route('auction-details', $ad->slug) }}" class="eg-btn btn--primary2 btn--sm">{{ __('View Details') }}</a>
                 <div class="share-area">
                     <ul class="social-icons d-flex">
                         <li><a href="https://www.facebook.com/"><i
@@ -98,16 +97,16 @@
                     <img alt="image" src="{{ $ad->user?->avatar ?? get_random_avatar() }}">
                 </div>
                 <div class="author-name">
-                    <span>by {{ '@'.$ad->user->username }}</span>
+                    <span>{{ __('by') }} {{ '@'.$ad->user->username }}</span>
                 </div>
             </div>
         </div>
         <div class="auction-content">
             <div class="c-feature-category">{{ $ad->category->name }}</div>
             <h4><a href="{{ route('auction-details', $ad->slug) }}">{{ shorten_chars($ad->title)}}</a></h4>
-            <p>Bidding Price : <span>{{ money($ad->price) }}</span></p>
+            <p>{{ __('Bidding Price :') }} <span>{{ money($ad->price) }}</span></p>
             <div class="auction-card-bttm">
-                <a href="{{ route('auction-details', $ad->slug) }}" class="eg-btn btn--primary btn--sm">Place a Bid</a>
+                <a href="{{ route('auction-details', $ad->slug) }}" class="eg-btn btn--primary btn--sm">{{ __('Place a Bid') }}</a>
                 <div class="share-area">
                     <ul class="social-icons d-flex">
                         <li><a href="https://www.facebook.com/"><i class="bx bxl-facebook"></i></a></li>
@@ -140,16 +139,15 @@
                     <img alt="image" src="{{ $ad->user?->avatar ?? get_random_avatar() }}">
                 </div>
                 <div class="author-name">
-                    <span>by {{ '@'.$ad->user->username }}</span>
+                    <span>{{ __('by') }} {{ '@'.$ad->user->username }}</span>
                 </div>
             </div>
         </div>
         <div class="auction-content">
             <h4><a href="{{ route('auction-details', $ad->slug) }}">{{ shorten_chars($ad->title)}}</a></h4>
-            <p>Bidding Price : <span>{{ money($ad->price) }}</span></p>
+            <p>{{ __('Bidding Price :') }} <span>{{ money($ad->price) }}</span></p>
             <div class="auction-card-bttm">
-                <a href="{{ route('auction-details', $ad->slug) }}" class="eg-btn btn--primary btn--sm">Place a
-                    Bid</a>
+                <a href="{{ route('auction-details', $ad->slug) }}" class="eg-btn btn--primary btn--sm">{{ __('Place a Bid') }}</a>
                 <div class="share-area">
                     <ul class="social-icons d-flex">
                         <li><a href="https://www.facebook.com/"><i

@@ -1,5 +1,5 @@
 @extends('partials.admin')
-@section('title', 'Admin Reset Password')
+@section('title', __('Admin Reset Password'))
 @section('content')
 
 <div class="bg-admin">
@@ -15,7 +15,7 @@
                     <form class="login100-form validate-form" method="POST" action="{{ route('admin.reset-password.handle') }}">
                         @csrf
                         <span class="login100-form-title pb-5">
-                            Reset Password
+                            {{ __('Reset Password') }}
                         </span>
                         <div class="panel panel-primary">
                             <div class="panel-body tabs-menu-body p-0 pt-5">
@@ -26,20 +26,20 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-                                            <input class="input100 border-start-0 form-control ms-0" type="password" name="password" placeholder="New Password">
+                                            <input class="input100 border-start-0 form-control ms-0" type="password" name="password" placeholder="{{ __('New Password') }}">
                                         </div>
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
                                         <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-                                            <input class="input100 border-start-0 form-control ms-0" type="password" name="password_confirmation" placeholder="Confirm Password">
+                                            <input class="input100 border-start-0 form-control ms-0" type="password" name="password_confirmation" placeholder="{{ __('Confirm Password') }}">
                                         </div>
                                         <span class="text-danger">{{ $errors->first('password_confirmation') }}</span><br>
-                                        <span>Note: By resetting, you agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></span>
+                                        <span>{{ __('Note: By resetting, you agree to the') }} <a href="#">{{ __('Terms & Conditions') }}</a> {{ __('and') }} <a href="#">{{ __('Privacy Policy') }}</a></span>
                                         <div class="container-login100-form-btn ">
                                             <button type="submit" class="login100-form-btn btn-primary">
-                                                Reset Password
+                                                {{ __('Reset Password') }}
                                             </button>
                                         </div>
                                     </div>
