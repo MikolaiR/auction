@@ -1,9 +1,9 @@
 @if($admin)
 <div class="row mb-4">
-    <label class="col-md-3 form-label">Categories :</label>
+    <label class="col-md-3 form-label">{{ __('Categories') }} :</label>
     <div class="col-md-9">
-        <select name="category" id="category" class="form-control form-select select2" data-bs-placeholder="Select Category">
-            <option value="">Select Category</option>
+        <select name="category" id="category" class="form-control form-select select2" data-bs-placeholder="{{ __('Select Category') }}">
+            <option value="">{{ __('Select Category') }}</option>
             @foreach ($categories as $category)
             <option value="{{ $category->slug }}" {{ $selectedCategory == $category->slug ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
@@ -11,10 +11,10 @@
     </div>
 </div>
 <div class="row mb-4">
-    <label class="col-md-3 form-label">Subcategories :</label>
+    <label class="col-md-3 form-label">{{ __('Subcategories') }} :</label>
     <div class="col-md-9">
-        <select name="subcategory" id="subcategory" class="form-control form-select select2" data-bs-placeholder="Select Subcategory">
-            <option value="">Select Subcategory</option>
+        <select name="subcategory" id="subcategory" class="form-control form-select select2" data-bs-placeholder="{{ __('Select Subcategory') }}">
+            <option value="">{{ __('Select Subcategory') }}</option>
             
         </select>
     </div>
@@ -46,9 +46,9 @@
 @endpush
 @else
 <div class="col-md-6">
-    <label class="col-md-6 form-label">Category *</label>
+    <label class="col-md-6 form-label">{{ __('Category') }} *</label>
     <select name="category" id="category" @class(['error' => $errors->has('category')])>
-        <option value="">Select Category</option>
+        <option value="">{{ __('Select Category') }}</option>
         @foreach ($categories as $category)
         <option value="{{ $category->slug }}">{{ $category->name }}</option>
         @endforeach
@@ -56,9 +56,9 @@
     <span class="text-danger fs-6">{{ $errors->first('category') }}</span>
 </div>
 <div class="col-md-6">
-    <label class="col-md-6 form-label">SubCategory *</label>
+    <label class="col-md-6 form-label">{{ __('SubCategory') }} *</label>
     <select name="subcategory" id="subcategory" @class(['error' => $errors->has('subcategory')])>
-        <option value="">Select Subcategory</option>
+        <option value="">{{ __('Select Subcategory') }}</option>
     </select>
     <span class="text-danger fs-6">{{ $errors->first('subcategory') }}</span>
 </div>

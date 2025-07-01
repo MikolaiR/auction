@@ -4,7 +4,7 @@
           <div class="panel panel-primary">
              <div class="panel-body tabs-menu-body border-0 pt-0">
                <form class="input-group mb-5">
-                  <input name="search" type="text" class="form-control" placeholder="Search" value="{{ request()->search }}" />
+                  <input name="search" type="text" class="form-control" placeholder="{{ __('Search') }}" value="{{ request()->search }}" />
                   <div class="input-group-text btn btn-primary">
                      <button type="submit" class="bg-transparent border-0 text-white">
                       <i class="fa-regular fa-search" aria-hidden="true"></i>
@@ -28,42 +28,42 @@
                                               tabindex="0"
                                               aria-controls="data-table"
                                               rowspan="1" colspan="1" aria-label="
-                                              Ad Title: activate to sort column ascending"
+                                              {{ __('Ad Title') }}: activate to sort column ascending"
                                               style="width: 137.531px;">
-                                              Ad Title
+                                              {{ __('Ad Title') }}
                                            </th>
                                            <th class="bg-transparent border-bottom-0 sorting"
                                               tabindex="0"
                                               aria-controls="data-table"
                                               rowspan="1" colspan="1" aria-label="
-                                              Reason: activate to sort column ascending"
+                                              {{ __('Reason') }}: activate to sort column ascending"
                                               style="width: 103.695px;">
-                                              Reason
+                                              {{ __('Reason') }}
                                            </th>
                                            <th class="bg-transparent border-bottom-0 sorting sorting_desc"
                                               tabindex="0"
                                               aria-controls="data-table"
                                               rowspan="1" colspan="1" aria-label="
-                                              Email: activate to sort column ascending"
+                                              {{ __('Email') }}: activate to sort column ascending"
                                               style="width: 74.6797px;"
                                               aria-sort="descending">
-                                              Email
+                                              {{ __('Email') }}
                                            </th>
                                            <th class="bg-transparent border-bottom-0 sorting"
                                               style="width: 58.1172px;"
                                               tabindex="0"
                                               aria-controls="data-table"
                                               rowspan="1" colspan="1"
-                                              aria-label="Status: activate to sort column ascending">
-                                              Status
+                                              aria-label="{{ __('Status') }}: activate to sort column ascending">
+                                              {{ __('Status') }}
                                            </th>
                                            <th class="bg-transparent border-bottom-0 sorting"
                                               style="width: 51.6328px;"
                                               tabindex="0"
                                               aria-controls="data-table"
                                               rowspan="1" colspan="1"
-                                              aria-label="Action: activate to sort column ascending">
-                                              Action
+                                              aria-label="{{ __('Action') }}: activate to sort column ascending">
+                                              {{ __('Action') }}
                                            </th>
                                         </tr>
                                      </thead>
@@ -108,7 +108,7 @@
                                              <div class="g-2 text-center">
                                                 <a href="{{ route('admin.ads.reported.show', $reportAd->ad->slug) }}" class="btn text-dark btn-sm"
                                                    data-bs-toggle="tooltip"
-                                                   data-bs-original-title="View"><span
+                                                   data-bs-original-title="{{ __('View') }}"><span
                                                    class="fa-regular fa-eye fs-14"></span></a>
                                              </div>
                                           </td>
@@ -139,47 +139,47 @@
                                              tabindex="0"
                                              aria-controls="data-table"
                                              rowspan="1" colspan="1" aria-label="
-                                             Ad Title: activate to sort column ascending"
+                                             {{ __('Ad Title') }}: activate to sort column ascending"
                                              style="width: 137.531px;">
-                                             Ad Title
+                                             {{ __('Ad Title') }}
                                           </th>
                                           <th class="bg-transparent border-bottom-0 sorting"
                                              tabindex="0"
                                              aria-controls="data-table"
                                              rowspan="1" colspan="1" aria-label="
-                                             Customer: activate to sort column ascending"
+                                             {{ __('Customer') }}: activate to sort column ascending"
                                              style="width: 103.695px;">
-                                             Customer
+                                             {{ __('Customer') }}
                                           </th>
                                           <th class="bg-transparent border-bottom-0 sorting sorting_desc"
                                              tabindex="0"
                                              aria-controls="data-table"
                                              rowspan="1" colspan="1" aria-label="
-                                             Timeframe: activate to sort column ascending"
+                                             {{ __('Timeframe') }}: activate to sort column ascending"
                                              style="width: 74.6797px;"
                                              aria-sort="descending">
-                                             Timeframe
+                                             {{ __('Timeframe') }}
                                           </th>
                                           <th class="bg-transparent border-bottom-0 sorting_disabled"
                                              rowspan="1" colspan="1" aria-label="
-                                             Amount" style="width: 86.1172px;">
-                                             Amount
+                                             {{ __('Amount') }}" style="width: 86.1172px;">
+                                             {{ __('Amount') }}
                                           </th>
                                           <th class="bg-transparent border-bottom-0 sorting"
                                              style="width: 58.1172px;"
                                              tabindex="0"
                                              aria-controls="data-table"
                                              rowspan="1" colspan="1"
-                                             aria-label="Status: activate to sort column ascending">
-                                             Status
+                                             aria-label="{{ __('Status') }}: activate to sort column ascending">
+                                             {{ __('Status') }}
                                           </th>
                                           <th class="bg-transparent border-bottom-0 sorting"
                                              style="width: 51.6328px;"
                                              tabindex="0"
                                              aria-controls="data-table"
                                              rowspan="1" colspan="1"
-                                             aria-label="Action: activate to sort column ascending">
-                                             Action
+                                             aria-label="{{ __('Action') }}: activate to sort column ascending">
+                                             {{ __('Action') }}
                                           </th>
                                        </tr>
                                     </thead>
@@ -226,12 +226,12 @@
                                             <div class="d-flex">
                                                <a href="{{ route('admin.ads.show', $ad->slug) }}" class="btn text-dark btn-sm"
                                                   data-bs-toggle="tooltip"
-                                                  data-bs-original-title="View"><span
+                                                  data-bs-original-title="{{ __('View') }}"><span
                                                   class="fa-regular fa-eye fs-14"></span>
                                                 </a>
                                                 <a href="{{ route('admin.ads.edit', $ad->slug) }}" class="btn text-primary btn-sm"
                                                    data-bs-toggle="tooltip"
-                                                   data-bs-original-title="Edit"><span
+                                                   data-bs-original-title="{{ __('Edit') }}"><span
                                                    class="fa-regular fa-edit fs-14"></span>
                                                 </a>
                                                 <form action="{{ route('admin.ads.destroy', $ad->slug) }}" method="POST">
@@ -255,8 +255,8 @@
                @endif
                @else
                <div class="text-center p-4">
-                  <img src="{{ asset('assets/images/icons/man.svg') }}" class="w-25" alt="empty">
-                  <h4 class="mt-3">No Ads Found</h4>
+                  <img src="{{ asset('assets/images/icons/man.svg') }}" class="w-25" alt="{{ __('empty') }}">
+                  <h4 class="mt-3">{{ __('No Ads Found') }}</h4>
                 </div>
                @endif
              </div>

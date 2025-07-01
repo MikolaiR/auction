@@ -1,9 +1,9 @@
 @extends('partials.app')
-@section('title', 'Auction Detail')
-@section('description', 'Auction detail page')
+@section('title', __('Auction Detail'))
+@section('description', __('Auction detail page'))
 @section('content')
 
-@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => 'Auction Detail'])
+@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => __('Auction Detail')])
 
 <div class="auction-details-section pt-120">
     <div class="container">
@@ -40,48 +40,48 @@
                     style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInDown;">
                     <h3>{{ $ad->title }}</h3>
                     <p class="para">{{ shorten_chars($ad->description, 150, true) }}</p>
-                    <h4>Bidding Price: <span>{{ money($ad->price) }}</span></h4>
+                    <h4>{{ __('Bidding Price:') }} <span>{{ money($ad->price) }}</span></h4>
                     <div class="row d-flex mt-4">
                         <div class="ad-listing-item col-6">
-                            <span>Seller Name:</span>
+                            <span>{{ __('Seller Name:') }}</span>
                             <p class="fw-bold">{{ $ad->seller_name }}</p>
                         </div>
                         <div class="ad-listing-item col-6">
-                            <span>Seller Email:</span>
-                            <p>{{ $ad->seller_email ?? 'Not Available' }}</p>
+                            <span>{{ __('Seller Email:') }}</span>
+                            <p>{{ $ad->seller_email ?? __('Not Available') }}</p>
                         </div>
                         <div class="ad-listing-item col-6">
-                            <span>Seller Phone:</span>
-                            <p>{{ $ad->seller_mobile ?? 'Not Available' }}</p>
+                            <span>{{ __('Seller Phone:') }}</span>
+                            <p>{{ $ad->seller_mobile ?? __('Not Available') }}</p>
                         </div>
                         <div class="ad-listing-item col-6">
-                            <span>Seller Address:</span>
-                            <address>{{ $ad->seller_address ?? 'Not Available' }}</address>
+                            <span>{{ __('Seller Address:') }}</span>
+                            <address>{{ $ad->seller_address ?? __('Not Available') }}</address>
                         </div>
                     </div>
                     {{-- div for report ad button --}}
                     <div class="row d-flex mb-4">
                         <div class="ad-listing-item col-12">
-                            <span> If you find this auction inappropriate, please report it to us.</span>
-                            <a href="{{ route('auction-details.report', $ad->slug) }}" class="text-danger fw-bold"><i class="bi bi-exclamation-circle-fill"></i> Report Ad</a>
+                            <span>{{ __('If you find this auction inappropriate, please report it to us.') }}</span>
+                            <a href="{{ route('auction-details.report', $ad->slug) }}" class="text-danger fw-bold"><i class="bi bi-exclamation-circle-fill"></i> {{ __('Report Ad') }}</a>
                         </div>
                     </div>
                     @if($ad->active())
                     <div class="bid-form mt-0">
                         <div class="form-title">
-                            <h5>Bid Now</h5>
-                            <p>Bid Amount : Minimum Bid {{ money($ad->highestBid->amount ?? $ad->price + 1) }}</p>
+                            <h5>{{ __('Bid Now') }}</h5>
+                            <p>{{ __('Bid Amount : Minimum Bid') }} {{ money($ad->highestBid->amount ?? $ad->price + 1) }}</p>
                         </div>
                         <form action="{{ route('bid.handle', $ad->slug) }}" method="POST">
                             @csrf
                             @guest
                                 <x-alert type="warning" icon="bi bi-exclamation-circle-fill">
-                                    <p class="mb-0">You are currently not logged in. If you have an account, please <strong><a href="{{ route('user.login') }}">login</a> </strong> to place a bid to have a chance of winning this auction.</p>
+                                    <p class="mb-0">{!! __('You are currently not logged in. If you have an account, please <strong><a href=":login_url">login</a> </strong> to place a bid to have a chance of winning this auction.', ['login_url' => route('user.login')]) !!}</p>
                                 </x-alert>
                             @endguest
                             <div class="form-inner gap-2">
-                                <input type="number" placeholder="$00.00" @guest disabled @endguest name="amount" required @class(['error' => $errors->has('amount')]) min="{{ $ad->highestBid->amount ?? $ad->price + 1 }}" value="{{ old('amount') }}">
-                                <button @class(['eg-btn btn--primary btn--sm' => 'auth', 'eg-btn btn--primary btn--sm disabled' => '!auth']) @guest disabled @else type="submit" @endguest>Place a Bid</button>
+                                <input type="number" placeholder="{{ __('$00.00') }}" @guest disabled @endguest name="amount" required @class(['error' => $errors->has('amount')]) min="{{ $ad->highestBid->amount ?? $ad->price + 1 }}" value="{{ old('amount') }}">
+                                <button @class(['eg-btn btn--primary btn--sm' => 'auth', 'eg-btn btn--primary btn--sm disabled' => '!auth']) @guest disabled @else type="submit" @endguest>{{ __('Place a Bid') }}</button>
                             </div>
                             <span class="text-danger">{{ $errors->first('amount') }}</span>
                         </form>
@@ -90,15 +90,15 @@
                     <x-alert type="dark" icon="bi bi-exclamation-circle-fill">
                         @if($ad->expired())
                         <p class="text-dark mb-0">
-                            This auction listing has expired. You can no longer place a bid on this auction. Try checking out other auctions at <strong><a class="text-gray" href="{{ route('live-auction') }}">live auctions</a></strong> page.
+                            {!! __('This auction listing has expired. You can no longer place a bid on this auction. Try checking out other auctions at <strong><a class="text-gray" href=":live_auction_url">live auctions</a></strong> page.', ['live_auction_url' => route('live-auction')]) !!}
                         </p>
                         @elseif($ad->upcoming())
                         <p class="text-dark mb-0">
-                            This auction listing is yet to start. You can not place a bid on this auction yet. Try checking out other auctions at <strong><a href="{{ route('live-auction') }}">live auctions</a></strong> page.
+                            {!! __('This auction listing is yet to start. You can not place a bid on this auction yet. Try checking out other auctions at <strong><a href=":live_auction_url">live auctions</a></strong> page.', ['live_auction_url' => route('live-auction')]) !!}
                         </p>
                         @else
                         <p class="text-dark mb-0">
-                            This auction listing has been closed. You can no longer place a bid on this auction. Try checking out other auctions at <strong><a href="{{ route('live-auction') }}">live auctions</a></strong> page.
+                            {!! __('This auction listing has been closed. You can no longer place a bid on this auction. Try checking out other auctions at <strong><a href=":live_auction_url">live auctions</a></strong> page.', ['live_auction_url' => route('live-auction')]) !!}
                         </p>
                         @endif
                     </x-alert>
@@ -114,17 +114,17 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active details-tab-btn" id="pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                            aria-selected="true">Description</button>
+                            aria-selected="true">{{ __('Description') }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link details-tab-btn" id="pills-bid-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-bid" type="button" role="tab" aria-controls="pills-bid"
-                            aria-selected="false">Biding History</button>
+                            aria-selected="false">{{ __('Biding History') }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link details-tab-btn" id="pills-contact-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
-                            aria-selected="false">Other Auction</button>
+                            aria-selected="false">{{ __('Other Auction') }}</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
@@ -163,7 +163,7 @@
                                 </li>
                                 @empty
                                 <div class="alert alert-warning" role="alert">
-                                    No bid has been placed on this auction yet.
+                                    {{ __('No bid has been placed on this auction yet.') }}
                                 </div>
                                 @endforelse
                             </ul>
@@ -183,9 +183,9 @@
                     <div class="sidebar-banner wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s"
                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 1s; animation-name: fadeInUp;">
                         <div class="banner-content">
-                            <span>CARS</span>
-                            <h3>Toyota AIGID A Clasis Cars Sale</h3>
-                            <a href="{{ route('auction-details', $ad->slug) }}" class="eg-btn btn--primary card--btn">Details</a>
+                            <span>{{ __('CARS') }}</span>
+                            <h3>{{ __('Toyota AIGID A Clasis Cars Sale') }}</h3>
+                            <a href="{{ route('auction-details', $ad->slug) }}" class="eg-btn btn--primary card--btn">{{ __('Details') }}</a>
                         </div>
                     </div>
                 </div>

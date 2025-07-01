@@ -60,14 +60,4 @@
             </div>
         </div>
     </div>
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="row d-flex align-items-center g-4">
-                <div class="col-lg-6 d-flex justify-content-lg-start justify-content-center">
-                    <p>{{ __('Built with') }} <i class="bi bi-heart-fill"></i> {{ __('by') }} <a href="https://codifiedweb.com">{{ __('CodifiedWeb') }}</a></p>
-                </div>
-                
-            </div>
-        </div>
-    </div>
 </footer>

@@ -2,7 +2,7 @@
     style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.4s; animation-name: fadeInUp;">
     <div class="top-blog">
         <div class="sidebar-widget-title">
-            <h4>Post Tags</h4>
+            <h4>{{ __('Post Tags') }}</h4>
             <span></span>
         </div>
         <div class="blog-widget-body">

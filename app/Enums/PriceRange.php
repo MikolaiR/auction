@@ -23,7 +23,7 @@ enum PriceRange: int implements HasLabel, HasAll
     public function label(): string
     {
         return match ($this) {
-            self::ALL => 'All Prices',
+            self::ALL => __('All Prices'),
             self::ZERO_TO_A_THOUSAND => '0 - 1,000',
             self::A_THOUSAND_TO_TEN_THOUSAND => '1,000 - 10,000',
             self::TEN_THOUSAND_TO_FIFTY_THOUSAND => '10,000 - 50,000',
@@ -72,4 +72,3 @@ enum PriceRange: int implements HasLabel, HasAll
         };
     }
 }
-    

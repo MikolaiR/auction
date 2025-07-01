@@ -17,52 +17,47 @@
                                                     <tr role="row">
                                                         <th class="bg-transparent border-bottom-0 sorting" tabindex="0"
                                                             aria-controls="data-table" rowspan="1" colspan="1"
-                                                            aria-label="
-                                                Payout Token: activate to sort column ascending"
+                                                            aria-label="{{ __('Payout Token: activate to sort column ascending') }}"
                                                             style="width: 130.531px;">
-                                                            Payout Token
+                                                            {{ __('Payout Token') }}
                                                         </th>
                                                         <th class="bg-transparent border-bottom-0 sorting" tabindex="0"
                                                             aria-controls="data-table" rowspan="1" colspan="1"
-                                                            aria-label="
-                                                User: activate to sort column ascending" style="width: 103.695px;">
-                                                            User
+                                                            aria-label="{{ __('User: activate to sort column ascending') }}" style="width: 103.695px;">
+                                                            {{ __('User') }}
                                                         </th>
                                                         <th class="bg-transparent border-bottom-0 sorting" tabindex="0"
                                                             aria-controls="data-table" rowspan="1" colspan="1"
-                                                            aria-label="
-                                                Amount / Fee: activate to sort column ascending" style="width: 103.695px;">
-                                                            Amount / Fee
+                                                            aria-label="{{ __('Amount / Fee: activate to sort column ascending') }}" style="width: 103.695px;">
+                                                            {{ __('Amount / Fee') }}
                                                         </th>
                                                         <th class="bg-transparent border-bottom-0 sorting_disabled"
-                                                            rowspan="1" colspan="1" aria-label="
-                                                Method" style="width: 80.1172px;">
-                                                            Method
+                                                            rowspan="1" colspan="1" aria-label="{{ __('Method') }}" style="width: 80.1172px;">
+                                                            {{ __('Method') }}
                                                         </th>
                                                         <th class="bg-transparent border-bottom-0 sorting sorting_desc"
                                                             tabindex="0" aria-controls="data-table" rowspan="1"
-                                                            colspan="1" aria-label="
-                                                Date: activate to sort column ascending" style="width: 74.6797px;"
+                                                            colspan="1" aria-label="{{ __('Date: activate to sort column ascending') }}" style="width: 74.6797px;"
                                                             aria-sort="descending">
-                                                            Date
+                                                            {{ __('Date') }}
                                                         </th>
                                                          <th class="bg-transparent border-bottom-0 sorting"
                                                             style="width: 58.1172px;" tabindex="0"
                                                             aria-controls="data-table" rowspan="1" colspan="1"
-                                                            aria-label="Gateway: activate to sort column ascending">
-                                                            Gateway
+                                                            aria-label="{{ __('Gateway: activate to sort column ascending') }}">
+                                                            {{ __('Gateway') }}
                                                         </th>
                                                         <th class="bg-transparent border-bottom-0 sorting"
                                                             style="width: 58.1172px;" tabindex="0"
                                                             aria-controls="data-table" rowspan="1" colspan="1"
-                                                            aria-label="Status: activate to sort column ascending">
-                                                            Status
+                                                            aria-label="{{ __('Status: activate to sort column ascending') }}">
+                                                            {{ __('Status') }}
                                                         </th>
                                                         <th class="bg-transparent border-bottom-0 sorting"
                                                             style="width: 51.6328px;" tabindex="0"
                                                             aria-controls="data-table" rowspan="1" colspan="1"
-                                                            aria-label="Action: activate to sort column ascending">
-                                                            Action
+                                                            aria-label="{{ __('Action: activate to sort column ascending') }}">
+                                                            {{ __('Action') }}
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -98,7 +93,7 @@
                                                                 @else
                                                                 <span
                                                                     class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">
-                                                                    Not Processed </span>
+                                                                    {{ __('Not Processed') }} </span>
                                                                 @endif
                                                             </div>
                                                         </td>
@@ -113,7 +108,7 @@
                                                             <a href="{{ route('admin.payouts.show', $payout->pyt_token) }}"
                                                                 class="btn text-dark btn-sm"
                                                                 data-bs-toggle="tooltip"
-                                                                data-bs-original-title="View"><span
+                                                                data-bs-original-title="{{ __('View') }}"><span
                                                                     class="fa-regular fa-eye fs-14"></span>
                                                             </a>
                                                         </td>
@@ -130,8 +125,8 @@
                     </div>
                     @else
                     <div class="text-center p-4">
-                        <img src="{{ asset('assets/images/icons/man.svg') }}" class="w-25" alt="empty">
-                        <h4 class="mt-3">No Payout Found</h4>
+                        <img src="{{ asset('assets/images/icons/man.svg') }}" class="w-25" alt="{{ __('empty') }}">
+                        <h4 class="mt-3">{{ __('No Payout Found') }}</h4>
                     </div>
                     @endif
                 </div>

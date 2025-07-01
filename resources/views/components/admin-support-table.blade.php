@@ -13,7 +13,7 @@
                                             <tr>
                                                 <td class="view-message dont-show fw-semibold clickable-row" data-href='{{ route('admin.support.show', $support->id) }}'>{{ $support->name }}</td>
                                                 <td class="view-message dont-show fw-semibold clickable-row" data-href='{{ route('admin.support.show', $support->id) }}'>{{ $support->email }}</td>
-                                                <td class="view-message" data-href=''{{ route('admin.support.show', $support->id) }}'>{{ shorten_chars($support->message, 50, true) ?? 'No message available for this ticket' }}</td>
+                                                <td class="view-message" data-href=''{{ route('admin.support.show', $support->id) }}'>{{ shorten_chars($support->message, 50, true) ?? __('No message available for this ticket') }}</td>
                                                 <td class="view-message text-end fw-semibold">{{ $support->created_at->format('M d, Y') }}</td>
                                                 <td class="view-message text-end fw-semibold">
                                                     <span class="badge badge-{{ $support->status->color() }} bg-{{ $support->status->color() }}">{{ $support->status->label() }}</span>
@@ -23,8 +23,8 @@
                                             @endforeach
                                         @else
                                         <div class="text-center">
-                                            <img src="/assets/images/icons/man.svg" alt="img" class="w-25">
-                                            <h4 class="my-3">No Support Found</h4>
+                                            <img src="/assets/images/icons/man.svg" alt="{{ __('img') }}" class="w-25">
+                                            <h4 class="my-3">{{ __('No Support Found') }}</h4>
                                         </div>
                                         @endif
                                     </tbody>

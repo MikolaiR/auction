@@ -8,10 +8,8 @@
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
                 <div class="section-title1">
-                    <h2>What Client Say</h2>
-                    <p class="mb-0">Explore on the world's best &amp; largest Bidding marketplace with our beautiful
-                        Bidding
-                        products. We want to be a part of your smile, success and future growth.</p>
+                    <h2>{{ __('What Client Say') }}</h2>
+                    <p class="mb-0">{{ __('Explore on the world\'s best & largest Bidding marketplace with our beautiful Bidding products. We want to be a part of your smile, success and future growth.') }}</p>
                 </div>
             </div>
         </div>
@@ -31,12 +29,10 @@
                             </div>
                             <div class="testi-content">
                                 <div class="testi-designation">
-                                    <h5>Johan Martin R</h5>
-                                    <p>CEO Founder</p>
+                                    <h5>{{ __('Johan Martin R') }}</h5>
+                                    <p>{{ __('CEO Founder') }}</p>
                                 </div>
-                                <p class="para">The Pacific Grove Chamber of Commerce would like to thank eLab
-                                    Communications and Mr. Will Elkadi for all the efforts that
-                                    assisted me nicely manners. </p>
+                                <p class="para">{{ __('The Pacific Grove Chamber of Commerce would like to thank eLab Communications and Mr. Will Elkadi for all the efforts that assisted me nicely manners.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -52,11 +48,10 @@
                             </div>
                             <div class="testi-content">
                                 <div class="testi-designation">
-                                    <h5>Jamie Anderson</h5>
-                                    <p>Founder</p>
+                                    <h5>{{ __('Jamie Anderson') }}</h5>
+                                    <p>{{ __('Founder') }}</p>
                                 </div>
-                                <p class="para">Maecenas vitae porttitor neque, ac porttitor nunc. Duis venenatis
-                                    lacinia libero. Nam nec augue ut nunc vulputate tincidunt at suscipit nunc. </p>
+                                <p class="para">{{ __('Maecenas vitae porttitor neque, ac porttitor nunc. Duis venenatis lacinia libero. Nam nec augue ut nunc vulputate tincidunt at suscipit nunc.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -71,11 +66,10 @@
                             </div>
                             <div class="testi-content">
                                 <div class="testi-designation">
-                                    <h5>John peter</h5>
-                                    <p>CEO Founder</p>
+                                    <h5>{{ __('John peter') }}</h5>
+                                    <p>{{ __('CEO Founder') }}</p>
                                 </div>
-                                <p class="para">Nullam cursus tempor ex. Nullam nec dui id metus consequat congue ac at
-                                    est. Pellentesque blandit neque at elit tristique tincidunt.</p>
+                                <p class="para">{{ __('Nullam cursus tempor ex. Nullam nec dui id metus consequat congue ac at est. Pellentesque blandit neque at elit tristique tincidunt.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -90,12 +84,10 @@
                             </div>
                             <div class="testi-content">
                                 <div class="testi-designation">
-                                    <h5>Johan Martin R</h5>
-                                    <p>CEO Founder</p>
+                                    <h5>{{ __('Johan Martin R') }}</h5>
+                                    <p>{{ __('CEO Founder') }}</p>
                                 </div>
-                                <p class="para">The Pacific Grove Chamber of Commerce would like to thank eLab
-                                    Communications and Mr. Will Elkadi for all the efforts that
-                                    assisted me nicely manners. </p>
+                                <p class="para">{{ __('The Pacific Grove Chamber of Commerce would like to thank eLab Communications and Mr. Will Elkadi for all the efforts that assisted me nicely manners.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -110,11 +102,10 @@
                             </div>
                             <div class="testi-content">
                                 <div class="testi-designation">
-                                    <h5>Jamie Anderson</h5>
-                                    <p>Founder</p>
+                                    <h5>{{ __('Jamie Anderson') }}</h5>
+                                    <p>{{ __('Founder') }}</p>
                                 </div>
-                                <p class="para">Maecenas vitae porttitor neque, ac porttitor nunc. Duis venenatis
-                                    lacinia libero. Nam nec augue ut nunc vulputate tincidunt at suscipit nunc. </p>
+                                <p class="para">{{ __('Maecenas vitae porttitor neque, ac porttitor nunc. Duis venenatis lacinia libero. Nam nec augue ut nunc vulputate tincidunt at suscipit nunc.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -129,11 +120,10 @@
                             </div>
                             <div class="testi-content">
                                 <div class="testi-designation">
-                                    <h5>John peter</h5>
-                                    <p>CEO Founder</p>
+                                    <h5>{{ __('John peter') }}</h5>
+                                    <p>{{ __('CEO Founder') }}</p>
                                 </div>
-                                <p class="para">Nullam cursus tempor ex. Nullam nec dui id metus consequat congue ac at
-                                    est. Pellentesque blandit neque at elit tristique tincidunt.</p>
+                                <p class="para">{{ __('Nullam cursus tempor ex. Nullam nec dui id metus consequat congue ac at est. Pellentesque blandit neque at elit tristique tincidunt.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -149,12 +139,10 @@
                             </div>
                             <div class="testi-content">
                                 <div class="testi-designation">
-                                    <h5>Johan Martin R</h5>
-                                    <p>CEO Founder</p>
+                                    <h5>{{ __('Johan Martin R') }}</h5>
+                                    <p>{{ __('CEO Founder') }}</p>
                                 </div>
-                                <p class="para">The Pacific Grove Chamber of Commerce would like to thank eLab
-                                    Communications and Mr. Will Elkadi for all the efforts that
-                                    assisted me nicely manners. </p>
+                                <p class="para">{{ __('The Pacific Grove Chamber of Commerce would like to thank eLab Communications and Mr. Will Elkadi for all the efforts that assisted me nicely manners.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -170,11 +158,10 @@
                             </div>
                             <div class="testi-content">
                                 <div class="testi-designation">
-                                    <h5>Jamie Anderson</h5>
-                                    <p>Founder</p>
+                                    <h5>{{ __('Jamie Anderson') }}</h5>
+                                    <p>{{ __('Founder') }}</p>
                                 </div>
-                                <p class="para">Maecenas vitae porttitor neque, ac porttitor nunc. Duis venenatis
-                                    lacinia libero. Nam nec augue ut nunc vulputate tincidunt at suscipit nunc. </p>
+                                <p class="para">{{ __('Maecenas vitae porttitor neque, ac porttitor nunc. Duis venenatis lacinia libero. Nam nec augue ut nunc vulputate tincidunt at suscipit nunc.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -189,11 +176,10 @@
                             </div>
                             <div class="testi-content">
                                 <div class="testi-designation">
-                                    <h5>John peter</h5>
-                                    <p>CEO Founder</p>
+                                    <h5>{{ __('John peter') }}</h5>
+                                    <p>{{ __('CEO Founder') }}</p>
                                 </div>
-                                <p class="para">Nullam cursus tempor ex. Nullam nec dui id metus consequat congue ac at
-                                    est. Pellentesque blandit neque at elit tristique tincidunt.</p>
+                                <p class="para">{{ __('Nullam cursus tempor ex. Nullam nec dui id metus consequat congue ac at est. Pellentesque blandit neque at elit tristique tincidunt.') }}</p>
                             </div>
                         </div>
                     </div>

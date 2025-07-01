@@ -15,7 +15,7 @@
                 <div class="col-12 col-sm-12">
                    <div class="card">
                       <div class="card-header">
-                         <h3 class="card-title mb-0">All Pending Ads</h3>
+                         <h3 class="card-title mb-0">{{ __('All Pending Ads') }}</h3>
                       </div>
                       <x-admin-ad-table :collection="$ads" />
                    </div>

@@ -1,9 +1,9 @@
 @extends('partials.app')
-@section('title', 'Report Listing')
-@section('description', 'Report listing if you think it is inappropriate.')
+@section('title', __('Report Listing'))
+@section('description', __('Report listing if you think it is inappropriate.'))
 @section('content')
 
-@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => 'Report Listing', 'hasBack' => true, 'backUrl' => route('auction-details', $ad->slug), 'backTitle' => 'Ads Listing', 'routeItem' => $ad->title])
+@include('layouts.breadcrumb', ['admin' => false, 'pageTitle' => __('Report Listing'), 'hasBack' => true, 'backUrl' => route('auction-details', $ad->slug), 'backTitle' => __('Ads Listing'), 'routeItem' => $ad->title])
 
 <div class="pt-120 pb-120">
     <div class="container">
@@ -15,30 +15,29 @@
                         @csrf
                         <div class="row">
                             <div class="form-section">
-                                <h4>Report Listing</h4>
+                                <h4>{{ __('Report Listing') }}</h4>
                             </div>
                             <div class="col-md-12">
-                                <x-input-field name="reason" type="text" label="Report Ad Reason" placeholder="Enter Reason" value="{{ old('reason') }}" />
+                                <x-input-field name="reason" type="text" label="{{ __('Report Ad Reason') }}" placeholder="{{ __('Enter Reason') }}" value="{{ old('reason') }}" />
                             </div>
                             <div class="col-md-12">
-                                <x-input-field name="email" type="text" label="Report Email" placeholder="Enter Email" value="{{ old('email') }}" />
+                                <x-input-field name="email" type="text" label="{{ __('Report Email') }}" placeholder="{{ __('Enter Email') }}" value="{{ old('email') }}" />
                             </div>
                             <div class="col-md-12">
-                                <x-textarea-field name="description" label="Ad Report Description"
-                                    placeholder="Enter Reason" value="{{ old('description') }}" :admin="false" />
+                                <x-textarea-field name="description" label="{{ __('Ad Report Description') }}"
+                                    placeholder="{{ __('Enter Reason') }}" value="{{ old('description') }}" :admin="false" />
                             </div>
                             <div class="col-md-12">
                                 <x-agree-checkbox
                                     class="form-agreement form-inner d-flex justify-content-between flex-wrap" id="html"
-                                    name="terms" label="I agree to the Terms & Policy" />
+                                    name="terms" label="{{ __('I agree to the Terms & Policy') }}" />
                             </div>
                         </div>
                         {!! LaraCaptcha::display() !!}
-                        <button class="account-btn">Report Listing</button>
+                        <button class="account-btn">{{ __('Report Listing') }}</button>
                     </form>
                     <div class="form-poicy-area">
-                        <p>By clicking the "report listing" button, you are reporting this listing as inappropriate. Please read
-                            Auction Engine's <a href="#">Terms &amp; Conditions</a> &amp; <a href="#">Privacy Policy.</a></p>
+                        <p>{!! __('By clicking the "report listing" button, you are reporting this listing as inappropriate. Please read Auction Engine\'s <a href="#">Terms & Conditions</a> & <a href="#">Privacy Policy.</a>') !!}</p>
                     </div>
                 </div>
             </div>
