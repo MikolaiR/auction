@@ -44,6 +44,27 @@
              <span class="side-menu__label">{{ __('Category') }}</span>
           </a>
           </li>
+          <li @class(['slide', 'is-expanded' => preg_match('/accreditation.*/', $active)])>
+           <a @class(['side-menu__item', 'has-link', 'active' => preg_match('/accreditation.*/', $active)]) data-bs-toggle="slide" href="javascript:void(0)">
+               <i class="side-menu__icon fa-regular fa-id-card"></i>
+               <span class="side-menu__label">{{ __('Accreditation') }}</span>
+               <i class="fa-light fa-chevron-right fa-2xs"></i>
+           </a>
+           <ul @class(['slide-menu', 'open' => preg_match('/accreditation.*/', $active)])>
+             <li class="panel sidetab-menu">
+               <div class="panel-body tabs-menu-body p-0 border-0">
+                 <div class="tab-content">
+                   <div class="tab-pane active" id="side-accreditation">
+                     <ul class="sidemenu-list">
+                       <li><a href="{{ route('admin.accreditation.index') }}" @class(['slide-item', 'active' => $active === 'accreditation.pending'])>{{ __('Pending Requests') }}</a></li>
+                       <li><a href="{{ route('admin.accreditation.history') }}" @class(['slide-item', 'active' => $active === 'accreditation.history'])>{{ __('History') }}</a></li>
+                     </ul>
+                   </div>
+                 </div>
+               </div>
+             </li>
+           </ul>
+         </li>
          <li class="sub-category">
            <h3>{{ __('Auctions') }}</h3>
          </li>

@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Support\SupportController;
 use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\AuctionType\AuctionTypeController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\AccreditationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -123,5 +124,12 @@ Route::middleware(['auth:admin_web', 'ensure.account.active'])->group(function (
     Route::post('/supports', [SupportController::class, 'store'])->name('support.store');
     Route::get('/support/{supports:id}', [SupportController::class, 'show'])->name('support.show');
     Route::delete('/support/{supports:id}', [SupportController::class, 'destroy'])->name('support.destroy');
+
+    /* ========  ACCREDITATION  =========== */
+    Route::get('/accreditation', [AccreditationController::class, 'index'])->name('accreditation.index');
+    Route::get('/accreditation/history', [AccreditationController::class, 'history'])->name('accreditation.history');
+    Route::get('/accreditation/{id}', [AccreditationController::class, 'review'])->name('accreditation.review');
+    Route::post('/accreditation/{id}/approve', [AccreditationController::class, 'approve'])->name('accreditation.approve');
+    Route::post('/accreditation/{id}/reject', [AccreditationController::class, 'reject'])->name('accreditation.reject');
 });
     

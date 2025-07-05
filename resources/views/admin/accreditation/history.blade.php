@@ -1,18 +1,24 @@
-@extends('admin.layouts.app')
-
-@section('title', 'Accreditation History')
-
+@extends('partials.admin')
+@section('title', __('Accreditation History'))
 @section('content')
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <div class="row">
+
+    @include('layouts.header', ['admin' => true])
+    @include('layouts.sidebar', ['admin' => true, 'active' => 'accreditation.history'])
+
+    <div class="main-content app-content mt-0">
+        <div class="side-app">
+
+            <!-- CONTAINER -->
+            <div class="main-container container-fluid">
+                @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Ads Listing'), 'hasBack' => true, 'backTitle' => __('Dashboard'), 'backUrl' => route('admin.dashboard')])
+                <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Processed Accreditation Requests</h3>
+                        <h3 class="card-title">{{ __('Processed Accreditation Requests') }}</h3>
                         <div class="card-tools">
                             <a href="{{ route('admin.accreditation.index') }}" class="btn btn-sm btn-outline-primary">
-                                <i class="fas fa-clipboard-list"></i> Pending Requests
+                                <i class="fas fa-clipboard-list"></i> {{ __('Pending Requests') }}
                             </a>
                         </div>
                     </div>
@@ -21,48 +27,44 @@
                             <div class="alert alert-success">{{ session('success') }}</div>
                         @endif
                         
-                        @if(count($processedRequests) > 0)
+                        @if(isset($requests) && count($requests) > 0)
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>User</th>
-                                            <th>Email</th>
-                                            <th>Ownership Type</th>
-                                            <th>Status</th>
-                                            <th>Updated Date</th>
-                                            <th>Actions</th>
+                                            <th>{{ __('User') }}</th>
+                                            <th>{{ __('Email') }}</th>
+                                            <th>{{ __('Ownership Type') }}</th>
+                                            <th>{{ __('Status') }}</th>
+                                            <th>{{ __('Updated Date') }}</th>
+                                            <th>{{ __('Actions') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($processedRequests as $request)
+                                        @foreach($requests as $request)
                                             <tr>
                                                 <td>{{ $request->id }}</td>
                                                 <td>{{ $request->user->name }}</td>
                                                 <td>{{ $request->user->email }}</td>
                                                 <td>
-                                                    @if($request->type_owner === 0)
-                                                        Individual
-                                                    @elseif($request->type_owner === 1)
-                                                        Sole Proprietor
-                                                    @elseif($request->type_owner === 3)
-                                                        Company
+                                                    @if(isset($request->type_owner))
+                                                        {{ $request->type_owner->label() }}
                                                     @else
-                                                        Unknown
+                                                        {{ __('Unknown') }}
                                                     @endif
                                                 </td>
                                                 <td>
                                                     @if($request->status === 'approved')
-                                                        <span class="badge badge-success">Approved</span>
+                                                        <span class="badge badge-success">{{ __('Approved') }}</span>
                                                     @elseif($request->status === 'rejected')
-                                                        <span class="badge badge-danger">Rejected</span>
+                                                        <span class="badge badge-danger">{{ __('Rejected') }}</span>
                                                     @endif
                                                 </td>
                                                 <td>{{ $request->updated_at->format('M d, Y H:i') }}</td>
                                                 <td>
-                                                    <a href="{{ route('admin.accreditation.show', $request->id) }}" class="btn btn-sm btn-primary">
-                                                        <i class="fas fa-eye"></i> View
+                                                    <a href="{{ route('admin.accreditation.review', $request->id) }}" class="btn btn-sm btn-primary">
+                                                        <i class="fas fa-eye"></i> {{ __('Review') }}
                                                     </a>
                                                 </td>
                                             </tr>
@@ -72,11 +74,11 @@
                             </div>
                             
                             <div class="d-flex justify-content-center mt-4">
-                                {{ $processedRequests->links() }}
+                                {{ $requests->links() }}
                             </div>
                         @else
                             <div class="alert alert-info">
-                                No processed accreditation requests found.
+                                {{ __('No processed accreditation requests found.') }}
                             </div>
                         @endif
                     </div>

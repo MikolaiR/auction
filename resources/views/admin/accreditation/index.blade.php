@@ -1,80 +1,90 @@
-@extends('admin.layouts.app')
-
-@section('title', 'Pending Accreditation Requests')
-
+@extends('partials.admin')
+@section('title', __('Pending Accreditation'))
 @section('content')
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Pending Accreditation Requests</h3>
-                        <div class="card-tools">
-                            <a href="{{ route('admin.accreditation.history') }}" class="btn btn-sm btn-outline-secondary">
-                                <i class="fas fa-history"></i> View History
-                            </a>
+
+    @include('layouts.header', ['admin' => true])
+    @include('layouts.sidebar', ['admin' => true, 'active' => 'accreditation.index'])
+
+    <div class="main-content app-content mt-0">
+        <div class="side-app">
+
+            <!-- CONTAINER -->
+            <div class="main-container container-fluid">
+                @include('layouts.breadcrumb', ['admin' => true, 'pageTitle' => __('Ads Listing'), 'hasBack' => true, 'backTitle' => __('Dashboard'), 'backUrl' => route('admin.dashboard')])
+                <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">{{ __('Pending Accreditation Requests') }}</h3>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        @if(session('success'))
-                            <div class="alert alert-success">{{ session('success') }}</div>
-                        @endif
-                        
-                        @if(count($pendingRequests) > 0)
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover">
-                                    <thead>
+                        <div class="card-body">
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if(isset($requests) && count($requests) > 0)
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-nowrap border-bottom">
+                                        <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>User</th>
-                                            <th>Email</th>
-                                            <th>Ownership Type</th>
-                                            <th>Submission Date</th>
-                                            <th>Actions</th>
+                                            <th>{{ __('ID') }}</th>
+                                            <th>{{ __('User') }}</th>
+                                            <th>{{ __('Type') }}</th>
+                                            <th>{{ __('Name') }}</th>
+                                            <th>{{ __('Contact') }}</th>
+                                            <th>{{ __('Submitted At') }}</th>
+                                            <th>{{ __('Actions') }}</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($pendingRequests as $request)
+                                        </thead>
+                                        <tbody>
+                                        @foreach($requests as $request)
                                             <tr>
                                                 <td>{{ $request->id }}</td>
-                                                <td>{{ $request->user->name }}</td>
-                                                <td>{{ $request->user->email }}</td>
                                                 <td>
-                                                    @if($request->type_owner === 0)
-                                                        Individual
-                                                    @elseif($request->type_owner === 1)
-                                                        Sole Proprietor
-                                                    @elseif($request->type_owner === 3)
-                                                        Company
+                                                    @if($request->user)
+                                                        {{ $request->user->email }}
                                                     @else
-                                                        Unknown
+                                                        {{ __('User not found') }}
                                                     @endif
                                                 </td>
-                                                <td>{{ $request->updated_at->format('M d, Y H:i') }}</td>
                                                 <td>
-                                                    <a href="{{ route('admin.accreditation.show', $request->id) }}" class="btn btn-sm btn-primary">
-                                                        <i class="fas fa-eye"></i> Review
+                                                    @if($request->type_owner == 0)
+                                                        {{ __('Individual') }}
+                                                    @elseif($request->type_owner == 1)
+                                                        {{ __('Sole Proprietor') }}
+                                                    @elseif($request->type_owner == 2)
+                                                        {{ __('Organization') }}
+                                                    @endif
+                                                </td>
+                                                <td>{{ $request->first_name }} {{ $request->last_name }}</td>
+                                                <td>{{ $request->phone }}</td>
+                                                <td>{{ $request->created_at->format('d.m.Y H:i') }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.accreditation.review', $request->id) }}"
+                                                       class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-eye"></i> {{ __('Review') }}
                                                     </a>
                                                 </td>
                                             </tr>
                                         @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                            <div class="d-flex justify-content-center mt-4">
-                                {{ $pendingRequests->links() }}
-                            </div>
-                        @else
-                            <div class="alert alert-info">
-                                No pending accreditation requests found.
-                            </div>
-                        @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-4">
+                                    {{ $requests->links() }}
+                                </div>
+                            @else
+                                <div class="text-center py-4">
+                                    <p>{{ __('No pending accreditation requests') }}</p>
+                                </div>
+                            @endif
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

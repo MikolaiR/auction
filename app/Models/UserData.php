@@ -38,7 +38,6 @@ class UserData extends Model
     protected $casts = [
         'type_owner' => TypeOwners::class,
         'documents' => 'array',
-        'status' => 'boolean'
     ];
 
     public function user()
