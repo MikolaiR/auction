@@ -25,12 +25,17 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item d-flex justify-content-between">
                                             <strong>{{ __('User Type') }}:</strong>
-                                            <span
-                                                class="badge bg-primary">{{ $user->userData->type_owner->label() }}</span>
+                                            <span class="badge bg-primary">
+                                                @if(isset($user->userData) && $user->userData->type_owner)
+                                                    {{ $user->userData->type_owner->label() }}
+                                                @else
+                                                    {{ __('Not Specified') }}
+                                                @endif
+                                            </span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between">
                                             <strong>{{ __('Full Name') }}:</strong>
-                                            <span>{{ $user->userData->fio }}</span>
+                                            <span>{{ isset($user->userData) ? $user->userData->fio : __('Not Specified') }}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between">
                                             <strong>{{ __('Email') }}:</strong>
@@ -38,15 +43,15 @@
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between">
                                             <strong>{{ __('Phone') }}:</strong>
-                                            <span>{{ $user->userData->phone }}</span>
+                                            <span>{{ isset($user->userData) ? $user->userData->phone : __('Not Specified') }}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between">
                                             <strong>{{ __('Region') }}:</strong>
-                                            <span>{{ $user->userData->region }}</span>
+                                            <span>{{ isset($user->userData) ? $user->userData->region : __('Not Specified') }}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between">
                                             <strong>{{ __('Address') }}:</strong>
-                                            <span>{{ $user->userData->address }}</span>
+                                            <span>{{ isset($user->userData) ? $user->userData->address : __('Not Specified') }}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -59,57 +64,150 @@
                         <div class="dashboard-widget">
                             <div class="dashboard-title">
                                 <h4>
-                                    @if($user->userData->type_owner == \App\Enums\TypeOwners::INDIVIDUAL)
-                                        {{ __('Passport Information') }}
-                                    @elseif($user->userData->type_owner == \App\Enums\TypeOwners::COMMERCE)
-                                        {{ __('Business Information') }}
-                                    @elseif($user->userData->type_owner == \App\Enums\TypeOwners::ORGANIZATION)
-                                        {{ __('Company Information') }}
+                                    @if(isset($user->userData) && $user->userData->type_owner)
+                                        @if($user->userData->type_owner == \App\Enums\TypeOwners::INDIVIDUAL)
+                                            {{ __('Passport Information') }}
+                                        @elseif($user->userData->type_owner == \App\Enums\TypeOwners::COMMERCE)
+                                            {{ __('Business Information') }}
+                                        @elseif($user->userData->type_owner == \App\Enums\TypeOwners::ORGANIZATION)
+                                            {{ __('Company Information') }}
+                                        @endif
+                                    @else
+                                        {{ __('Additional Information') }}
                                     @endif
                                 </h4>
                             </div>
                             <div class="dashboard-widget-body">
                                 <div class="user-info-list">
                                     <ul class="list-group list-group-flush">
-                                        @if($user->userData->type_owner == \App\Enums\TypeOwners::INDIVIDUAL)
-                                            <li class="list-group-item d-flex justify-content-between">
-                                                <strong>{{ __('Passport Series') }}:</strong>
-                                                <span>{{ $user->userData->passport_series }}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between">
-                                                <strong>{{ __('Passport Number') }}:</strong>
-                                                <span>{{ $user->userData->passport_number }}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between">
-                                                <strong>{{ __('Passport Issued By') }}:</strong>
-                                                <span>{{ $user->userData->passport_issued_by }}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between">
-                                                <strong>{{ __('Passport Issued Date') }}:</strong>
-                                                <span>{{ $user->userData->passport_issued_date }}</span>
-                                            </li>
-                                        @elseif($user->userData->type_owner == \App\Enums\TypeOwners::COMMERCE)
-                                            <li class="list-group-item d-flex justify-content-between">
-                                                <strong>{{ __('UNP') }}:</strong>
-                                                <span>{{ $user->userData->unp }}</span>
-                                            </li>
-                                        @elseif($user->userData->type_owner == \App\Enums\TypeOwners::ORGANIZATION)
-                                            <li class="list-group-item d-flex justify-content-between">
-                                                <strong>{{ __('Company Name') }}:</strong>
-                                                <span>{{ $user->userData->company_name }}</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between">
-                                                <strong>{{ __('UNP') }}:</strong>
-                                                <span>{{ $user->userData->unp }}</span>
-                                            </li>
-                                            @if($user->userData->info)
-                                                <li class="list-group-item">
-                                                    <strong>{{ __('Additional Information') }}:</strong>
-                                                    <p class="mt-2">{{ $user->userData->info }}</p>
+                                        @if(isset($user->userData) && $user->userData->type_owner)
+                                            @if($user->userData->type_owner == \App\Enums\TypeOwners::INDIVIDUAL)
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <strong>{{ __('Passport Series') }}:</strong>
+                                                    <span>{{ $user->userData->passport_series ?? __('Not Specified') }}</span>
                                                 </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <strong>{{ __('Passport Number') }}:</strong>
+                                                    <span>{{ $user->userData->passport_number ?? __('Not Specified') }}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <strong>{{ __('Passport Issued By') }}:</strong>
+                                                    <span>{{ $user->userData->passport_issued_by ?? __('Not Specified') }}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <strong>{{ __('Passport Issued Date') }}:</strong>
+                                                    <span>{{ $user->userData->passport_issued_date ?? __('Not Specified') }}</span>
+                                                </li>
+                                            @elseif($user->userData->type_owner == \App\Enums\TypeOwners::COMMERCE)
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <strong>{{ __('UNP') }}:</strong>
+                                                    <span>{{ $user->userData->unp ?? __('Not Specified') }}</span>
+                                                </li>
+                                            @elseif($user->userData->type_owner == \App\Enums\TypeOwners::ORGANIZATION)
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <strong>{{ __('Company Name') }}:</strong>
+                                                    <span>{{ $user->userData->company_name ?? __('Not Specified') }}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <strong>{{ __('UNP') }}:</strong>
+                                                    <span>{{ $user->userData->unp ?? __('Not Specified') }}</span>
+                                                </li>
+                                                @if(isset($user->userData->info) && $user->userData->info)
+                                                    <li class="list-group-item">
+                                                        <strong>{{ __('Additional Information') }}:</strong>
+                                                        <p class="mt-2">{{ $user->userData->info }}</p>
+                                                    </li>
+                                                @endif
                                             @endif
+                                        @else
+                                            <li class="list-group-item">
+                                                <p>{{ __('No additional information available yet. Please complete your accreditation.') }}</p>
+                                            </li>
                                         @endif
                                     </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accreditation Section -->
+                    <div class="col-lg-12">
+                        <div class="dashboard-widget">
+                            <div class="dashboard-title d-flex justify-content-between align-items-center">
+                                <h4>{{ __('Accreditation Status') }}</h4>
+                                @if(isset($user->userData) && $user->userData->status)
+                                    @if($user->userData->status === 'pending')
+                                        <span class="badge bg-warning">{{ __('Pending Review') }}</span>
+                                    @elseif($user->userData->status === 'approved')
+                                        <span class="badge bg-success">{{ __('Approved') }}</span>
+                                    @elseif($user->userData->status === 'rejected')
+                                        <span class="badge bg-danger">{{ __('Rejected') }}</span>
+                                    @endif
+                                @else
+                                    <span class="badge bg-secondary">{{ __('Not Submitted') }}</span>
+                                @endif
+                            </div>
+                            <div class="dashboard-widget-body">
+                                @if(isset($user->userData))
+                                    @if($user->userData->status === 'rejected')
+                                        <div class="alert alert-danger">
+                                            <h5>{{ __('Your accreditation was rejected') }}</h5>
+                                            <p><strong>{{ __('Reason') }}:</strong> {{ $user->userData->admin_comment }}</p>
+                                            <p>{{ __('Please update your information and resubmit.') }}</p>
+                                        </div>
+                                    @elseif(!$user->userData->status || $user->userData->status === null)
+                                        <div class="alert alert-info">
+                                            <p>{{ __('You need to complete your accreditation to fully use the platform.') }}</p>
+                                        </div>
+                                    @elseif($user->userData->status === 'pending')
+                                        <div class="alert alert-warning">
+                                            <p>{{ __('Your accreditation is currently being reviewed by our team. We will notify you once the review is complete.') }}</p>
+                                        </div>
+                                    @elseif($user->userData->status === 'approved')
+                                        <div class="alert alert-success">
+                                            <p>{{ __('Your account is fully accredited. You have access to all platform features.') }}</p>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="alert alert-info">
+                                        <p>{{ __('You need to complete your accreditation to fully use the platform.') }}</p>
+                                    </div>
+                                @endif
+
+                                @if(isset($user->userData) && isset($user->userData->documents) && $user->userData->documents)
+                                    <h5 class="mt-4">{{ __('Uploaded Documents') }}</h5>
+                                    <div class="row">
+                                        @foreach(json_decode($user->userData->documents, true) as $index => $document)
+                                            <div class="col-md-4 mb-3">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title text-truncate">
+                                                            <i class="fas {{ Str::endsWith($document['name'], '.pdf') ? 'fa-file-pdf' : 'fa-file-image' }} mr-2"></i>
+                                                            {{ $document['name'] }}
+                                                        </h6>
+                                                        <p class="card-text">
+                                                            <small class="text-muted">
+                                                                {{ __('Size') }}: {{ round($document['size'] / 1024 / 1024, 2) }} MB
+                                                            </small>
+                                                        </p>
+                                                        <a href="{{ Storage::url($document['path']) }}" target="_blank" class="btn btn-sm btn-primary">
+                                                            <i class="fas fa-eye"></i> {{ __('View') }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
+
+                                <div class="mt-4">
+                                    <a href="{{ route('user.accreditation') }}" class="eg-btn profile-btn">
+                                        @if(!isset($user->userData) || !$user->userData->status || $user->userData->status === 'rejected')
+                                            {{ __('Complete Accreditation') }}
+                                        @else
+                                            {{ __('Update Accreditation') }}
+                                        @endif
+                                    </a>
                                 </div>
                             </div>
                         </div>

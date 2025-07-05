@@ -50,6 +50,8 @@
                                                                             <th class="bg-transparent border-bottom-0"
                                                                                 style="width: 10%;">{{ __('Status') }}</th>
                                                                             <th class="bg-transparent border-bottom-0"
+                                                                                style="width: 10%;">{{ __('Accreditation') }}</th>
+                                                                            <th class="bg-transparent border-bottom-0"
                                                                                 style="width: 5%;">{{ __('Action') }}</th>
                                                                         </tr>
                                                                     </thead>
@@ -75,6 +77,36 @@
                                                                                 <div class="d-flex">
                                                                                     <span class="badge bg-{{ $user->is_active ? 'success' : 'danger' }} me-2">{{ $user->is_active ? __('Active') : __('Inactive') }}</span>
                                                                                 </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                @if(isset($user->userData))
+                                                                                    @if($user->userData->status === 'pending')
+                                                                                        <div class="d-flex">
+                                                                                            <span class="badge bg-warning me-2">{{ __('Pending Review') }}</span>
+                                                                                            <a href="{{ route('admin.accreditation.show', $user->userData->id) }}" class="btn btn-sm btn-outline-warning">
+                                                                                                <i class="fa fa-check-circle"></i> {{ __('Review') }}
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    @elseif($user->userData->status === 'approved')
+                                                                                        <div class="d-flex">
+                                                                                            <span class="badge bg-success me-2">{{ __('Approved') }}</span>
+                                                                                            <a href="{{ route('admin.accreditation.show', $user->userData->id) }}" class="btn btn-sm btn-outline-secondary">
+                                                                                                <i class="fa fa-eye"></i> {{ __('View') }}
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    @elseif($user->userData->status === 'rejected')
+                                                                                        <div class="d-flex">
+                                                                                            <span class="badge bg-danger me-2">{{ __('Rejected') }}</span>
+                                                                                            <a href="{{ route('admin.accreditation.show', $user->userData->id) }}" class="btn btn-sm btn-outline-secondary">
+                                                                                                <i class="fa fa-eye"></i> {{ __('View') }}
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    @else
+                                                                                        <span class="badge bg-secondary me-2">{{ __('Not Submitted') }}</span>
+                                                                                    @endif
+                                                                                @else
+                                                                                    <span class="badge bg-secondary me-2">{{ __('Not Available') }}</span>
+                                                                                @endif
                                                                             </td>
                                                                             <td>
                                                                                 <div class="mt-sm-1 d-block">

@@ -18,13 +18,13 @@ return new class extends Migration
             $table->integer('type_owner')->default(0);
 
             // general parameters
-            $table->string('first_name'); // имя
-            $table->string('last_name'); // фамилия
-            $table->string('middle_name'); // отчество
+            $table->string('first_name')->nullable(); // имя
+            $table->string('last_name')->nullable(); // фамилия
+            $table->string('middle_name')->nullable(); // отчество
             $table->foreignId('region')->nullable()->constrained('regions')->nullOnDelete();
-            $table->string('address');
-            $table->string('phone');
-            $table->string('email');
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
 
             // from individual user
             $table->string('passport_series')->nullable();

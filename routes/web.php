@@ -4,8 +4,10 @@ use App\Http\Controllers\Page\BlogController;
 use App\Http\Controllers\Page\CommentController;
 use App\Http\Controllers\Page\ContactController;
 use App\Http\Controllers\Page\HomeController;
+use App\Http\Controllers\User\AccreditationController;
 use App\Http\Controllers\User\Ad\AdController;
 use App\Http\Controllers\User\Bid\BidController;
+use App\Http\Controllers\Admin\AccreditationReviewController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,3 +46,22 @@ Route::view('/add-listing', 'pages.live-auction.create')->name('add-listing');
 Route::post('/add-listing', [AdController::class, 'store'])->name('add-listing.handle');
 Route::post('/bid/{ads:slug}', [BidController::class, 'bid'])->name('bid.handle')->middleware('auth:web');
 Route::webhooks('paystack-webhook', 'paystack-webhook');
+
+/**
+ * User Accreditation Routes
+ */
+Route::middleware(['auth:web', 'verified'])->group(function () {
+    Route::get('/user/accreditation', [AccreditationController::class, 'showForm'])->name('user.accreditation');
+    Route::post('/user/accreditation', [AccreditationController::class, 'submitForm'])->name('user.accreditation.submit');
+});
+
+/**
+ * Admin Accreditation Review Routes
+ */
+Route::middleware(['auth:admin_web'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/accreditation', [AccreditationReviewController::class, 'index'])->name('accreditation.index');
+    Route::get('/accreditation/history', [AccreditationReviewController::class, 'history'])->name('accreditation.history');
+    Route::get('/accreditation/{id}', [AccreditationReviewController::class, 'show'])->name('accreditation.show');
+    Route::post('/accreditation/{id}/approve', [AccreditationReviewController::class, 'approve'])->name('accreditation.approve');
+    Route::post('/accreditation/{id}/reject', [AccreditationReviewController::class, 'reject'])->name('accreditation.reject');
+});

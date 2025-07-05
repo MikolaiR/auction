@@ -98,3 +98,14 @@ resources/views/pages/contact/index.blade.php
 resources/views/pages/how-it-works/index.blade.php
 resources/views/pages/blog/index.blade.php
 resources/views/pages/blog/show.blade.php
+resources/views/pages/live-auction/index.blade.php
+resources/views/pages/live-auction/show.blade.php
+resources/views/pages/live-auction/report.blade.php
+resources/views/pages/live-auction/create.blade.php
+resources/views/layouts/testimonials.blade.php
+resources/views/layouts/why-choose-us.blade.php
+resources/views/components/admin-ad-table.blade.php
+resources/views/components/admin-payment-table.blade.php
+resources/views/components/admin-payout-table.blade.php
+resources/views/components/admin-support-table.blade.php
+resources/views/components/category-selectable.blade.php

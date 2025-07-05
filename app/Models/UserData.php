@@ -16,7 +16,9 @@ class UserData extends Model
     protected $fillable = [
         'user_id',
         'type_owner',
-        'fio',
+        'first_name',
+        'last_name',
+        'middle_name',
         'region',
         'address',
         'phone',
@@ -28,10 +30,15 @@ class UserData extends Model
         'unp',
         'info',
         'company_name',
+        'documents',
+        'status',
+        'admin_comment'
     ];
 
     protected $casts = [
-        'type_owner' => TypeOwners::class
+        'type_owner' => TypeOwners::class,
+        'documents' => 'array',
+        'status' => 'boolean'
     ];
 
     public function user()

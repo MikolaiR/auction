@@ -25,37 +25,13 @@ class RegisterRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'type_owner' => ['required', 'integer', 'in:0,1,3'],
-            'fio' => ['required', 'string', 'max:255', 'min:2'],
-            'region' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:20'],
+        return [
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:191', 'unique:users,email'],
             'password' => $this->passwordRules(app()->environment()),
             'password_confirmation' => ['required', 'same:password'],
-            'terms' => 'required|accepted',
+            'terms' => ['required', 'accepted'],
         ];
-
-        // Добавляем правила в зависимости от типа владельца
-        switch (request()->input('type_owner')) {
-            case 0: // Individual
-                $rules['passport_series'] = ['required', 'string', 'max:10'];
-                $rules['passport_number'] = ['required', 'string', 'max:20'];
-                $rules['passport_issued_by'] = ['required', 'string', 'max:255'];
-                $rules['passport_issued_date'] = ['required', 'date'];
-                break;
-            case 1: // Commerce
-                $rules['unp'] = ['required', 'string', 'max:50'];
-                break;
-            case 3: // Organization
-                $rules['unp'] = ['required', 'string', 'max:50'];
-                $rules['company_name'] = ['required', 'string', 'max:255'];
-                $rules['info'] = ['nullable', 'string'];
-                break;
-        }
-
-        return $rules;
     }
 
     /**

@@ -7,7 +7,7 @@ enum TypeOwners: int
 
     case INDIVIDUAL = 0;
     case COMMERCE = 1;
-    case ORGANIZATION = 3;
+    case ORGANIZATION = 2;
 
     public function label()
     {

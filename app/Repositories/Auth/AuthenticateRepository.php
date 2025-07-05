@@ -222,35 +222,27 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
      */
     protected function createUser(array $data): void
     {
-        // todo user fields create for register
+        // Create user with basic information only (step 1 of registration)
         $user = User::create([
-            'name' => $data['fio'],
-            'first_name' => $data['fio'],
-            'last_name' => $data['fio'],
-            'address' => $data['address'],
+            'name' => $data['name'],
+            'first_name' => $data['name'],
+            'last_name' => '',
             'email' => $data['email'],
-            'username' => $data['fio'],
-            'mobile' => $data['phone'],
+            'username' => $data['name'],
             'password' => Hash::make($data['password']),
+            'email_verification_token' => generate_verify_token($data['email']),
         ]);
 
-        if ($user){
+        if ($user) {
+            // Initialize empty UserData record
+            // The full accreditation data will be added later after email verification
             UserData::create([
                 'user_id' => $user->id,
-                'type_owner' => TypeOwners::cases()[$data['type_owner']],
-                'fio' => $data['fio'],
-                'region' => $data['region'],
-                'address' => $data['address'],
-                'phone' => $data['phone'],
                 'email' => $data['email'],
-                'passport_series' => $data['passport_series'] ?? null,
-                'passport_number' => $data['passport_number'] ?? null,
-                'passport_issued_by' => $data['passport_issued_by'] ?? null,
-                'passport_issued_date' => $data['passport_issued_date'] ?? null,
-                'unp' => $data['unp'] ?? null,
-                'info' => $data['info'] ?? null,
-                'company_name' => $data['company_name'] ?? null,
             ]);
+
+            // Send email verification notification
+            $this->sendEmailVerificationLink($user);
         }
     }
 

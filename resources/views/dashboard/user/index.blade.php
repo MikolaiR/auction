@@ -14,6 +14,54 @@
                     <span>{{ __('Oops! It seems your account is not verified. Click') }} <a href="{{route('user.resend-verification-email')}}" class="text-primary">{{ __('here') }}</a> {{ __('resend the verification email and unlock the full potential of your account.') }}</span>
                 </div>
                 @endif
+
+                <!-- Accreditation Status Card -->
+                <div class="card p-4 mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title mb-0">{{ __('Accreditation Status') }}</h5>
+                        @if(isset(auth()->user()->userData) && auth()->user()->userData->status)
+                            @if(auth()->user()->userData->status === 'pending')
+                                <span class="badge bg-warning">{{ __('Pending Review') }}</span>
+                            @elseif(auth()->user()->userData->status === 'approved')
+                                <span class="badge bg-success">{{ __('Approved') }}</span>
+                            @elseif(auth()->user()->userData->status === 'rejected')
+                                <span class="badge bg-danger">{{ __('Rejected') }}</span>
+                            @endif
+                        @else
+                            <span class="badge bg-secondary">{{ __('Not Submitted') }}</span>
+                        @endif
+                    </div>
+                    
+                    @if(isset(auth()->user()->userData) && auth()->user()->userData->status === 'rejected')
+                        <div class="alert alert-danger">
+                            <h5>{{ __('Your accreditation was rejected') }}</h5>
+                            <p><strong>{{ __('Reason') }}:</strong> {{ auth()->user()->userData->admin_comment }}</p>
+                            <p>{{ __('Please update your information and resubmit.') }}</p>
+                        </div>
+                    @elseif(!isset(auth()->user()->userData) || !auth()->user()->userData->status)
+                        <div class="alert alert-info">
+                            <p>{{ __('You need to complete your accreditation to fully use the platform.') }}</p>
+                        </div>
+                    @elseif(isset(auth()->user()->userData) && auth()->user()->userData->status === 'pending')
+                        <div class="alert alert-warning">
+                            <p>{{ __('Your accreditation is currently being reviewed by our team. We will notify you once the review is complete.') }}</p>
+                        </div>
+                    @elseif(isset(auth()->user()->userData) && auth()->user()->userData->status === 'approved')
+                        <div class="alert alert-success">
+                            <p>{{ __('Your account is fully accredited. You have access to all platform features.') }}</p>
+                        </div>
+                    @endif
+                    
+                    <div class="mt-3">
+                        <a href="{{ route('user.accreditation') }}" class="eg-btn profile-btn">
+                            @if(!isset(auth()->user()->userData) || !auth()->user()->userData->status || auth()->user()->userData->status === 'rejected')
+                                {{ __('Complete Accreditation') }}
+                            @else
+                                {{ __('Update Accreditation') }}
+                            @endif
+                        </a>
+                    </div>
+                </div>
                 <div class="tab-pane">
                     <div class="dashboard-area box--shadow">
                             <div class="row g-4">
