@@ -18,7 +18,7 @@
                     @endguest
                     @if (!$isAccreditation)
                         <x-alert type="warning" icon="exclamation-triangle">
-                            <p class="mb-0">{!! __('You have not been accredited to add a lot, please follow the <a class="fw-bold" href="user/accreditation">link</a> to have your listing associated with your account.', ['login_url' => route('user.login')]) !!}</p>
+                            <p class="mb-0">{!! __('You have not been accredited to add a lot, please follow the <a class="fw-bold" href=":accreditation_url">link</a> to have your listing associated with your account.', ['accreditation_url' => route('user.accreditation')]) !!}</p>
                         </x-alert>
                     @endif
                     <x-alert type="info" icon="info-circle" dismissible="true">

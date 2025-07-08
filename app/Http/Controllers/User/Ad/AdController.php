@@ -42,8 +42,10 @@ class AdController extends Controller
      */
     public function show(string $ad): View
     {
+        $isAccreditation = $this->authRepository->user()->isAccreditation();
         return view('pages.live-auction.show', [
             'ad' => $this->adRepository->getAd($ad),
+            'isAccreditation' => $isAccreditation,
         ]);
     }
 

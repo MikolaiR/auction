@@ -20,7 +20,7 @@ class BidController extends Controller
 
     /**
      * Get all bids for the user
-     * 
+     *
      * @return \Illuminate\Contracts\View\View
      */
     public function index(FilterUserBidRequest $query): View
@@ -38,17 +38,20 @@ class BidController extends Controller
      */
     public function bid(string $ad, CreateBidRequest $request): RedirectResponse
     {
+        if (!$this->authRepository->user()->isAccreditation()) {
+            return redirect()->route('user.accreditation')->with('error', 'You are not allowed to bid on an ad.');
+        }
         $this->bidRepository->bid($ad, $this->authRepository->user(), $request->validated());
         return redirect()->route('auction-details', $ad)->with('success', 'Your bid has been placed successfully.');
     }
 
     /**
-     * Show bid details. 
+     * Show bid details.
      * {@inheritDoc} Show Bid for Payment
-     * 
+     *
      * @param string $bid
      * @return \Illuminate\Contracts\View\View
-     * 
+     *
      */
     public function show(string $bid): View
     {
@@ -56,10 +59,10 @@ class BidController extends Controller
             'bid' => $this->bidRepository->getUserBid($bid, $this->authRepository->user()),
         ]);
     }
-    
+
     /**
      * Accept bid
-     * 
+     *
      * @param string $adSlug
      * @param string $bidId
      */

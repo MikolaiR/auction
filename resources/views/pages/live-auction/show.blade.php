@@ -8,6 +8,7 @@
 <div class="auction-details-section pt-120">
     <div class="container">
         <div class="row g-4 mb-50">
+{{--            media content--}}
             <div
                 class="col-xl-6 col-lg-7 d-flex flex-row align-items-start justify-content-lg-start justify-content-center flex-md-nowrap flex-wrap gap-4">
                 <ul class="nav small-image-list d-flex flex-md-column flex-row justify-content-center gap-4  wow fadeInDown"
@@ -35,30 +36,14 @@
                     @endforeach
                 </div>
             </div>
+
+{{--            content lot--}}
             <div class="col-xl-6 col-lg-5">
                 <div class="product-details-right  wow fadeInDown" data-wow-duration="1.5s" data-wow-delay=".2s"
                     style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInDown;">
                     <h3>{{ $ad->title }}</h3>
                     <p class="para">{{ shorten_chars($ad->description, 150, true) }}</p>
                     <h4>{{ __('Bidding Price:') }} <span>{{ money($ad->price) }}</span></h4>
-                    <div class="row d-flex mt-4">
-                        <div class="ad-listing-item col-6">
-                            <span>{{ __('Seller Name:') }}</span>
-                            <p class="fw-bold">{{ $ad->seller_name }}</p>
-                        </div>
-                        <div class="ad-listing-item col-6">
-                            <span>{{ __('Seller Email:') }}</span>
-                            <p>{{ $ad->seller_email ?? __('Not Available') }}</p>
-                        </div>
-                        <div class="ad-listing-item col-6">
-                            <span>{{ __('Seller Phone:') }}</span>
-                            <p>{{ $ad->seller_mobile ?? __('Not Available') }}</p>
-                        </div>
-                        <div class="ad-listing-item col-6">
-                            <span>{{ __('Seller Address:') }}</span>
-                            <address>{{ $ad->seller_address ?? __('Not Available') }}</address>
-                        </div>
-                    </div>
                     {{-- div for report ad button --}}
                     <div class="row d-flex mb-4">
                         <div class="ad-listing-item col-12">
@@ -79,11 +64,17 @@
                                     <p class="mb-0">{!! __('You are currently not logged in. If you have an account, please <strong><a href=":login_url">login</a> </strong> to place a bid to have a chance of winning this auction.', ['login_url' => route('user.login')]) !!}</p>
                                 </x-alert>
                             @endguest
-                            <div class="form-inner gap-2">
-                                <input type="number" placeholder="{{ __('$00.00') }}" @guest disabled @endguest name="amount" required @class(['error' => $errors->has('amount')]) min="{{ $ad->highestBid->amount ?? $ad->price + 1 }}" value="{{ old('amount') }}">
-                                <button @class(['eg-btn btn--primary btn--sm' => 'auth', 'eg-btn btn--primary btn--sm disabled' => '!auth']) @guest disabled @else type="submit" @endguest>{{ __('Place a Bid') }}</button>
-                            </div>
-                            <span class="text-danger">{{ $errors->first('amount') }}</span>
+                            @if(!$isAccreditation)
+                                <x-alert type="warning" icon="bi bi-exclamation-circle-fill">
+                                    <p class="mb-0">{!! __('Can not place a bet, first get <a class="fw-bold" href=":accreditation_url">accredited</a>', ['accreditation_url' => route('user.accreditation')]) !!}</p>
+                                </x-alert>
+                            @else
+                                <div class="form-inner gap-2">
+                                    <input type="number" placeholder="{{ __('$00.00') }}" @guest disabled @endguest name="amount" required @class(['error' => $errors->has('amount')]) min="{{ $ad->highestBid->amount ?? $ad->price + 1 }}" value="{{ old('amount') }}">
+                                    <button @class(['eg-btn btn--primary btn--sm' => 'auth', 'eg-btn btn--primary btn--sm disabled' => '!auth']) @guest disabled @else type="submit" @endguest>{{ __('Place a Bid') }}</button>
+                                </div>
+                                <span class="text-danger">{{ $errors->first('amount') }}</span>
+                            @endif
                         </form>
                     </div>
                     @else
@@ -106,6 +97,8 @@
                 </div>
             </div>
         </div>
+
+{{--        description lot--}}
         <div class="row d-flex justify-content-center g-4">
             <div class="col-lg-8">
                 <ul class="nav nav-pills d-flex flex-row justify-content-start gap-sm-4 gap-3 mb-45 wow fadeInDown"

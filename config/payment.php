@@ -30,12 +30,16 @@ return [
     ],
 
     'currencies' => [
-        'default' => 'INR',
-
+        'default' => 'BYN',
+        'BYN' => [
+            'name' => 'Belarusian Ruble',
+            'symbol' => 'Br',
+            'code' => 'BYN',
+        ],
         'INR' => [
             'name' => 'Indian Rupee',
             'symbol' => '₹',
-            'code' => 'INR',            
+            'code' => 'INR',
         ],
         'USD' => [
             'name' => 'United States Dollar',
