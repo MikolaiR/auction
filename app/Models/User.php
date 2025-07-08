@@ -203,4 +203,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserData::class);
     }
+
+    public function isAccreditation(): bool
+    {
+        return $this->userData()->where('status', 'approved')->exists();
+    }
 }

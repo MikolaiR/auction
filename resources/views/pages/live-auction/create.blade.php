@@ -16,6 +16,11 @@
                         <p class="mb-0">{!! __('You are posting as a guest. If you have an account, please <a class="fw-bold" href=":login_url">login</a> to have your listing associated with your account.', ['login_url' => route('user.login')]) !!}</p>
                     </x-alert>
                     @endguest
+                    @if (!$isAccreditation)
+                        <x-alert type="warning" icon="exclamation-triangle">
+                            <p class="mb-0">{!! __('You have not been accredited to add a lot, please follow the <a class="fw-bold" href="user/accreditation">link</a> to have your listing associated with your account.', ['login_url' => route('user.login')]) !!}</p>
+                        </x-alert>
+                    @endif
                     <x-alert type="info" icon="info-circle" dismissible="true">
                         <p class="mb-0">{{ __('Once you submit your listing, it will be reviewed by our team. Once approved, it will be listed on the auction.') }}</p>
                     </x-alert>

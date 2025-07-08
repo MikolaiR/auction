@@ -48,6 +48,18 @@ class AdController extends Controller
     }
 
     /**
+     * Show ad creation form.
+     *
+     * @return View
+     */
+
+    public function create(): View
+    {
+        $isAccreditation = $this->authRepository->user()->isAccreditation();
+        return view('pages.live-auction.create', compact('isAccreditation'));
+    }
+
+    /**
      * Create an ad listing.
      *
      * @param \App\Http\Requests\Ad\CreateAdRequest $request
@@ -55,6 +67,9 @@ class AdController extends Controller
      */
     public function store(CreateAdRequest $request): RedirectResponse
     {
+        if (!$this->authRepository->user()->isAccreditation()) {
+            return redirect()->route('user.accreditation')->with('error', 'You are not allowed to create an ad.');
+        }
         //$this->adRepository->create($this->authRepository->user(), $request->validated());
        // return redirect()->route('add-listing')->with('success', 'Your auction has been created successfully, it will be reviewed by our team before it is published.');
         $data = $request->validated();

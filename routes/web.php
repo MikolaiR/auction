@@ -42,7 +42,7 @@ Route::post('/blog/{post:slug}/comment', [CommentController::class, 'store'])->n
 Route::get('/auction-details/{ads:slug}', [AdController::class, 'show'])->name('auction-details')->middleware('increase.ad.views');
 Route::get('/auction-details/{ads:slug}/report', [AdController::class, 'report'])->name('auction-details.report');
 Route::post('/auction-details/{ads:slug}/report', [AdController::class, 'handleReport'])->name('auction-details.report.handle');
-Route::view('/add-listing', 'pages.live-auction.create')->name('add-listing');
+Route::get('/add-listing', [AdController::class, 'create'])->name('add-listing');
 Route::post('/add-listing', [AdController::class, 'store'])->name('add-listing.handle');
 Route::post('/bid/{ads:slug}', [BidController::class, 'bid'])->name('bid.handle')->middleware('auth:web');
 Route::webhooks('paystack-webhook', 'paystack-webhook');
