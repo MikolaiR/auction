@@ -42,7 +42,7 @@ class AdController extends Controller
      */
     public function show(string $ad): View
     {
-        $isAccreditation = $this->authRepository->user()->isAccreditation();
+        $isAccreditation = $this->authRepository->isAccreditation();
         return view('pages.live-auction.show', [
             'ad' => $this->adRepository->getAd($ad),
             'isAccreditation' => $isAccreditation,
@@ -57,7 +57,7 @@ class AdController extends Controller
 
     public function create(): View
     {
-        $isAccreditation = $this->authRepository->user()->isAccreditation();
+        $isAccreditation = $this->authRepository->isAccreditation();
         return view('pages.live-auction.create', compact('isAccreditation'));
     }
 
@@ -69,7 +69,7 @@ class AdController extends Controller
      */
     public function store(CreateAdRequest $request): RedirectResponse
     {
-        if (!$this->authRepository->user()->isAccreditation()) {
+        if (!$this->authRepository->isAccreditation()) {
             return redirect()->route('user.accreditation')->with('error', 'You are not allowed to create an ad.');
         }
         //$this->adRepository->create($this->authRepository->user(), $request->validated());

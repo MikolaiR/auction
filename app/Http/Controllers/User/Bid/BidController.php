@@ -38,7 +38,7 @@ class BidController extends Controller
      */
     public function bid(string $ad, CreateBidRequest $request): RedirectResponse
     {
-        if (!$this->authRepository->user()->isAccreditation()) {
+        if (!$this->authRepository->isAccreditation()) {
             return redirect()->route('user.accreditation')->with('error', 'You are not allowed to bid on an ad.');
         }
         $this->bidRepository->bid($ad, $this->authRepository->user(), $request->validated());

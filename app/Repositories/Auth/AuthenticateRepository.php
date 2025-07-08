@@ -156,6 +156,19 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
     }
 
     /**
+     * Accreditation user
+     *
+     * @return bool
+     */
+    public function isAccreditation(): bool
+    {
+        if (isset($this->user()->id)){
+            return $this->user()->isAccreditation();
+        }
+        return false;
+    }
+
+    /**
      * Authenticated admin.
      * @return ?Admin|null
      */
