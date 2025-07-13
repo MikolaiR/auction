@@ -53,7 +53,7 @@
                     @endif
                     
                     <div class="mt-3">
-                        <a href="{{ route('user.accreditation') }}" class="eg-btn profile-btn">
+                        <a href="{{ route('user.accreditation') }}" class="btn btn-dark profile-btn">
                             @if(!isset(auth()->user()->userData) || !auth()->user()->userData->status || auth()->user()->userData->status === 'rejected')
                                 {{ __('Complete Accreditation') }}
                             @else

@@ -130,109 +130,135 @@
     </div>
 </div>
 @else
-<header class="style-2">
-    <div class="header-logo">
-        <a href="{{ route('home') }}"><img alt="image" src="/assets/images/bg/header-logo2.png"></a>
-    </div>
-    <div class="main-menu">
-        <div class="mobile-logo-area d-lg-none d-flex justify-content-between align-items-center">
-            <div class="mobile-logo-wrap">
-                <a href="{{ route('home') }}"><img alt="image" src="/assets/images/bg/header-logo2.png"></a>
-            </div>
-            <div class="menu-close-btn">
-                <i class="bi bi-x-lg"></i>
-            </div>
-        </div>
-        <ul class="menu-list">
-            <li>
-                <a href="{{ route('home') }}">{{ __('Home') }}</a>
-            </li>
-            <li>
-                <a href="{{ route('how-it-works') }}">{{ __('How It Works') }}</a>
-            </li>
-            <li>
-                <a href="{{ route('live-auction') }}">{{ __('Live Auction') }}</a>
-            </li>
-            <li class="menu-item-has-children">
-                <a href="#">{{ __('Company') }}</a><i class="bx bx-plus dropdown-icon"></i>
-                <ul class="submenu">
-                    <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
-                    <li><a href="{{ route('contact') }}">{{ __('Contact') }}</a></li>
+<header class="container-fluid py-2">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="/assets/images/bg/header-logo2.png" alt="logo" class="img-fluid">
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Main Navigation Content -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Main Menu Links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('how-it-works') }}">{{ __('How It Works') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('live-auction') }}">{{ __('Live Auction') }}</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="companyDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ __('Company') }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="companyDropdown">
+                            <li><a class="dropdown-item" href="{{ route('about') }}">{{ __('About') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('contact') }}">{{ __('Contact') }}</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('blog.index') }}">{{ __('Blog') }}</a>
+                    </li>
                 </ul>
-            </li>
-            <li>
-                <a href="{{ route('blog.index') }}">{{ __('Blog') }}</a>
-            </li>
-            <li class="menu-item-has-children">
-                <a href="#">{{ __('Language') }}</a><i class="bx bx-plus dropdown-icon"></i>
-                <ul class="submenu">
-                    <li><a href="{{ route('language.switch', 'en') }}">{{ __('English') }}</a></li>
-                    <li><a href="{{ route('language.switch', 'ru') }}">{{ __('Russian') }}</a></li>
-                </ul>
-            </li>
-        </ul>
-
-        <div class="d-lg-none d-block">
-            <form class="mobile-menu-form style-2 mb-5">
-                <div class="input-with-btn d-flex flex-column">
-                    <input type="text" placeholder="{{ __('Search here...') }}">
-                    <button type="submit" class="eg-btn btn--primary2 btn--sm">{{ __('Search') }}</button>
+                
+                <!-- Mobile Only Search Form -->
+                <div class="d-lg-none d-block mb-3">
+                    <form class="d-flex" method="GET">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="{{ __('Search here...') }}" value="{{ request()->q ?? '' }}">
+                            <button class="btn btn-primary" type="submit">{{ __('Search') }}</button>
+                        </div>
+                    </form>
+                    <div class="mt-3 p-2 border-top">
+                        <small class="d-block">{{ __('Click To Call') }}</small>
+                        <h6><a href="tel:347-274-8816" class="text-decoration-none">+347-274-8816</a></h6>
+                    </div>
                 </div>
-            </form>
-            <div class="hotline two">
-                <div class="hotline-info">
-                    <span>{{ __('Click To Call') }}</span>
-                    <h6><a href="tel:347-274-8816">+347-274-8816</a></h6>
+                
+                <!-- Right Side Navigation Items -->
+                <div class="d-flex align-items-center">
+                    <!-- Search Button & Dropdown -->
+                    <div class="dropdown d-none d-lg-block">
+                        <button class="btn btn-link" type="button" id="searchDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="searchDropdown" style="min-width: 300px;">
+                            <form method="GET">
+                                <div class="input-group">
+                                    <input type="text" name="q" class="form-control" placeholder="{{ __('Search here...') }}" value="{{ request()->q ?? '' }}">
+                                    <button class="btn btn-primary" type="submit">{{ __('Search') }}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Add Listing Button -->
+                    <a href="{{ route('add-listing') }}" class="btn btn-primary btn-sm mx-2">{{ __('Add Listing') }}</a>
+                    
+                    <!-- Auth Buttons -->
+                    @guest('web')
+                        <a href="{{ route('user.login') }}" class="btn btn-primary btn-sm mx-1">{{ __('Login') }}</a>
+                        <a href="{{ route('user.register') }}" class="btn btn-outline-primary btn-sm mx-1">{{ __('Register') }}</a>
+                    @endguest
+                    
+                    @auth
+                        <div class="dropdown">
+                            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="userDropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ __('My Account') }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">{{ __('Dashboard') }}</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="{{ route('user.logout.handle') }}" method="POST" class="px-2">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item d-flex align-items-center">
+                                            <svg width="16" height="16" viewBox="0 0 22 22" class="me-2" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_382_377)">
+                                                    <path d="M21.7273 10.4732L19.3734 8.81368C18.9473 8.51333 18.3574 8.81866 18.3574 9.34047V12.6595C18.3574 13.1834 18.9485 13.4856 19.3733 13.1863L21.7272 11.5268C22.0916 11.2699 22.0906 10.7294 21.7273 10.4732Z"></path>
+                                                    <path d="M18.4963 15.1385C18.1882 14.9603 17.7939 15.0655 17.6156 15.3737C16.1016 17.9911 13.2715 19.7482 10.0374 19.7482C5.21356 19.7482 1.28906 15.8237 1.28906 11C1.28906 6.17625 5.21356 2.25171 10.0374 2.25171C13.2736 2.25171 16.1025 4.0105 17.6156 6.62617C17.7938 6.93434 18.1882 7.03949 18.4962 6.86138C18.8043 6.68315 18.9096 6.28887 18.7314 5.98074C16.9902 2.97053 13.738 0.962646 10.0374 0.962646C4.48967 0.962646 0 5.45184 0 11C0 16.5477 4.48919 21.0373 10.0374 21.0373C13.7396 21.0373 16.9909 19.028 18.7315 16.0191C18.9097 15.711 18.8044 15.3168 18.4963 15.1385Z"></path>
+                                                    <path d="M7.05469 10.3555C6.69873 10.3555 6.41016 10.644 6.41016 11C6.41016 11.356 6.69873 11.6445 7.05469 11.6445H17.0677V10.3555H7.05469Z"></path>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_382_377">
+                                                        <rect width="22" height="22"></rect>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                            {{ __('Logout') }}
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @endauth
                 </div>
             </div>
+            <div class="dropdown d-flex me-2 position-static position-lg-relative">
+              <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                  <i class="fa-light fa-globe"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end w-auto" style="min-width: 120px; max-width: 200px;">
+                  <a class="dropdown-item" href="{{ route('language.switch', 'en') }}">
+                      {{ __('English') }}
+                  </a>
+                  <a class="dropdown-item" href="{{ route('language.switch', 'ru') }}">
+                      {{ __('Russian') }}
+                  </a>
+              </div>
         </div>
-    </div>
-    <div class="nav-right d-flex align-items-center">
-        <div class="search-btn">
-            <i class="bi bi-search"></i>
-        </div>
-        <a href="{{ route('add-listing') }}" class="join-btn">{{ __('Add Listing') }}</a>
-        @guest('web')
-            <a href="{{ route('user.login') }}" class="join-btn">{{ __('Login') }}</a>
-        @endguest
-        @auth()
-            <form action="{{ route('user.logout.handle') }}" method="POST">
-                @csrf
-                <button type="submit" @class(['nav-link', 'nav-btn-style', 'mx-auto'])>
-                    <svg width="22" height="22"
-                         viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_382_377)">
-                            <path
-                                d="M21.7273 10.4732L19.3734 8.81368C18.9473 8.51333 18.3574 8.81866 18.3574 9.34047V12.6595C18.3574 13.1834 18.9485 13.4856 19.3733 13.1863L21.7272 11.5268C22.0916 11.2699 22.0906 10.7294 21.7273 10.4732Z">
-                            </path>
-                            <path
-                                d="M18.4963 15.1385C18.1882 14.9603 17.7939 15.0655 17.6156 15.3737C16.1016 17.9911 13.2715 19.7482 10.0374 19.7482C5.21356 19.7482 1.28906 15.8237 1.28906 11C1.28906 6.17625 5.21356 2.25171 10.0374 2.25171C13.2736 2.25171 16.1025 4.0105 17.6156 6.62617C17.7938 6.93434 18.1882 7.03949 18.4962 6.86138C18.8043 6.68315 18.9096 6.28887 18.7314 5.98074C16.9902 2.97053 13.738 0.962646 10.0374 0.962646C4.48967 0.962646 0 5.45184 0 11C0 16.5477 4.48919 21.0373 10.0374 21.0373C13.7396 21.0373 16.9909 19.028 18.7315 16.0191C18.9097 15.711 18.8044 15.3168 18.4963 15.1385Z">
-                            </path>
-                            <path
-                                d="M7.05469 10.3555C6.69873 10.3555 6.41016 10.644 6.41016 11C6.41016 11.356 6.69873 11.6445 7.05469 11.6445H17.0677V10.3555H7.05469Z">
-                            </path>
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_382_377">
-                                <rect width="22" height="22"></rect>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                    {{ __('Logout') }}
-                </button>
-            </form>
-        @endauth
-        <div class="eg-btn btn--primary2 header-btn">
-            @guest('web')
-            <a href="{{ route('user.register') }}">{{ __('Register') }}</a>
-            @endguest
-            @auth('web')
-            <a href="{{ route('user.dashboard') }}">{{ __('My Account') }}</a>
-            @endauth
-        </div>
-        <div class="mobile-menu-btn d-lg-none d-block">
-            <i class="bx bx-menu"></i>
-        </div>
-    </div>
+    </nav>
 </header>
 @endif

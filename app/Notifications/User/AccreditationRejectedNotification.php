@@ -47,13 +47,13 @@ class AccreditationRejectedNotification extends Notification implements ShouldQu
         $comment = $userData ? $userData->admin_comment : 'Please update your accreditation information and try again.';
 
         return (new MailMessage)
-            ->subject('Accreditation Needs Attention')
-            ->greeting('Hello ' . $this->user->name . ',')
-            ->line('Your accreditation submission requires updates before it can be approved.')
-            ->line('Administrator comment:')
+            ->subject(__('Accreditation Needs Attention'))
+            ->greeting(__('Hello') . ' ' . $this->user->name . ',')
+            ->line(__('Your accreditation submission requires updates before it can be approved.'))
+            ->line(__('Administrator comment:'))
             ->line($comment)
-            ->action('Update Accreditation', url('/user/accreditation'))
-            ->line('Please make the necessary changes and resubmit your information.')
-            ->line('If you have any questions, please contact our support team.');
+            ->action(__('Update Accreditation'), url('/user/accreditation'))
+            ->line(__('Please make the necessary changes and resubmit your information.'))
+            ->line(__('If you have any questions, please contact our support team.'));
     }
 }
