@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\AuctionType\AuctionTypeController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\AccreditationController;
+use App\Http\Controllers\Admin\TranslationsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -114,6 +115,14 @@ Route::middleware(['auth:admin_web', 'ensure.account.active'])->group(function (
     Route::get('/media', [MediaController::class, 'index'])->name('media.index');
     Route::get('/media/{media:id}', [MediaController::class, 'show'])->name('media.show');
     Route::delete('/media/{media:id}', [MediaController::class, 'destroy'])->name('media.destroy');
+
+    /* ========  TRANSLATIONS  =========== */
+    Route::get('/translations', [TranslationsController::class, 'index'])->name('translations.index');
+    Route::get('/translations/create', [TranslationsController::class, 'create'])->name('translations.create');
+    Route::post('/translations', [TranslationsController::class, 'store'])->name('translations.store');
+    Route::get('/translations/{key}/edit', [TranslationsController::class, 'edit'])->name('translations.edit');
+    Route::patch('/translations/{key}', [TranslationsController::class, 'update'])->name('translations.update');
+    Route::delete('/translations/{key}', [TranslationsController::class, 'destroy'])->name('translations.destroy');
 
     /* ========  SUPPORT  =========== */
     Route::get('/supports', [SupportController::class, 'index'])->name('support.index');

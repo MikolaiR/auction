@@ -161,6 +161,12 @@
            <span class="side-menu__label">{{ __('Media') }}</span>
           </a>
          </li>
+         <li>
+           <a  @class(['side-menu__item', 'has-link', 'active' => preg_match('/translations.*/', $active)]) data-bs-toggle="slide" href="{{ route('admin.translations.index') }}">
+            <i class="side-menu__icon fa-regular fa-language"></i>
+            <span class="side-menu__label">{{ __('Translations') }}</span>
+           </a>
+          </li>
          <li @class(['slide', 'is-expanded' => preg_match('/blogs.*/', $active)])>
            <a @class(['side-menu__item', 'has-link', 'active' => preg_match('/blogs.*/', $active)]) data-bs-toggle="slide" href="javascript:void(0)"><i
                class="side-menu__icon fa-regular fa-pen-to-square"></i><span class="side-menu__label">{{ __('Blogs') }}</span><i
