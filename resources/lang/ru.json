@@ -424,5 +424,11 @@
     "Payments": "Платежи",
     "Translations Management": "Управление переводами",
     "Translations": "Переводы",
-    "Translation added successfully.": "Перевод успешно добавлен."
+    "Translation added successfully.": "Перевод успешно добавлен.",
+    "Your account is fully accredited. You have access to all platform features.": "Ваш аккаунт полностью аккредитован. Вы получаете доступ ко всем функциям платформы.",
+    "Accreditation Status": "Статус аккредитации",
+    "Update Accreditation": "Обновление аккредитации",
+    "Oops! It seems your account is not verified. Click": "Упс! Похоже, ваш аккаунт не верифицирован. Нажмите.",
+    "resend the verification email and unlock the full potential of your account.": "повторно отправьте письмо с подтверждением и раскройте весь потенциал своей учетной записи.",
+    "here": "здесь"
 }

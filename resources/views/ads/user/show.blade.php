@@ -44,6 +44,10 @@
                                     <span>{{ __('Title') }}:</span>
                                     <h3>{{ $ad->title }}</h3>
                                 </div>
+                                <div class="ad-listing-item">
+                                    <span>{{ __('Lot Number') }}:</span>
+                                    <h4><strong>{{ $ad->lot_number ?: __('Not assigned') }}</strong></h4>
+                                </div>
                                 <div class="row d-flex">
                                     <div class="ad-listing-item col-4">
                                         <span>{{ __('Category') }}:</span>

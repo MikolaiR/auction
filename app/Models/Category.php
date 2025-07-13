@@ -22,6 +22,7 @@ class Category extends Model
         'icon',
         'image',
         'description',
+        'symbol',
     ];
 
     /**

@@ -6,6 +6,7 @@ use App\Enums\AdStatus;
 use App\Traits\HasMedia;
 use App\Traits\HasSlug;
 use App\Traits\HasUuids;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -45,6 +46,7 @@ class Ad extends Model
         'state_id',
         'city_id',
         'address',
+        'lot_number',
     ];
 
     /**
