@@ -30,7 +30,7 @@ class AdRepository extends BaseCrudRepository implements AdRepositoryInterface
 
     /**
      * Create an ad listing.
-     * 
+     *
      * @param ?User $user|null
      * @param array $data
      * @return Ad
@@ -46,7 +46,7 @@ class AdRepository extends BaseCrudRepository implements AdRepositoryInterface
 
     /**
      * Get ad by slug
-     * 
+     *
      * @param string $slug
      * @return \App\Models\Ad
      */
@@ -62,7 +62,7 @@ class AdRepository extends BaseCrudRepository implements AdRepositoryInterface
 
     /**
      * Get latest active|upcoming ads
-     * 
+     *
      * @param int $limit
      * @param string $type = 'active' <active|upcoming>
      * @param array $filters
@@ -98,7 +98,7 @@ class AdRepository extends BaseCrudRepository implements AdRepositoryInterface
 
     /**
      * Get ads by user
-     * 
+     *
      * @param \App\Models\User $user
      * @param int $limit
      * @param array $filters
@@ -117,7 +117,7 @@ class AdRepository extends BaseCrudRepository implements AdRepositoryInterface
 
     /**
      * Get user ad by slug
-     * 
+     *
      * @param \App\Models\User $user
      * @param string $slug
      * @return \App\Models\Ad
@@ -134,7 +134,7 @@ class AdRepository extends BaseCrudRepository implements AdRepositoryInterface
 
     /**
      * Update an ad
-     * 
+     *
      * @param \App\Models\User $user
      * @param string $ad
      * @param array $data
@@ -159,7 +159,7 @@ class AdRepository extends BaseCrudRepository implements AdRepositoryInterface
 
     /**
      * Get ad by slug
-     * 
+     *
      * @param string $slug
      * @return \App\Models\Ad
      */
@@ -175,7 +175,7 @@ class AdRepository extends BaseCrudRepository implements AdRepositoryInterface
 
     /**
      * Report an ad
-     * 
+     *
      * @param \App\Models\User $user
      * @param string $slug
      * @param array $data
@@ -193,7 +193,7 @@ class AdRepository extends BaseCrudRepository implements AdRepositoryInterface
 
     /**
      * Store an ad listing.
-     * 
+     *
      * @param ?User $user|null
      * @param array $data
      * @return Ad
@@ -211,7 +211,7 @@ class AdRepository extends BaseCrudRepository implements AdRepositoryInterface
             'sub_category_id' => $subcategory->id,
             'country_id' => $country->id,
             'state_id' => $state->id,
-            'city_id' => $data['city'],
+//            'city_id' => $data['city'],
             'title' => $data['title'],
             'description' => $data['description'],
             'price' => $data['price'],

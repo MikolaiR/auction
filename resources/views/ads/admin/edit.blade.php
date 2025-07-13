@@ -19,6 +19,8 @@
                         <div class="card-header">
                             <div class="card-title">{{ __('Edit Ad Listing') }}</div>
                         </div>
+                        <!-- Validation errors container -->
+                        <div id="validation-errors" class="px-4 pt-4" style="display: none;"></div>
                         <div class="card-body">
                             <x-input-item-field name="title" type="text" label="{{ __('Ad Title') }}" placeholder="{{ __('Enter Ad Title') }}" :value="$ad->title" />
                             <x-input-item-field name="price" type="number" label="{{ __('Starting Price') }}" placeholder="{{ __('Enter Starting Price') }}" value="{{ $ad->price }}" />
@@ -63,9 +65,8 @@
         <!-- CONTAINER END -->
     </div>
 </div>
-
-
 @endsection
+
 @push('scripts')
 <!-- INTERNAL File-Uploads Js-->
 <script src="/plugin/fancyuploader/jquery.ui.widget.js"></script>
@@ -75,34 +76,41 @@
 <script src="/plugin/fancyuploader/fancy-uploader.js"></script>
 <script>
     $(function() {
-        // Используем простой подход с явным URL
         var uploadUrl = '{{ route("admin.ads.upload.images", $ad->slug) }}';
-
-        // Останавливаем стандартное поведение формы
         $(document).on('submit', 'form', function(e) {
-            // Если форма содержит поля для загрузки файлов, не отправляем их вместе с формой
             if ($(this).find('#demo').length) {
                 e.preventDefault();
-                // Отправляем форму без файлов
+                var statusValue = document.getElementById('status').value;
+                
                 $.ajax({
                     url: $(this).attr('action'),
                     type: 'POST',
-                    data: $(this).serialize() + '&_method=PUT',
+                    data: $(this).serialize() + '&_method=PUT&status=' + statusValue,
                     success: function(response) {
-                        // Успешное сохранение формы
                         alert('{{ __('Form submitted successfully') }}');
                         window.location.href = '{{ route("admin.ads.index") }}';
                     },
                     error: function(xhr) {
-                        // Обработка ошибок
-                        console.error('{{ __('Form submission error') }}:', xhr);
-                        alert('{{ __('Error saving form data') }}');
+                        if (xhr.status === 422) {
+                            var errors = xhr.responseJSON.errors;
+                            var errorMessage = '<div class="alert alert-danger"><ul>';
+                            $.each(errors, function(key, value) {
+                                errorMessage += '<li>' + value + '</li>';
+                            });
+                            errorMessage += '</ul></div>';
+                            $('#validation-errors').html(errorMessage).show();
+                            
+                            $('html, body').animate({
+                                scrollTop: $('#validation-errors').offset().top - 100
+                            }, 200);
+                        } else {
+                            alert('{{ __('Error saving form data') }}');
+                        }
                     }
                 });
             }
         });
 
-        // Настраиваем FancyFileUpload с жестко заданным URL
         $('#demo').FancyFileUpload({
             url: uploadUrl,
             params: {
@@ -111,7 +119,6 @@
             },
             maxfilesize: 10000000,
             added: function(e, data) {
-                // Перед отправкой файла задаем URL снова
                 if (data.url === undefined || data.url.toString().indexOf('[object') !== -1) {
                     data.url = uploadUrl;
                 }

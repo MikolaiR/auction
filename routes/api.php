@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/subcategories/{slug}', [ApiCategoryController::class, 'getSubCategories'])->name('categories.sub-categories');
 
 Route::get('/states/{iso2code}', [ApiCountryController::class, 'getStates'])->name('countries.states');
-Route::get('/cities/{iso2code}/{stateCode}', [ApiCountryController::class, 'getCities'])->name('countries.cities');
+//Route::get('/cities/{iso2code}/{stateCode}', [ApiCountryController::class, 'getCities'])->name('countries.cities');

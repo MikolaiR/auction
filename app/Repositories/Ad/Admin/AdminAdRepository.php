@@ -69,7 +69,7 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
         return $this->model->query()->with(['user:id,name,avatar,username', 'media', 'category:id,name,slug', 'subcategory:parent_id,id,name,slug', 'bids', 'bids.user:id,name,avatar,username', 'country:id,name,iso2', 'state:id,name,code', 'city:id,name', 'relatedAds:id,title,slug,price', 'relatedAds.media',])
             ->where('slug', $adSlug)
             ->firstOr(function () {
-                throw new AdException('Ad not found.');
+                throw new AdException(__('Ad not found.'));
             });
     }
 
@@ -83,11 +83,10 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
     public function updateAd(string $slug, array $data): void
     {
         $ad = $this->model->where('slug', $slug)->firstOr(function () {
-            throw new AdException('Ad not found.');
+            throw new AdException(__('Ad not found.'));
         });
         $category = isset($data['category']) ? app(CategoryRepository::class)->findBySlug($data['category']) : null;
         $subcategory = isset($data['subcategory']) ? app(CategoryRepository::class)->findBySlug($data['subcategory']) : null;
-
         DB::transaction(function () use ($data, $ad, $category, $subcategory) {
             $ad->update([
                 'title' => $data['title'],
@@ -145,7 +144,7 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
                 $query->where('slug', $slug);
             })
             ->firstOr(function () {
-                throw new AdException('Ad not found.');
+                throw new AdException(__('Ad not found.'));
             });
     }
 
@@ -159,10 +158,10 @@ class AdminAdRepository extends BaseCrudRepository implements AdminAdRepositoryI
     public function deleteAd(string $adSlug): void
     {
         $ad = $this->model->where('slug', $adSlug)->firstOr(function () {
-            throw new AdException('Ad not found.');
+            throw new AdException(__('Ad not found.'));
         });
         if($ad->status === AdStatus::PUBLISHED) {
-            throw new AdException('Ad not found.');
+            throw new AdException(__('Ad not found.'));
         }
 
         $ad->media->each(function ($media) {

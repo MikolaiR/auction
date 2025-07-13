@@ -22,11 +22,11 @@ enum AdStatus: int implements HasLabel, HasAll, HasColor
     public function label(): string
     {
         return match ($this) {
-            self::PENDING => 'Pending',
-            self::PUBLISHED => 'Published',
-            self::REJECTED => 'Rejected',
-            self::EXPIRED => 'Expired',
-            self::ARCHIVED => 'Archived',
+            self::PENDING => __('Pending'),
+            self::PUBLISHED => __('Published'),
+            self::REJECTED => __('Rejected'),
+            self::EXPIRED => __('Expired'),
+            self::ARCHIVED => __('Archived'),
         };
     }
 
@@ -54,11 +54,11 @@ enum AdStatus: int implements HasLabel, HasAll, HasColor
     public function color(): string
     {
         return match ($this) {
-            self::PENDING => 'warning',
-            self::PUBLISHED => 'info',
-            self::REJECTED => 'danger',
-            self::EXPIRED => 'secondary',
-            self::ARCHIVED => 'dark',
+            self::PENDING => __('warning'),
+            self::PUBLISHED => __('info'),
+            self::REJECTED => __('danger'),
+            self::EXPIRED => __('secondary'),
+            self::ARCHIVED => __('dark'),
         };
     }
 }
